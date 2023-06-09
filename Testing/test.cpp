@@ -10,7 +10,7 @@ int main(){
 
     while(true){
         ronda = siguienteRonda(ronda);
-        cout << ronda;
+        cout << ronda << endl;
     }
 
     return 0;
