@@ -4,9 +4,10 @@
 #include <iostream>
 using namespace std;
 
-int siguienteRonda(int &ronda){
+//Función que modifica la ronda a su subsiguiente:
+void siguienteRonda(int &ronda){
     int siguienteRonda = ronda++;
-    return ronda++;
+    ronda++;
 }
 
 void asignarTurno(int jugador, int turnoActual){

@@ -3,7 +3,7 @@ using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
     //parámetros: número de jugador, nombre de jugador, estatuillas disponibles.
-    string seleccionarEstatuilla(int player, string player_name, string* estatuillas_disponibles){
+    string seleccionarEstatuilla(int jugador, string jugador_nombre, string* estatuillas_disponibles){
         int i =0;
         int temp =0;
         const int estatuillas_totales = 5;
@@ -11,7 +11,7 @@ using namespace std;
         string listado_seleccion_temp[estatuillas_totales]={};
 
         //Jugador que selecciona:
-        cout << "JUGADOR " << player << " - " << player_name <<endl;
+        cout << "JUGADOR " << jugador << " - " << jugador_nombre <<endl;
        
         //Cargamos el array temporal con las estatuillas disponibles:
         for(i; i < estatuillas_totales; i++ ){
