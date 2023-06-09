@@ -4,7 +4,12 @@
 #include <iostream>
 using namespace std;
 
-void asignarTurno(){
+int siguienteRonda(int &ronda){
+    int siguienteRonda = ronda++;
+    return ronda++;
+}
+
+void asignarTurno(int jugador, int turnoActual){
     cout <<"Asignar turno";
 }
 
