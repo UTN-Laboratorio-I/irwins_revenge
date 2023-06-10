@@ -1,9 +1,14 @@
 #include <iostream>
 using namespace std;
 
+//Función para acomodar el array con las estatuillas disponibles:
+    void reordenarEstatuillas(string ESTATUILLAS){
+        
+    }
+
 //Selección de la estatuilla que jugará el jugador:
     //parámetros: número de jugador, nombre de jugador, estatuillas disponibles.
-    string seleccionarEstatuilla(int jugador, string jugador_nombre, string* estatuillas_disponibles){
+    string seleccionarEstatuilla(string jugadores[], string estatuillas_disponibles){
         int i =0;
         int temp =0;
         const int estatuillas_totales = 5;
@@ -31,3 +36,5 @@ using namespace std;
         //Retornamos la estatuilla que fue seleccionada:
         return listado_seleccion_temp[estatuilla_seleccionada];
     }
+
+
