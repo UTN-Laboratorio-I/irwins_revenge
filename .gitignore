@@ -34,4 +34,6 @@
 #Vscode
 .vscode
 
+#Testing
+Testing/
 test.cpp
