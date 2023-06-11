@@ -7,8 +7,9 @@ int juego(){
     const int TURNOS = 2;
     int ronda = 0;
     string turnos[TURNOS]={};
-
     
+
+
     
 
 }
