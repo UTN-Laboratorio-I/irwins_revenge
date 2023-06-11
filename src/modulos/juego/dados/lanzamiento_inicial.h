@@ -3,16 +3,18 @@
 
 using namespace std;
 
-bool dados_inicio(int dado1, int dado2, bool &jugador1_primero, bool &jugador2_primero) // recibe la peticion de lanzar el dado de cada jugador
+bool dados_inicio(bool &jugador1_primero, bool &jugador2_primero) // recibe la peticion de lanzar el dado de cada jugador
 {
-    bool jugador1_primero = false, jugador2_primero = false; // ambos jugadores empiezan siendo primero igual a falso
-
+    int dado1 = 0, dado2 = 0;
     // este ciclo se repite hasta que los dados sean distintos
     do
     {
         dado1 = rand() % 10 + 1;
         dado1 = rand() % 10 + 1;
     } while (dado1 == dado2);
+    cout << endl;
+    cout << dado1 << endl;
+    cout << dado2 << endl;
 
     // una vez aseguro que los dados son distintos, comparo con estos dos if
     if (dado1 > dado2)

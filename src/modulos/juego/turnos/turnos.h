@@ -4,8 +4,10 @@
 #include <iostream>
 using namespace std;
 
-void asignarTurno(){
-    cout <<"Asignar turno";
+void asignarTurno()
+{
+
+    cout << "Asignar turno";
 }
 
 #endif
