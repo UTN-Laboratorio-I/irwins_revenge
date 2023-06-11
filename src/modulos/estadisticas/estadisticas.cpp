@@ -2,13 +2,17 @@
 #include <conio.h>
 using namespace std;
 
+
+
+
+
 int main(){
     
     int vec_jugador1 [6] = {};
     int vec_jugador2 [6] = {};
     int jugador1, jugador2;
     const int FILAS = 6;
-    const int COL = 2;
+    const int COL = 1;
     int m [FILAS][COL] = {{},{}};
     string vec_hito [5] = {};
     int acuJ1 = 0;
@@ -55,17 +59,17 @@ int main(){
 
     for (int i=0; i< FILAS; i++)
     {
-        for (int  j=0; j < COL - 1; j++)
+        for (int  j=0; j < COL; j++)
         {
             cout << vec_hito[i] << "\t";
-            cout << vec_jugador1 [i] << ": PDV" "\t" << "\t";
-            cout << vec_jugador2 [i] << ": PDV";
+            cout << vec_jugador1 [i] << " PDV" "\t" << "\t";
+            cout << vec_jugador2 [i] << " PDV";
         }
         cout << "\n";
     }
     cout << endl;
     cout << "------------------------------------------------------------------------" << endl;
-    cout << "TOTAL" << "\t" << "\t" << acuJ1 << ": PDV"<< "\t" << "\t" << acuJ2 << ": PDV" << endl;
+    cout << "TOTAL" << "\t" << "\t" << acuJ1 << " PDV"<< "\t" << "\t" << acuJ2 << " PDV" << endl;
 
     if(acuJ1 > acuJ2){
         ganador = "JUGADOR 1";
