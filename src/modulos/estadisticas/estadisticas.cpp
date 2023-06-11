@@ -13,9 +13,14 @@ int main(){
     string vec_hito [5] = {};
     int acuJ1 = 0;
     int acuJ2 = 0;
+    
+    // Variable de jugador ganador
     string ganador;
+    
+    // Variable que muestra el puntaje ganador
     int puntosGanador;
 
+    // Este vector muestra la columna con los hitos a mostrar por pantalla
     vec_hito [0] = "Estatuilla";
     vec_hito [1] = "Estatuilla ++";
     vec_hito [2] = "Ganador ";
@@ -23,13 +28,15 @@ int main(){
     vec_hito [4] = "Estatuilla --";
     vec_hito [5] = "Lanzamiento";
 
-
+    // Este ciclo fuerza para cargar un puntaje en los vectores
     for(int i=0; i<=6; i++){
         vec_jugador1 [i] = i+1;
         acuJ1 += vec_jugador1[i];
         vec_jugador2 [i] = i+2;
         acuJ2 += vec_jugador2[i];
     }
+
+    // Este ciclo nos puede servir para el ingreso de los puntajes del vector por jugador
 
     /*for(int i=0; i<FILAS; i++)
     {
@@ -68,7 +75,7 @@ int main(){
         puntosGanador = acuJ2;
     }
 
-    cout << "GANADOR: " << ganador << " con " << puntosGanador << " putnos de victoria.";
+    cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria.";
     
     
     getch ();
