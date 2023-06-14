@@ -7,13 +7,6 @@ using namespace std;
 
 int main()
 {
-    int opcion = -1;
-
-    while (opcion != 0)
-    {
-        mostrar_menu();
-        cin >> opcion;
-    }
 
     return 0;
 }

@@ -6,7 +6,6 @@ using namespace std;
 
 void asignarTurno()
 {
-
     cout << "Asignar turno";
 }
 

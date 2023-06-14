@@ -10,7 +10,7 @@ bool dados_inicio(bool &jugador1_primero, bool &jugador2_primero) // recibe la p
     do
     {
         dado1 = rand() % 10 + 1;
-        dado1 = rand() % 10 + 1;
+        dado2 = rand() % 10 + 1;
     } while (dado1 == dado2);
     cout << endl;
     cout << dado1 << endl;
