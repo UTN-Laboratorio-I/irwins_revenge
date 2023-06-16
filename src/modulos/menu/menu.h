@@ -15,6 +15,3 @@ void mostrar_menu()
     cout << "----------------------------" << endl;
     cout << " 0 - SALIR" << endl;
 }
-
-
-
