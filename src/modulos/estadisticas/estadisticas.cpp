@@ -1,7 +1,9 @@
 #include <iostream>
-#include <conio.h>
 #include <stdlib.h>
+#include <ctime>
 using namespace std;
+
+
 
 
 
@@ -12,6 +14,7 @@ int main(){
     int acuJ2 = 0;
     int i, j;
     int vec_jugador [6][2] = {{},{}};
+    srand(time(0));
     
     // Este ciclo fuerza para cargar un puntaje en los vectores
     for(i=0; i<6; i++){
@@ -74,6 +77,5 @@ int main(){
     cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria.";
     
     
-    getch ();
     return 0;
 }
