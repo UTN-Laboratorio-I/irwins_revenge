@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-//Función para acomodar el array con las estatuillas disponibles:
-    void reordenarEstatuillas(string ESTATUILLAS){
-        
-    }
-
 //Selección de la estatuilla que jugará el jugador:
     //parámetros: número de jugador, nombre de jugador, estatuillas disponibles.
     string seleccionarEstatuilla(string jugadores[], string estatuillas_disponibles[]){
@@ -37,9 +32,30 @@ using namespace std;
         return listado_seleccion_temp[estatuilla_seleccionada];
     }
 
-    void asignarEstatuillaAJugador(int pos, string estatuilla){
-
+    void agregar(string estatuillas_jugador1[], string estatuilla){
+        int i =0, max=5;
+        for(i;i<max;i++){
+            if(estatuillas_jugador1[i] == ""){
+                estatuillas_jugador1[i] == estatuilla;
+                break;
+            }
+        }
     }
+
+    void asignarEstatuillaAJugador(int pos, string estatuilla){
+       
+        // switch(pos){
+        //         case 0:
+        //             agregar(estatuillas_jugador1, estatuilla);
+        //             break;
+        //         case 1:
+        //             agregar(estatuillas_jugador1, estatuilla);
+        //             break;
+        //         default:
+        //             break;
+        //     }
+    }
+
     //Guardamos la estatuilla y la eliminamos del array gral.
     void eliminarEstatuilla(string estatuilla, string estatuillas_disponibles[]){
             // for(int i = 0; i<5; i++){
@@ -71,20 +87,14 @@ using namespace std;
                 pos=i;                          //Asignamos la posición a la variable.
             }
         }
-    switch(pos){
-        case 0:
-            break;
-        case 1:
-            break;
-        default:
-            break;
-    }
+    asignarEstatuillaAJugador(pos,estatuilla);
     //Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla,estatuillas_disponibles);
     }
 
 //VARIABLES PARA MAIN.CPP:
-//CANGREJO:
+
+//Objetivo: Uno de sus dados debe ser par y el otro impar:
     void obtener_cangrejo(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
         string estatuilla = "CANGREJO";
         bool par=0;
@@ -98,7 +108,78 @@ using namespace std;
             }
         }
         if(par && impar){
+            cout << "GANASTE CANGREJO";
             string jug = turnos[turno];
             asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
+        }
+    }
+
+//Objetivo: Al menos dos dados deben ser menores a 5.
+    void obtener_hormiga(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+        string estatuilla = "HORMIGA";
+        bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
+        int i = 0;
+        for(i; i<2; i++){
+            if(tirada_dados_10_caras[i] < 5){
+                menores_a_cinco[i]=1;
+            }
+        }
+        if(menores_a_cinco[0] && menores_a_cinco[1]){
+            cout << "GANASTE HORMIGA";
+            string jug = turnos[turno];
+            asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
+        }
+    }
+
+//Objetivo: La suma de 2 de los dados lanzados debe dar exactamente 7.
+    void obtener_medusa(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+        string estatuilla = "MEDUSA";
+        int resultado_esperado=7, suma=0;    //El array comienza con 2 falses.
+        int i = 0;
+        for(i; i<2; i++){
+            suma+=tirada_dados_10_caras[i];
+        }
+        if(suma == resultado_esperado){
+            cout << "GANASTE MEDUSA";
+            string jug = turnos[turno];
+            asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
+        }
+    }
+
+//Objetivo: Dos de los dados lanzados deberán devolver los números 1 y 10:
+    void obtener_aguila(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+       string estatuilla = "AGUILA";
+        bool numero_uno=0, numero_diez=0;
+        int i=0;
+        for(i; i<2; i++){
+            if(tirada_dados_10_caras[i]==1){
+                numero_uno==1;
+            }else if(tirada_dados_10_caras[i]==10){
+                numero_diez==1;
+            }
+        }
+        if(numero_uno && numero_diez){
+            cout << "GANASTE AGUILA";
+            string jug = turnos[turno];
+            asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
+        }
+    }
+
+//Objetivo: Los dados lanzados deben ser consecutivos. Por ejemplo (1,2), (2,3), (9,10);
+    void obtener_salamandra(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+       string estatuilla = "SALAMANDRA";
+        bool numeros_consecutivos=0;
+        int i=0, ecuacion1=(tirada_dados_10_caras[0]*2+1), ecuacion2=tirada_dados_10_caras[0]+tirada_dados_10_caras[1];
+        if(tirada_dados_10_caras[0]-tirada_dados_10_caras[1]==1 || ecuacion1 == ecuacion2){
+            numeros_consecutivos=true;
+        }
+
+        if(numeros_consecutivos){
+            cout << "GANASTE SALAMANDRA";
+            string jug = turnos[turno];
+            asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
+        }else
+        {
+            cout << "No son consecutivos";
         }
     }
