@@ -4,20 +4,59 @@ using namespace std;
 
 
 
+    int estadisticas_en_cero (int m[][2]);
+    int cargar_estadisticas (int m[][2]);
     void mostrar_estadisticas (int m[][2], string , string);
+    
+
 
 int main (){
 
     string nombre_J1 = "Fede";
     string nombre_J2 = "Elias";
+    //int matriz_jugadores[6][2] = {{},{}};
+
 
     int matriz_jugadores [6][2] = {{1,2}, {3,4}, {5,6}, {7,8}, {9,10}, {11,12}};
+
+    estadisticas_en_cero(matriz_jugadores);
+    cargar_estadisticas (matriz_jugadores);
 
     mostrar_estadisticas(matriz_jugadores, nombre_J1, nombre_J2);
 
 
     return 0;
 }
+
+    //Funcion para poner las estadisticas en 0
+
+    int estadisticas_en_cero (int m[][2]){
+        int i, j;
+
+        for(i=0; i< 6; i++){
+            for(j=0; j<2;j++){
+                m[i][j] = 0;
+            }
+        }
+    return m[6][2];
+    }
+
+    //Funcion para cargar estadisticas
+
+    int cargar_estadisticas (int m[][2]){
+    
+        int i, j;
+        
+        for (i=0; i< 6; i++){
+            for (j=0; j < 2; j++){
+                m[i][j];
+            }
+        }
+
+        return m[6][2];
+    }
+
+    // Funcion para mostrar las estadisticas
 
     void mostrar_estadisticas(int m[][2], string n_J1, string n_J2){
 
@@ -64,9 +103,14 @@ int main (){
         puntosGanador = acuJ2;
     }
 
+    if (acuJ1 <= 0 || acuJ1 <= 0){
+        cout << "\n" "No hay ganadores aun" << "\n" << "\n";
+    }else{
     cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria." << "\n";
+    }
 
     system ("pause");
     system ("cls");
 }
+
 
