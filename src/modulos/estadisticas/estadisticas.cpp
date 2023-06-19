@@ -10,7 +10,7 @@ using namespace std;
     
 
 
-int main (){
+/*int main (){
 
     string nombre_J1 = "Fede";
     string nombre_J2 = "Elias";
@@ -26,7 +26,7 @@ int main (){
 
 
     return 0;
-}
+}*/
 
     //Funcion para poner las estadisticas en 0
 
@@ -106,6 +106,7 @@ int main (){
     if (acuJ1 <= 0 || acuJ1 <= 0){
         cout << "\n" "No hay ganadores aun" << "\n" << "\n";
     }else{
+
     cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria." << "\n";
     }
 

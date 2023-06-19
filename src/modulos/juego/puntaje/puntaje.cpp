@@ -5,6 +5,7 @@ int main (){
 
 
     const int puntos_victoria [6] = {5, 10, 15, 50,-3,-1};
+    int puntaje [][2] = {{},{}};
 
     int acu_estatuilla = 0;
     int acu_estatuilla_primer_intento = 0;
