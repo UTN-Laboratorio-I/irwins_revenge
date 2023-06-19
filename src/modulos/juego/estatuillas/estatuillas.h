@@ -95,7 +95,11 @@ using namespace std;
 //VARIABLES PARA MAIN.CPP:
 
 //Objetivo: Uno de sus dados debe ser par y el otro impar:
-    void obtener_cangrejo(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+    void obtener_cangrejo(
+    int tirada_dados_10_caras[], 
+    int turno, string turnos[], 
+    string jugadores[], 
+    string estatuillas_disponibles[]){
         string estatuilla = "CANGREJO";
         bool par=0;
         bool impar=0;
@@ -115,8 +119,12 @@ using namespace std;
     }
 
 //Objetivo: Al menos dos dados deben ser menores a 5.
-    void obtener_hormiga(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
-        string estatuilla = "HORMIGA";
+    void obtener_hormiga(
+    int tirada_dados_10_caras[], 
+    int turno, string turnos[], 
+    string jugadores[], 
+    string estatuillas_disponibles[]){
+    string estatuilla = "HORMIGA";
         bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
         int i = 0;
         for(i; i<2; i++){
@@ -132,7 +140,11 @@ using namespace std;
     }
 
 //Objetivo: La suma de 2 de los dados lanzados debe dar exactamente 7.
-    void obtener_medusa(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+    void obtener_medusa(
+    int tirada_dados_10_caras[], 
+    int turno, string turnos[], 
+    string jugadores[], 
+    string estatuillas_disponibles[]){
         string estatuilla = "MEDUSA";
         int resultado_esperado=7, suma=0;    //El array comienza con 2 falses.
         int i = 0;
@@ -147,7 +159,12 @@ using namespace std;
     }
 
 //Objetivo: Dos de los dados lanzados deberán devolver los números 1 y 10:
-    void obtener_aguila(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
+    void obtener_aguila(
+    int tirada_dados_10_caras[], 
+    int turno, 
+    string turnos[], 
+    string jugadores[], 
+    string estatuillas_disponibles[]){
        string estatuilla = "AGUILA";
         bool numero_uno=0, numero_diez=0;
         int i=0;
@@ -166,11 +183,17 @@ using namespace std;
     }
 
 //Objetivo: Los dados lanzados deben ser consecutivos. Por ejemplo (1,2), (2,3), (9,10);
-    void obtener_salamandra(int tirada_dados_10_caras[], int turno, string turnos[], string jugadores[], string estatuillas_disponibles[]){
-       string estatuilla = "SALAMANDRA";
+    void obtener_salamandra(
+    int tirada_dados_10_caras[], 
+    int turno, string turnos[], 
+    string jugadores[], 
+    string estatuillas_disponibles[]){
+        string estatuilla = "SALAMANDRA";
         bool numeros_consecutivos=0;
-        int i=0, ecuacion1=(tirada_dados_10_caras[0]*2+1), ecuacion2=tirada_dados_10_caras[0]+tirada_dados_10_caras[1];
-        if(tirada_dados_10_caras[0]-tirada_dados_10_caras[1]==1 || ecuacion1 == ecuacion2){
+        int i=0, calc1=(tirada_dados_10_caras[0]*2+1), calc2=tirada_dados_10_caras[0]+tirada_dados_10_caras[1],calc3=tirada_dados_10_caras[0]-tirada_dados_10_caras[1];
+        bool ecuacion1= calc1 == calc2, ecuacion2= calc3 == 1;
+        
+        if( ecuacion1 || ecuacion2){
             numeros_consecutivos=true;
         }
 
@@ -178,8 +201,5 @@ using namespace std;
             cout << "GANASTE SALAMANDRA";
             string jug = turnos[turno];
             asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
-        }else
-        {
-            cout << "No son consecutivos";
         }
     }
