@@ -8,31 +8,16 @@ using namespace std;
 
 
 
-int main(){
-    
+int mostrar_estadisticas(int m_jugadores [][2], string n_J1, string n_J2){
+
     int acuJ1 = 0;
     int acuJ2 = 0;
     int i, j;
-    int vec_jugador [6][2] = {{},{}};
-    srand(time(0));
-    
-    // Este ciclo fuerza para cargar un puntaje en los vectores
-    for(i=0; i<6; i++){
-        for (j=0; j<2; j++){
-            vec_jugador [i][j] = rand () % 15;
-            acuJ1 += vec_jugador [i][0];
-            acuJ2 += vec_jugador [0][i];
-        }
-    }
-    
-    const int FILAS = 6;
-    const int COL = 2;
-    int m [FILAS][COL] = {{},{}};
     string vec_hito [5] = {};
 
     // Variable de jugador ganador
     string ganador;
-    
+
     // Variable que muestra el puntaje ganador
     int puntosGanador;
 
@@ -44,18 +29,20 @@ int main(){
     vec_hito [4] = "Estatuilla --";
     vec_hito [5] = "Lanzamiento";
 
-   
+
     // print de encabezado
     cout << "IRWIN'S REVENGE - FASE FINAL" << endl;
     cout << "------------------------------------------------------------------------" << endl << endl;
-    cout << "HITO" << "\t" << "\t" << "JUGADOR 1" << "\t" << "JUGARDOR 2" << endl;
+    cout << "HITO" << "\t" << "\t" << n_J1 << "\t" << n_J2 << endl;
 
-    for (i=0; i< FILAS; i++)
+    for (i=0; i< 6; i++)
     {
     cout << vec_hito[i] << "\t";
-        for (j=0; j < COL; j++)
+        for (j=0; j < 2; j++)
         {
-        cout << vec_jugador [i][j]  << " PDV" "\t" << "\t";
+        cout << m_jugadores [i][j]  << " PDV" "\t" << "\t";
+        acuJ1 += m_jugadores [i][0];
+        acuJ2 += m_jugadores [0][i];
         }
         cout << "\n";
     }
@@ -63,19 +50,19 @@ int main(){
     cout << "------------------------------------------------------------------------" << endl;
     cout << "TOTAL" << "\t" << "\t" << acuJ1 << " PDV"<< "\t" << "\t" << acuJ2 << " PDV" << endl;
 
-    
-    // condicion de ganador
 
+    // Condicion de ganador
     if(acuJ1 > acuJ2){
-        ganador = "JUGADOR 1"; // aca iria el string del nombre del jugador
+        ganador = n_J1;
         puntosGanador = acuJ1;
     }else{
-        ganador = "JUGADOR 2";
+        ganador = n_J2;
         puntosGanador = acuJ2;
     }
 
     cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria.";
-    
-    
+
+    system ("pause");
+    system ("cls");
     return 0;
 }
