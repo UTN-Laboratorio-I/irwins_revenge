@@ -4,81 +4,125 @@
 #include <ctime>
 using namespace std;
 
+//Función para simular la tirada de dados:
+void lanzamientoManualDados(int& turno, string turnos[]){
+    string lanzar;
+    string jugador = turnos[turno];
+    cout << jugador <<": PRESIONA ENTER PARA LANZAR DADOS!";
+    cin >> lanzar;
+}
+
+
 // esta funcion lanza dados en funcion de los parametros del juego que se le pase, sirve para lanzar en cualquier momento
 //la misma afecta a las variables declaradas en main
+int valorAleatorio(int caras){
+    return rand() % caras + 1;
+}
+// void lanzarDados(bool admin, int fase, int caras,bool salamadra, int &dado1, int &dado2, int &dado3, int &dado4, int &dado5)
+// {
+//     if (admin == false)
+//     {
+//         if (fase == 0)
+//         {
+//             do
+//             {
+//                 dado1 = valorAleatorio(caras);
+//                 dado2 = valorAleatorio(caras);
+//             } while (dado1 == dado2);
+//         }
 
-void lanzarDados(bool admin, int fase, int caras,bool salamadra, int &dado1, int &dado2, int &dado3, int &dado4, int &dado5)
+//         if (fase == 1)
+//         {
+//             if (salamadra == true)
+//             {
+//                 dado1 = valorAleatorio(caras);
+//                 dado2 = valorAleatorio(caras);
+//                 dado3 = valorAleatorio(caras);
+//             }
+//             else
+//             {
+//                 dado1 = valorAleatorio(caras);
+//                 dado2 = valorAleatorio(caras);
+//             }
+//         }
+
+//         if (fase == 2)
+//         {
+//             dado1 = valorAleatorio(caras);
+//             dado2 = valorAleatorio(caras);
+//             dado3 = valorAleatorio(caras);
+//             dado4 = valorAleatorio(caras);
+//             dado5 = valorAleatorio(caras);
+//         }
+//     }
+//     else
+//     {
+//         if (fase == 0)
+//         {
+//             cout << "ingrese 2 dados: " << endl;
+//             cin >> dado1;
+//             cin >> dado2;
+//         }
+
+//         if (fase == 1)
+//         {
+//             if (salamadra == true)
+//             {
+//                 cout << " (Maldicion salamandra) ingrese 3 dados: " << endl;
+//                 cin >> dado1;
+//                 cin >> dado2;
+//                 cin >> dado3;
+//             }
+//             else
+//             {
+//                 cout << "ingrese 2 dados: " << endl;
+//                 cin >> dado1;
+//                 cin >> dado2;
+//             }
+//         }
+
+//         if (fase == 2)
+//         {
+//             cout << "ingrese 5 dados: " << endl;
+//             cin >> dado1;
+//             cin >> dado2;
+//             cin >> dado3;
+//             cin >> dado5;
+//             cin >> dado5;
+//         }
+//     }
+// }
+
+void lanzarDados(bool& modo_admin, int caras, bool salamandra, int dados[], bool& primer_turno)
 {
-
-    if (admin == false)
+    int i, tam = 5;
+    if(primer_turno){
+        bool distintos=0;
+        do{
+        for (i = 0; i < tam; i++)
+        {
+            dados[i] = rand() % caras + 1;
+        }
+    //Si los dados son distintos, los tomamos y finalizamos la iteración:
+        distintos = dados[0] == dados[1] ? 1 : 0;
+        }while(distintos);
+    //Pasamos a false el primer turno:
+        primer_turno=0;
+    }else{
+    if (modo_admin == false)
     {
-        if (fase == 0)
+        for (i = 0; i < tam; i++)
         {
-            do
-            {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
-            } while (dado1 == dado2);
-        }
-
-        if (fase == 1)
-        {
-            if (salamadra == true)
-            {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
-                dado3 = rand() % caras + 1;
-            }
-            else
-            {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
-            }
-        }
-
-        if (fase == 2)
-        {
-            dado1 = rand() % caras + 1;
-            dado2 = rand() % caras + 1;
-            dado3 = rand() % caras + 1;
-            dado4 = rand() % caras + 1;
-            dado5 = rand() % caras + 1;
+            dados[i] = rand() % caras + 1;
         }
     }
     else
     {
-        if (fase == 0)
+        cout << "ingrese los dados manualmente: " << endl;
+        for (i = 0; i < tam; i++)
         {
-            cout << "ingrese 2 dados: " << endl;
-            cin >> dado1;
-            cin >> dado2;
+            cin >> dados[i];
         }
-
-        if (fase == 1)
-        {
-            if (salamadra == true)
-            {
-                cout << " (Maldicion salamandra) ingrese 3 dados: " << endl;
-                cin >> dado1;
-                cin >> dado2;
-                cin >> dado3;
-            }
-            else
-            {
-                cout << "ingrese 2 dados: " << endl;
-                cin >> dado1;
-                cin >> dado2;
-            }
-        }
-
-        if (fase == 2)
-        {
-            cout << "ingrese 5 dados: " << endl;
-            cin >> dado1;
-            cin >> dado2;
-            cin >> dado3;
-            cin >> dado5;
-            cin >> dado5;
-        }
+    }
     }
 }

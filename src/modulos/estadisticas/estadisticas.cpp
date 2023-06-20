@@ -58,8 +58,8 @@ using namespace std;
 
     // Funcion para mostrar las estadisticas
 
-    void mostrar_estadisticas(int m[][2], string n_J1, string n_J2){
-
+    void mostrar_estadisticas(int m[][2], string jugadores[]){
+    string n_J1=jugadores[0], n_J2=jugadores[1];
     int acuJ1 = 0;
     int acuJ2 = 0;
     int i, j;

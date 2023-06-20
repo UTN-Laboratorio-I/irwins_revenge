@@ -31,6 +31,7 @@ return 0;
     cout << "\t" << "- JUEGO INVENTADO POR GONZALO LIGERO - GONZALO.LIGERO@ALUMNOS.FRGP.UTN.EDU.AR " << "\n";
     cout << "\t" << "- REGLAMENTO ADAPTADO PARA TP POR GONZALO LIGERO Y ANGEL SIMON" << "\n" << "\n";
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
+    cout << "Laboratorio de Computación I" << "\n";
     cout << "UTNFRGP - 2023" << "\n";
 
 system ("pause");
