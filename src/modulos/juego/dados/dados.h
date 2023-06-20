@@ -2,12 +2,12 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-
 using namespace std;
+
 // esta funcion lanza dados en funcion de los parametros del juego que se le pase, sirve para lanzar en cualquier momento
 //la misma afecta a las variables declaradas en main
-//
-void lanzarDados(bool admin, int fase, int caras, int &dado1, int &dado2, int &dado3, int &dado4, int &dado5, bool salamadra)
+
+void lanzarDados(bool admin, int fase, int caras,bool salamadra, int &dado1, int &dado2, int &dado3, int &dado4, int &dado5)
 {
 
     if (admin == false)
