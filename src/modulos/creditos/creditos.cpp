@@ -5,7 +5,7 @@ using namespace std;
 
 // CREDITOS
 
-    void creditos (int);
+
 
 /*int main (){
 
@@ -23,7 +23,7 @@ return 0;
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
     cout << "INTEGRANTES: " << "\n" << "\n";
     cout << "\t" << "- SASHA FRANCO EMANUEL - LEGAJO: 27984" << endl;
-    cout << "\t" << "- PABLO ESCUDERO - LEGAJO: 22222" << endl;
+    cout << "\t" << "- PABLO ESCUDERO - LEGAJO: 28687" << endl;
     cout << "\t" << "- FEDERICO ELIAS CACERES - LEGAJO: 28545" << endl << "\n";
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
     cout << "\t" << "- IMAGEN DE STEVE IRWIN CREADA POR TINYPIXELBLOCK" << "\n";
