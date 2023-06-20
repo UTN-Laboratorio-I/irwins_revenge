@@ -30,10 +30,7 @@ int i=0, max=2;
     do{
         seleccionarEstatuilla(turnos,estatuillas_disponibles, estatuillas_seleccionadas);
 
-        bool pendiente_j1=1, pendiente_j2=1;
-        while(pendiente_j1 && pendiente_j2){
-            // if(pendiente)
-        }
+        jugarPorEstatuilla(modo_admin, jugadores, turnos, estatuillas_seleccionadas, estatuillas_jugadores, estatuillas_disponibles, dados);
 
     //
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);

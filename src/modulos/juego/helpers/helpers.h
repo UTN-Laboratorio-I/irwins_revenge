@@ -16,3 +16,20 @@ void solicitarNombresJugadores(string jugadores[],bool& modo_admin ){
     }
     }
 }
+
+int formatearAInt(string valor){
+    int valor_entero;
+
+    if(valor == "CANGREJO"){
+        valor_entero=0;
+    }else if(valor == "HORMIGA"){
+        valor_entero=1;
+    }else if(valor=="MEDUSA"){
+        valor_entero=2;
+    }else if(valor=="AGUILA"){
+        valor_entero=3;
+    }else if(valor=="SALAMANDRA"){
+        valor_entero=4;
+    }
+    return valor_entero;
+}
