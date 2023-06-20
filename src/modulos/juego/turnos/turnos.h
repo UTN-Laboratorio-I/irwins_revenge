@@ -4,7 +4,7 @@ using namespace std;
 
 
 //Función que otorga turno inicial de los jugadores según tirada de dados:
-    void primerTurno(int dado_j1, int dado_j2, string turnos[], string jugadores[]){
+    void primerTurno(int dado_j1, int dado_j2, string turnos[], string jugadores[], bool& fase_exp){
         if(dado_j1 > dado_j2){
             turnos[0]=jugadores[0];
             turnos[1]=jugadores[1];
@@ -12,10 +12,13 @@ using namespace std;
             turnos[0]=jugadores[1];
             turnos[1]=jugadores[0];
         }
+        system("cls");
         cout << "----------------------------" << endl;
         cout << "Primer turno: " << turnos[0]<<endl;
         cout << "Segundo turno: " <<turnos[1]<<endl;
         cout << "----------------------------" << endl;
+        system("pause");
+        fase_exp=1;
     }
 
 //Función que modifica la ronda a su subsiguiente:

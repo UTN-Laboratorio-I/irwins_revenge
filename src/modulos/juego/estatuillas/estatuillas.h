@@ -2,7 +2,6 @@
 using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
-    //parámetros: número de jugador, nombre de jugador, estatuillas disponibles.
     string seleccionarEstatuilla(string jugadores[], string estatuillas_disponibles[]){
         int i =0;
         int temp =0;
