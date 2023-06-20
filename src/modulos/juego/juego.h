@@ -12,17 +12,19 @@ int i=0, max=2;
     int fase=0, turno=0, cant_jugadores=2;
     bool posee_salamandra;
     bool primer_turno=1;
+//Booleano utilizado cuando el J1 gana la misma estatuilla.
+    bool j2_reseleccion_estatuilla=0;
+    string estatuillas_jugadores[5][2]={};
     string estatuillas_seleccionadas[2]={};
 
     string turnos[2]={};
     string cangrejo="CANGREJO", hormiga="HORMIGA", medusa="MEDUSA", aguila="AGUILA", salamandra="SALAMANDRA";
     string estatuillas_disponibles[5]={cangrejo, hormiga, medusa, aguila, salamandra};
-
     
     solicitarNombresJugadores(jugadores, modo_admin);
 
     lanzarDados(modo_admin, dado_10_caras, posee_salamandra, dados, primer_turno);
-    primerTurno(dados, turnos, jugadores, fase_exp);
+    primerTurno(dados, turnos, jugadores, fase_exp, primer_turno);
 
 //Fase expedición:
     do{

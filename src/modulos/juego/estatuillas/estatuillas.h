@@ -1,4 +1,5 @@
 #include <iostream>
+#include "modulos/juego/dados/dados.h"
 using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
@@ -109,11 +110,10 @@ using namespace std;
     eliminarEstatuilla(estatuilla,estatuillas_disponibles);
     }
 
-//VARIABLES PARA MAIN.CPP:
+//Parametros para las funciones de "obtener_{nombre estatuilla}":
 
 //Objetivo: Uno de sus dados debe ser par y el otro impar:
-    void obtener_cangrejo(
-    int tirada_dados_10_caras[], 
+    void obtener_cangrejo( bool modo_admin, 
     int turno, string turnos[], 
     string jugadores[], 
     string estatuillas_disponibles[]){
@@ -122,8 +122,12 @@ using namespace std;
         bool par=0;
         bool impar=0;
         int i = 0;
+
+        int dados[5] ={};
+        lanzarDados(modo_admin, 10, false, dados, false);
+
         for(i; i<2; i++){
-            if (tirada_dados_10_caras[i]%2 == 0){
+            if (dados[i]%2 == 0){
                 par = true;
             }else{
                 impar=true;
@@ -203,10 +207,12 @@ using namespace std;
 
 //Objetivo: Los dados lanzados deben ser consecutivos. Por ejemplo (1,2), (2,3), (9,10);
     void obtener_salamandra(
-    int tirada_dados_10_caras[], 
-    int turno, string turnos[], 
-    string jugadores[], 
-    string estatuillas_disponibles[]){
+        int tirada_dados_10_caras[], 
+        int turno, string turnos[], 
+        string jugadores[], 
+        string estatuillas_disponibles[]
+        )
+    {
         string estatuilla = "SALAMANDRA";
         bool numeros_consecutivos=0;
     //calc1: Si el primer valor * 2 +1 es igual a la suma de los dos dados juntos, son consecutivos.
@@ -222,4 +228,31 @@ using namespace std;
             string jug = turnos[turno];
             asignarEstatuillaAdquirida(estatuilla, jugadores, jug, estatuillas_disponibles);
         }
+    }
+
+
+
+//Función que administra el juego por una estatuilla:
+    void jugarPorEstatuilla(
+        bool& modo_admin,
+        string jugadores[], 
+        string turnos[], 
+        string estatuillas_seleccionadas[], 
+        string estatuillas_jugadores[5][2])
+    {
+    //Declaramos la bandera de si los jugadores realizaron jugada:
+        bool jugada_j1=0, jugada_j2=0;
+        int i=0, max=2, turnoActual=0;
+        string jugador="";
+    
+    //Iteramos por cada jugador dentro del array de turnos:
+        for(i;i<max;i++){
+        //Seteamos los parámetros según que jugador tenga turno:
+            setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
+
+            estatuillas_seleccionadas[turnoActual] == "CANGREJO" && obtener_cangrejo();
+
+        }
+
+
     }
