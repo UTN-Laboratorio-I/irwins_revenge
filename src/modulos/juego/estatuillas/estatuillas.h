@@ -7,14 +7,16 @@ using namespace std;
         const int estatuillas_totales = 5, cant_jugadores=2;
         string listado_seleccion_temp[estatuillas_totales]={};
 
-    //Limpiamos la selección previa:
+//Limpiamos la selección previa:
         for(e; e<2;e++){
             if(estatuillas_seleccionadas[e]!=""){
                 estatuillas_seleccionadas[e]="";     
             }
         }
-    
-    //Iteramos por cada jugador:
+
+     
+
+//Iteramos por cada jugador:
         for(j;j<cant_jugadores;j++){
         int temp =0;
         int estatuilla_seleccionada=0;
