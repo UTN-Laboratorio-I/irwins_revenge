@@ -23,7 +23,7 @@ return 0;
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
     cout << "INTEGRANTES: " << "\n" << "\n";
     cout << "\t" << "- SASHA FRANCO EMANUEL - LEGAJO: 27984" << endl;
-    cout << "\t" << "- PABLO ESCUDERO - LEGAJO: 22222" << endl;
+    cout << "\t" << "- PABLO ESCUDERO - LEGAJO: 28687" << endl;
     cout << "\t" << "- FEDERICO ELIAS CACERES - LEGAJO: 28545" << endl << "\n";
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
     cout << "\t" << "- IMAGEN DE STEVE IRWIN CREADA POR TINYPIXELBLOCK" << "\n";
@@ -31,6 +31,7 @@ return 0;
     cout << "\t" << "- JUEGO INVENTADO POR GONZALO LIGERO - GONZALO.LIGERO@ALUMNOS.FRGP.UTN.EDU.AR " << "\n";
     cout << "\t" << "- REGLAMENTO ADAPTADO PARA TP POR GONZALO LIGERO Y ANGEL SIMON" << "\n" << "\n";
     cout << "------------------------------------------------------------------------" << "\n" << "\n";
+    cout << "Laboratorio de Computación I" << "\n";
     cout << "UTNFRGP - 2023" << "\n";
 
 system ("pause");

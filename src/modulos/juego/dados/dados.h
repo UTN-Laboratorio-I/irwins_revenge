@@ -5,7 +5,7 @@
 using namespace std;
 
 //Función para simular la tirada de dados:
-void lanzarDados(int turno, string turnos[]){
+void lanzamientoManualDados(int& turno, string turnos[]){
     string lanzar;
     string jugador = turnos[turno];
     cout << jugador <<": PRESIONA ENTER PARA LANZAR DADOS!";
@@ -15,18 +15,19 @@ void lanzarDados(int turno, string turnos[]){
 
 // esta funcion lanza dados en funcion de los parametros del juego que se le pase, sirve para lanzar en cualquier momento
 //la misma afecta a las variables declaradas en main
-
+int valorAleatorio(int caras){
+    return rand() % caras + 1;
+}
 void lanzarDados(bool admin, int fase, int caras,bool salamadra, int &dado1, int &dado2, int &dado3, int &dado4, int &dado5)
 {
-
     if (admin == false)
     {
         if (fase == 0)
         {
             do
             {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
+                dado1 = valorAleatorio(caras);
+                dado2 = valorAleatorio(caras);
             } while (dado1 == dado2);
         }
 
@@ -34,24 +35,24 @@ void lanzarDados(bool admin, int fase, int caras,bool salamadra, int &dado1, int
         {
             if (salamadra == true)
             {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
-                dado3 = rand() % caras + 1;
+                dado1 = valorAleatorio(caras);
+                dado2 = valorAleatorio(caras);
+                dado3 = valorAleatorio(caras);
             }
             else
             {
-                dado1 = rand() % caras + 1;
-                dado2 = rand() % caras + 1;
+                dado1 = valorAleatorio(caras);
+                dado2 = valorAleatorio(caras);
             }
         }
 
         if (fase == 2)
         {
-            dado1 = rand() % caras + 1;
-            dado2 = rand() % caras + 1;
-            dado3 = rand() % caras + 1;
-            dado4 = rand() % caras + 1;
-            dado5 = rand() % caras + 1;
+            dado1 = valorAleatorio(caras);
+            dado2 = valorAleatorio(caras);
+            dado3 = valorAleatorio(caras);
+            dado4 = valorAleatorio(caras);
+            dado5 = valorAleatorio(caras);
         }
     }
     else

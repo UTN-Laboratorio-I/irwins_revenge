@@ -1,56 +1,6 @@
 #include <iostream>
+#include "../dados/dados.h"
 using namespace std;
-
-// esta funcion permite que los jugadores elijan estatuillas
-// void asignarTurno(bool turno_jugador1, bool turno_jugador2, int TAM, string jugador1, string jugador2,
-//                   int &estatuilla_seleccionada_j1, int &estatuilla_seleccionada_j2)
-// {
-//     int i;
-
-//     if (turno_jugador1 == true && turno_jugador2 == false)
-//     {
-
-//         for (i = 0; i < TAM; i++)
-//         {
-//             cout << num_estatuilla[i] << " - " << estatuillas[i] << endl;
-//         }
-//         cout << jugador1 << " escoja una estatuilla" << endl;
-//         cin >> estatuilla_seleccionada_j1;
-//         cout << endl;
-
-//         for (i = 0; i < TAM; i++)
-//         {
-//             cout << num_estatuilla[i] << " - " << estatuillas[i] << endl;
-//         }
-//         cout << jugador2 << " escoja una estatuilla" << endl;
-//         cin >> estatuilla_seleccionada_j2;
-//         cout << endl;
-//     }
-//     else
-//     {
-//         if (turno_jugador2 == true && turno_jugador1 == false)
-//         {
-
-//             for (i = 0; i < TAM; i++)
-//             {
-//                 cout << num_estatuilla[i] << " - " << estatuillas[i] << endl;
-//             }
-//             cout << jugador2 << " escoja una estatuilla" << endl;
-//             cin >> estatuilla_seleccionada_j2;
-//             cout << endl;
-
-//             for (i = 0; i < TAM; i++)
-//             {
-//                 cout << num_estatuilla[i] << " - " << estatuillas[i] << endl;
-//             }
-//             cout << jugador1 << " escoja una estatuilla" << endl;
-//             cin >> estatuilla_seleccionada_j1;
-//             cout << endl;
-//         }
-//     }
-// }
-
-//VARIABLES DE TURNOS:
 
 
 //Función que otorga turno inicial de los jugadores según tirada de dados:
@@ -62,6 +12,10 @@ using namespace std;
             turnos[0]=jugadores[1];
             turnos[1]=jugadores[0];
         }
+        cout << "----------------------------" << endl;
+        cout << "Primer turno: " << turnos[0]<<endl;
+        cout << "Segundo turno: " <<turnos[1]<<endl;
+        cout << "----------------------------" << endl;
     }
 
 //Función que modifica la ronda a su subsiguiente:
