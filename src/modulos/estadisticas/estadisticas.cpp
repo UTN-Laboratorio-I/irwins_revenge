@@ -1,54 +1,117 @@
 #include <iostream>
-#include <conio.h>
+#include <string>
 using namespace std;
 
-int main(){
+
+
+    int estadisticas_en_cero (int m[][2]);
+    int cargar_estadisticas (int m[][2]);
+    void mostrar_estadisticas (int m[][2], string , string);
     
-    int vec_jugador1 [6] = {};
-    int vec_jugador2 [6] = {};
-    int jugador1, jugador2;
-    const int FILAS = 6;
-    const int COL = 2;
-    int m [FILAS][COL] = {{},{}};
-    string vec_hito [5] = {};
-
-    vec_hito [0] = "Estatuilla";
-    vec_hito [1] = "Estatuilla ++";
-    vec_hito [2] = "Ganador ";
-    vec_hito [3] = "Ganador ++";
-    vec_hito [4] = "Estatuilla --";
-    vec_hito [5] = "Lanzamiento";
 
 
-    for(int i=0; i<=6; i++){
-        vec_jugador1 [i] = i+1;
-        vec_jugador2 [i] = i+2;
+/*int main (){
+
+    string nombre_J1 = "Fede";
+    string nombre_J2 = "Elias";
+    //int matriz_jugadores[6][2] = {{},{}};
+
+
+    int matriz_jugadores [6][2] = {{1,2}, {3,4}, {5,6}, {7,8}, {9,10}, {11,12}};
+
+    estadisticas_en_cero(matriz_jugadores);
+    cargar_estadisticas (matriz_jugadores);
+
+    mostrar_estadisticas(matriz_jugadores, nombre_J1, nombre_J2);
+
+
+    return 0;
+}*/
+
+    //Funcion para poner las estadisticas en 0
+
+    int estadisticas_en_cero (int m[][2]){
+        int i, j;
+
+        for(i=0; i< 6; i++){
+            for(j=0; j<2;j++){
+                m[i][j] = 0;
+            }
+        }
+    return m[6][2];
     }
 
-    /*for(int i=0; i<FILAS; i++)
-    {
-        for (int j=0; j < COL; j++)
-        {
-            cout << "Ingresar pts J1: ";
-            cin >> vec_jugador1 [i];
-            cout << "Ingresar pts J2: ";
-            cin >> vec_jugador2 [j];
-        }
-    }*/
+    //Funcion para cargar estadisticas
 
-    for (int i=0; i< FILAS; i++)
-    {
-        for (int  j=0; j < COL - 1; j++)
-        {
-            cout << vec_hito[i] <<"\t"<< "J1: ";
-            cout << vec_jugador1 [i] << "\t";
-            cout << "J2: ";
-            cout << vec_jugador2 [i];
+    int cargar_estadisticas (int m[][2]){
+    
+        int i, j;
+        
+        for (i=0; i< 6; i++){
+            for (j=0; j < 2; j++){
+                m[i][j];
+            }
         }
+
+        return m[6][2];
+    }
+
+    // Funcion para mostrar las estadisticas
+
+    void mostrar_estadisticas(int m[][2], string n_J1, string n_J2){
+
+    int acuJ1 = 0;
+    int acuJ2 = 0;
+    int i, j;
+    
+    // Este vector muestra la columna con los hitos a mostrar por pantalla
+    string vec_hito [6] = {"Estatuilla", "Estatuilla ++", "Ganador ", "Ganador ++", "Estatuilla --", "Lanzamiento"};
+
+    // Variable de jugador ganador
+    string ganador;
+
+    // Variable que muestra el puntaje ganador
+    int puntosGanador;
+
+    // print de encabezado
+    cout << "IRWIN'S REVENGE - FASE FINAL" << endl;
+    cout << "------------------------------------------------------------------------" << endl << endl;
+    cout << "HITO" << "\t" << "\t" << n_J1 << "\t" << "\t"<< n_J2 << endl;
+
+    for (i=0; i< 6; i++)
+    {
+    cout << vec_hito[i] << "\t";
+        for (j=0; j < 2; j++)
+        {
+        cout << m[i][j]  << " PDV" "\t" << "\t";
+        }
+        acuJ1 += m[i][0];
+        acuJ2 += m[i][1];
         cout << "\n";
     }
-    
-    
-    getch ();
-    return 0;
+    cout << endl;
+    cout << "------------------------------------------------------------------------" << endl;
+    cout << "TOTAL" << "\t" << "\t" << acuJ1 << " PDV"<< "\t" << "\t" << acuJ2 << " PDV" << endl;
+
+
+    // Condicion de ganador
+    if(acuJ1 > acuJ2){
+        ganador = n_J1;
+        puntosGanador = acuJ1;
+    }else{
+        ganador = n_J2;
+        puntosGanador = acuJ2;
+    }
+
+    if (acuJ1 <= 0 || acuJ1 <= 0){
+        cout << "\n" "No hay ganadores aun" << "\n" << "\n";
+    }else{
+
+    cout << "GANADOR: " << ganador << " con " << puntosGanador << " puntos de victoria." << "\n";
+    }
+
+    system ("pause");
+    system ("cls");
 }
+
+
