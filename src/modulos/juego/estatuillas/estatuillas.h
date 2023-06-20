@@ -2,34 +2,52 @@
 using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
-    string seleccionarEstatuilla(string jugadores[], string estatuillas_disponibles[]){
-        int i =0;
-        int temp =0;
-        const int estatuillas_totales = 5;
-        int estatuilla_seleccionada;
+    void seleccionarEstatuilla(string turnos[], string estatuillas_disponibles[], string estatuillas_seleccionadas[]){
+        int e=0, j=0;
+        const int estatuillas_totales = 5, cant_jugadores=2;
         string listado_seleccion_temp[estatuillas_totales]={};
 
-        //Jugador que selecciona:
-        // cout << "JUGADOR " << jugador << " - " << jugador_nombre <<endl;
-       
-        //Cargamos el array temporal con las estatuillas disponibles:
-        for(i; i < estatuillas_totales; i++ ){
+    //Limpiamos la selección previa:
+        for(e; e<2;e++){
+            if(estatuillas_seleccionadas[e]!=""){
+                estatuillas_seleccionadas[e]="";     
+            }
+        }
+    
+    //Iteramos por cada jugador:
+        for(j;j<cant_jugadores;j++){
+        int temp =0;
+        int estatuilla_seleccionada=0;
+    //Mostramos el jugador que selecciona:
+        cout << "----------------------------" <<endl;
+        cout << "Jugador: " << turnos[j] <<endl;
+
+   //Limpiamos el array temporal de estatuillas:
+        for (int g = 0; g < 5; g++) {
+        listado_seleccion_temp[g] = "";
+        }
+    //Cargamos el array temporal con las estatuillas disponibles:
+        for(int i=0; i < estatuillas_totales; i++ ){
             if(estatuillas_disponibles[i] != ""){
+                string valor = estatuillas_disponibles[i];
                 listado_seleccion_temp[temp] = estatuillas_disponibles[i];
-                cout << temp <<") " << estatuillas_disponibles[i] <<endl;
+                cout << temp << ") " <<valor <<endl;
                 temp++;
             }
         }
 
-        //Selecciona y muestra estatuilla:
+    //El jugador selecciona la estatuilla por la que jugará:
         cout << "Selecciona la estatuilla por la que jugarás: " <<endl <<endl;
         cin >> estatuilla_seleccionada;
         cout << "Seleccionaste " << listado_seleccion_temp[estatuilla_seleccionada] <<endl <<endl;
-        cout << "###################" <<endl <<endl;
 
-        //Retornamos la estatuilla que fue seleccionada:
-        return listado_seleccion_temp[estatuilla_seleccionada];
+    //Asignamos la estuilla en el correspondiente array:
+        estatuillas_seleccionadas[j]=listado_seleccion_temp[estatuilla_seleccionada];
+       }
     }
+
+
+
 
     void agregar(string estatuillas_jugador1[], string estatuilla){
         int i =0, max=5;

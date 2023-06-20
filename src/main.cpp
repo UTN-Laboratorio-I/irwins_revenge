@@ -39,7 +39,7 @@ int main()
         default:
             break;
         }
-        system("pause");
+        
         system("cls");
     }while(juego_activo);
     system("exit");
