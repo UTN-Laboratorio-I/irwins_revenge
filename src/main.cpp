@@ -3,6 +3,7 @@
 #include "modulos/juego/juego.h"
 #include "modulos/estadisticas/estadisticas.h"
 #include "modulos/creditos/creditos.h"
+
 using namespace std;
 
 int main()
@@ -11,11 +12,7 @@ int main()
     string jugadores[2]={};
     int opcion_seleccionada;
     int m[6][2]={};
-
-    bool turno_jugador1 = false, turno_jugador2 = false; // estados de jugadores para los turnos
-    int fase_exp = 1, fase_final = 2;                    // estado de las fases
-
-    int estatuilla_seleccionada_j1, estatuilla_seleccionada_j2; // estatuillas que seleccionan los jugadores
+    srand(time(0));
 
     do{
         mostrar_menu();

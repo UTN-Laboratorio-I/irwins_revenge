@@ -13,9 +13,7 @@ using namespace std;
                 estatuillas_seleccionadas[e]="";     
             }
         }
-
-     
-
+   
 //Iteramos por cada jugador:
         for(j;j<cant_jugadores;j++){
         int temp =0;
@@ -120,6 +118,7 @@ using namespace std;
     string jugadores[], 
     string estatuillas_disponibles[]){
         string estatuilla = "CANGREJO";
+    //Banderas para chequear par/impar:
         bool par=0;
         bool impar=0;
         int i = 0;
@@ -144,6 +143,7 @@ using namespace std;
     string jugadores[], 
     string estatuillas_disponibles[]){
     string estatuilla = "HORMIGA";
+    //
         bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
         int i = 0;
         for(i; i<2; i++){
@@ -209,10 +209,11 @@ using namespace std;
     string estatuillas_disponibles[]){
         string estatuilla = "SALAMANDRA";
         bool numeros_consecutivos=0;
-        int i=0, calc1=(tirada_dados_10_caras[0]*2+1), calc2=tirada_dados_10_caras[0]+tirada_dados_10_caras[1],calc3=tirada_dados_10_caras[0]-tirada_dados_10_caras[1];
-        bool ecuacion1= calc1 == calc2, ecuacion2= calc3 == 1;
+    //calc1: Si el primer valor * 2 +1 es igual a la suma de los dos dados juntos, son consecutivos.
+        int i=0, calc1=(tirada_dados_10_caras[0]*2+1), calc2=tirada_dados_10_caras[0]+tirada_dados_10_caras[1];
+        bool ecuacion1= calc1 == calc2;
         
-        if( ecuacion1 || ecuacion2){
+        if( ecuacion1){
             numeros_consecutivos=true;
         }
 

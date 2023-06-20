@@ -4,8 +4,8 @@ using namespace std;
 
 
 //Función que otorga turno inicial de los jugadores según tirada de dados:
-    void primerTurno(int dado_j1, int dado_j2, string turnos[], string jugadores[], bool& fase_exp){
-        if(dado_j1 < dado_j2){
+    void primerTurno(int dados[], string turnos[], string jugadores[], bool& fase_exp){
+        if(dados[0]< dados[1]){
             turnos[0]=jugadores[0];
             turnos[1]=jugadores[1];
         }else{
@@ -34,11 +34,12 @@ using namespace std;
         turnos[1]=jugador_temp;
     }
 //Detenemos fase exp. en caso de no haber más estatuillas disponibles:
-    void checkFinFaseExpedicion(string estatuillas_disponibles[], bool finFaseExpedicion){
+    void checkFinFaseExpedicion(string estatuillas_disponibles[], bool& fase_exp){
         int i=0,max=5;
         for(i; i<max;i++){
             if(estatuillas_disponibles[i]!=""){
-                finFaseExpedicion=false;
+            //Si el bucle encuentra contenido en el array, entonces continua la fase exp:
+                fase_exp=false;
             }
         }
     }

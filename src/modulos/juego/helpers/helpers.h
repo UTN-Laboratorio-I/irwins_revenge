@@ -12,7 +12,7 @@ void solicitarNombresJugadores(string jugadores[],bool& modo_admin ){
     jugadores[i] = nombre;
 
     if(nombre == nombre_admin && i == 0){
-    modo_admin = true;     //En caso de J1 ser LAB1, se habilita modo admin.
+        modo_admin = true;     //En caso de J1 ser LAB1, se habilita modo admin.
     }
     }
 }
