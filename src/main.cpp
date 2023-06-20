@@ -1,11 +1,10 @@
 #include <iostream>
 #include "modulos/juego/turnos/turnos.h"
-#include "modulos/juego/dados/lanzamiento_dados.h"
-#include "modulos/juego/dados/lanzamiento_inicial.h"
 #include "modulos/menu/menu.h"
 using namespace std;
 
 int main(){
+
     bool juego_activo = 1;
     
 //Ejecutamos el programa mientras el juego esté activo:
