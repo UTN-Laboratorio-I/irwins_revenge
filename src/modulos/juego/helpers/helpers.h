@@ -16,7 +16,7 @@ void solicitarNombresJugadores(string jugadores[],bool& modo_admin ){
     }
     }
 }
-
+//Se utiliza para poder utilizar el valor string en un switch:
 int formatearAInt(string valor){
     int valor_entero;
 

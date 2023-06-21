@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../dados/dados.h"
 using namespace std;
 
 
@@ -37,10 +36,11 @@ using namespace std;
 //Detenemos fase exp. en caso de no haber más estatuillas disponibles:
     void checkFinFaseExpedicion(string estatuillas_disponibles[], bool& fase_exp){
         int i=0,max=5;
+        fase_exp=false;
         for(i; i<max;i++){
             if(estatuillas_disponibles[i]!=""){
             //Si el bucle encuentra contenido en el array, entonces continua la fase exp:
-                fase_exp=false;
+                fase_exp=true;
             }
         }
     }
@@ -54,19 +54,15 @@ using namespace std;
         int& turnoActual
         )
     {
-        int i=0, max=2;
-    //Iteramos el array de jugadores:
-        for(i;i<max;i++){
     //Si el nombre del jugador corresponde, y no jugó, se le otorga la tirada:
-            if(turnos[i]==jugadores[0] && !jugada_j1)
+            if(turnos[turnoActual]==jugadores[0] && !jugada_j1)
             {
-                jugador=turnos[i];
+                jugador=turnos[turnoActual];
                 jugada_j1=true;
             }
-            else if(turnos[i] == jugadores[1]&& !jugada_j2)
+            else if(turnos[turnoActual] == jugadores[1]&& !jugada_j2)
             {
-                jugador=turnos[i];
+                jugador=turnos[turnoActual];
                 jugada_j2=true;
             }
-        }
     }

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "modulos/juego/dados/dados.h"
+#include "../dados/dados.h"
 using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
@@ -253,6 +253,7 @@ using namespace std;
     //Iteramos por cada jugador dentro del array de turnos:
         for(i;i<max;i++){
         //Seteamos los parámetros según que jugador tenga turno:
+        turnoActual=i;
             setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
             
             int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);

@@ -37,8 +37,8 @@ int i=0, max=2;
     }while(fase_exp);
 
 //Fase final:
-    do{
+    // do{
 
-    }while(fase_final);
+    // }while(fase_final);
     
 }
