@@ -5,41 +5,42 @@ using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
     void seleccionarEstatuilla(
-        string turnos[], 
-        string estatuillas_disponibles[], 
+        string turnos[], //Los turnos con los nombres de los jugadores.
+        string estatuillas_disponibles[],
         string estatuillas_seleccionadas[])
     {
         int e=0, j=0;
         const int estatuillas_totales = 5, cant_jugadores=2;
-        string listado_seleccion_temp[estatuillas_totales]={};
+        string listado_seleccion_temp[estatuillas_totales]={}; //Array temporal de estatuillas.
 
-//Limpiamos la selección previa:
+    //Limpiamos la selección previa de estatuillas de cada jugador:
         for(e; e<2;e++){
             if(estatuillas_seleccionadas[e]!=""){
                 estatuillas_seleccionadas[e]="";     
             }
         }
    
-//Iteramos por cada jugador:
+    //Iteramos por cada jugador:
         for(j;j<cant_jugadores;j++){
-        int temp =0;
-        int estatuilla_seleccionada=0;
-    //Mostramos el jugador que selecciona:
-        cout << "----------------------------" <<endl;
-        cout << "Jugador: " << turnos[j] <<endl;
+            int temp =0;
+            int estatuilla_seleccionada=0;
+            //Mostramos el jugador que selecciona:
+                cout << "----------------------------" <<endl;
+                cout << "Jugador: " << turnos[j] <<endl;
 
-   //Limpiamos el array temporal de estatuillas:
-        for (int g = 0; g < 5; g++) {
-        listado_seleccion_temp[g] = "";
-        }
-    //Cargamos el array temporal con las estatuillas disponibles:
-        for(int i=0; i < estatuillas_totales; i++ ){
-            if(estatuillas_disponibles[i] != ""){
-                string valor = estatuillas_disponibles[i];
-                listado_seleccion_temp[temp] = estatuillas_disponibles[i];
-                cout << temp << ") " <<valor <<endl;
-                temp++;
-            }
+            //Limpiamos el array temporal de estatuillas:
+                for (int g = 0; g < 5; g++) {
+                listado_seleccion_temp[g] = "";
+                }
+            //!REEMPLAZAR ESTA LOGICA POR EL ARRAY DE ESTATUILLAS_DISPONIBLES (QUE YA ELIMINA LAS GANADAS):
+            //Cargamos el array temporal con las estatuillas disponibles:
+                for(int i=0; i < estatuillas_totales; i++ ){
+                    if(estatuillas_disponibles[i] != ""){
+                        string valor = estatuillas_disponibles[i];
+                        listado_seleccion_temp[temp] = estatuillas_disponibles[i];
+                        cout << temp << ") " <<valor <<endl;
+                        temp++;
+                    }
         }
 
     //El jugador selecciona la estatuilla por la que jugará:
@@ -101,6 +102,7 @@ using namespace std;
             }else if(reemplazada==1 && i !=max-1){
                 estatuillas_disponibles[i]=estatuillas_disponibles[i+1];
             }
+        //Si llega al máximo del array [5], reemplaza por "" y no por el siguiente (Ya que sería [6]):
             estatuillas_disponibles[i] = (i == max-1)? "" : estatuillas_disponibles[i];
         }
         cout << endl<<endl;
@@ -118,7 +120,6 @@ using namespace std;
         //id_jugador: La posición del jug. en el array jugadores; (Ex variable pos)
         int id_jugador;
 
-        if(id_jugador)
         //Buscamos la posición del jugador en el array de jug.
         for(int i =0; i<2;i++){                
             if(jugadores[i]==jug){
@@ -159,7 +160,7 @@ using namespace std;
         }
         if(par && impar){
             cout << "GANASTE CANGREJO";
-            string jug = turnos[turno];
+            string jug = turnos[turno]; //Nombre del jugador del turno que ganó.
             accionesEstatuillaGanada(jugadores,estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
@@ -179,7 +180,8 @@ using namespace std;
         bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
         int i = 0;
         lanzarDados(modo_admin, 10, false, dados, false);
-
+    
+    //Acá definimos cuantos dados vamos a utilizar:
         for(i; i<2; i++){
             if(dados[i] < 5){
                 menores_a_cinco[i]=1;
@@ -283,30 +285,32 @@ using namespace std;
         bool& modo_admin,
         string jugadores[], 
         string turnos[], 
-        string estatuillas_seleccionadas[], 
-        string estatuillas_jugadores[5][2],
-        string estatuillas_disponibles[], 
+        string estatuillas_seleccionadas[], //Las estatuillas que fueron seleccionadas por los jugadores.
+        string estatuillas_jugadores[5][2], //Las estatuillas que ya ganaron los jugadores
+        string estatuillas_disponibles[],
+        string listado_estatuillas[], 
         int dados[])
     {
     //Declaramos la bandera de si los jugadores realizaron jugada:
         bool jugada_j1=0, jugada_j2=0;
         int i=0, max=2, turnoActual=0, valor_formateado=0;
-        string jugador="";
+
+        string jugador=""; //Este define cual es el jugador que le toca tirar dado (Se define en setearParametrosJugada)
 
     //Iteramos por cada jugador dentro del array de turnos:
         for(i;i<max;i++){
-        //Seteamos los parámetros según que jugador tenga turno:
-        turnoActual=i;
-        setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
+            //Seteamos los parámetros según que jugador tenga turno:
+            turnoActual=i;
+            setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
     
-    /*simulamos acción lanzar dados (Apretar enter)*/
-    lanzamientoManualDados(turnoActual, turnos);
+            /*simulamos acción lanzar dados (Apretar enter)*/
+            lanzamientoManualDados(turnoActual, turnos);
 
-    /**Valor_formateado es la representación en 'int' de
-        cada estatuilla, para poder utilizar "string"
-        dentro del switch, y ejecutar la jugada según
-        la estatuilla seleccionada por el Jugador:
-    */
+            /**Valor_formateado es la representación en 'int' de
+                cada estatuilla, para poder utilizar "string"
+                dentro del switch, y ejecutar la jugada según
+                la estatuilla seleccionada por el Jugador:
+            */
             int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);
 
             switch(valor_formateado){
@@ -325,7 +329,6 @@ using namespace std;
                 case 4:
                     obtener_salamandra(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados,estatuillas_jugadores);
                     break;
-
             }
 
         }

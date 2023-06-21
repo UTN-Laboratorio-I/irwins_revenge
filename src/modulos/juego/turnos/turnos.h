@@ -4,6 +4,7 @@ using namespace std;
 
 //Función que otorga turno inicial de los jugadores según tirada de dados:
     void primerTurno(int dados[], string turnos[], string jugadores[], bool& fase_exp, bool& primer_turno){
+        //Si el primer dado (J1) es menor al 2do (J2), arranca el J1, y visceversa:
         if(dados[0]< dados[1]){
             turnos[0]=jugadores[0];
             turnos[1]=jugadores[1];
@@ -41,20 +42,26 @@ using namespace std;
             if(estatuillas_disponibles[i]!=""){
             //Si el bucle encuentra contenido en el array, entonces continua la fase exp:
                 fase_exp=true;
+                break;
             }
         }
     }
 
+//Setea quien es el que va a jugar primero sus dados, si J1 o J2 según el turno:
     void setearParametrosJugada(
         string turnos[], 
         string jugadores[], 
-        bool& jugada_j1, 
-        bool& jugada_j2,
+        bool& jugada_j1, //Define si el j1 jugó su mano.
+        bool& jugada_j2, //Define si el j2 jugó su mano.
         string& jugador,
         int& turnoActual
         )
     {
     //Si el nombre del jugador corresponde, y no jugó, se le otorga la tirada:
+    //EJEMPLO: 
+    //turnos=["PABLO", "FELIPE"];
+    //jugada_j1 = false;
+
             if(turnos[turnoActual]==jugadores[0] && !jugada_j1)
             {
                 jugador=turnos[turnoActual];
