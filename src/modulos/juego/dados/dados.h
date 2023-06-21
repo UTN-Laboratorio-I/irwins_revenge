@@ -2,14 +2,17 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <conio.h>
+
 using namespace std;
 
-//Función para simular la tirada de dados:
-void lanzamientoManualDados(int& turno, string turnos[]){
+/*lanzamientoManualDados unicamente simula el hecho de
+"tirar" dados, al apretar la tecla ENTER*/
+void lanzamientoManualDados(int turno, string turnos[]){
     string lanzar;
     string jugador = turnos[turno];
-    cout << jugador <<": PRESIONA ENTER PARA LANZAR DADOS!";
-    cin >> lanzar;
+    cout << jugador <<": PRESIONA ENTER PARA LANZAR DADOS!" <<endl;
+    getch();
 }
 
 
@@ -21,6 +24,8 @@ int valorAleatorio(int caras){
 
 void lanzarDados(bool& modo_admin, int caras, bool salamandra, int dados[], bool primer_turno)
 {
+    //!AÑADIR AL FINAL DE LA FUNCIÓN LA VISUALIZACIÓN
+    //! DE LOS DADOS QUE FUERON ARROJADOS.
     int i, tam = 5;
     if(primer_turno){
         bool distintos=0;

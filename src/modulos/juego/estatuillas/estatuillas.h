@@ -4,7 +4,11 @@
 using namespace std;
 
 //Selección de la estatuilla que jugará el jugador:
-    void seleccionarEstatuilla(string turnos[], string estatuillas_disponibles[], string estatuillas_seleccionadas[]){
+    void seleccionarEstatuilla(
+        string turnos[], 
+        string estatuillas_disponibles[], 
+        string estatuillas_seleccionadas[])
+    {
         int e=0, j=0;
         const int estatuillas_totales = 5, cant_jugadores=2;
         string listado_seleccion_temp[estatuillas_totales]={};
@@ -51,7 +55,10 @@ using namespace std;
 
 
 
-    void agregar(string estatuillas_jugador1[], string estatuilla){
+    void agregar(
+        string estatuillas_jugador1[], 
+        string estatuilla)
+    {
         int i =0, max=5;
         for(i;i<max;i++){
             if(estatuillas_jugador1[i] == ""){
@@ -61,7 +68,8 @@ using namespace std;
         }
     }
 
-    void asignarEstatuillaAJugador(int pos, string estatuilla){
+    void asignarEstatuillaAJugador(int pos, string estatuilla)
+    {
        
         // switch(pos){
         //         case 0:
@@ -76,11 +84,10 @@ using namespace std;
     }
 
     //Guardamos la estatuilla y la eliminamos del array gral.
-    void eliminarEstatuilla(string estatuilla, string estatuillas_disponibles[]){
-            // for(int i = 0; i<5; i++){
-        //         cout << estatuillas_disponibles[i] <<endl;
-
-        // }
+    void eliminarEstatuilla(
+        string estatuilla, 
+        string estatuillas_disponibles[])
+    {
         int i = 0, max=5;
         bool reemplazada = 0;
         for(i; i<max; i++){
@@ -93,9 +100,6 @@ using namespace std;
             estatuillas_disponibles[i] = (i == max-1)? "" : estatuillas_disponibles[i];
         }
         cout << endl<<endl;
-        // for(int i = 0; i<5; i++){
-        // cout << estatuillas_disponibles[i]<<endl;
-        // }
     }
 
 //Asignamos la estatuilla al jugador que la ganó:
@@ -116,7 +120,8 @@ using namespace std;
 //Objetivo: Uno de sus dados debe ser par y el otro impar:
     void obtener_cangrejo( bool modo_admin, 
     int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[]){
+    string estatuillas_disponibles[], int dados[])
+    {
         string estatuilla = "CANGREJO";
     //Banderas para chequear par/impar:
         bool par=0;
@@ -143,8 +148,9 @@ using namespace std;
     void obtener_hormiga(
     bool modo_admin, 
     int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[]){
-    string estatuilla = "HORMIGA";
+    string estatuillas_disponibles[], int dados[])
+    {
+        string estatuilla = "HORMIGA";
     //
         bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
         int i = 0;
@@ -166,7 +172,8 @@ using namespace std;
     void obtener_medusa(
     bool modo_admin, 
     int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[]){
+    string estatuillas_disponibles[], int dados[])
+    {
         string estatuilla = "MEDUSA";
         int resultado_esperado=7, suma=0;    //El array comienza con 2 falses.
         int i = 0;
@@ -186,7 +193,8 @@ using namespace std;
     void obtener_aguila(
     bool modo_admin, 
     int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[]){
+    string estatuillas_disponibles[], int dados[])
+    {
        string estatuilla = "AGUILA";
         bool numero_uno=0, numero_diez=0;
         int i=0;
@@ -255,9 +263,16 @@ using namespace std;
         //Seteamos los parámetros según que jugador tenga turno:
         turnoActual=i;
             setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
-            
-            int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);
+    
+    /*simulamos acción lanzar dados (Apretar enter)*/
+    lanzamientoManualDados(turnoActual, turnos);
 
+    /**Valor_formateado es la representación en 'int' de
+        cada estatuilla, para poder utilizar "string"
+        dentro del switch, y ejecutar la jugada según
+        la estatuilla seleccionada por el Jugador:
+    */
+            int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);
             switch(valor_formateado){
                 case 0:
                     obtener_cangrejo(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
