@@ -68,19 +68,23 @@ using namespace std;
         }
     }
 
-    void asignarEstatuillaAJugador(int pos, string estatuilla)
+    void asignarEstatuillaAJugador(int id_jugador, string estatuilla, string estatuillas_jugadores[5][2])
     {
-       
-        // switch(pos){
-        //         case 0:
-        //             agregar(estatuillas_jugador1, estatuilla);
-        //             break;
-        //         case 1:
-        //             agregar(estatuillas_jugador1, estatuilla);
-        //             break;
-        //         default:
-        //             break;
-        //     }
+        //i --> filas (estatuillas);
+        //j --> utilizamos el id_jugador;
+        int i=0, max_filas=5;
+
+    /*Accedemos a las estatuillas del jugador:
+        Si encontramos un espacio vacío, asignamos la
+        estatuilla y salimos del iterador con break;
+    */
+        for(i;i<max_filas;i++){
+            if(estatuillas_jugadores[i][id_jugador]==""){
+                estatuillas_jugadores[i][id_jugador]=estatuilla;
+                break;
+            }
+        }
+        
     }
 
     //Guardamos la estatuilla y la eliminamos del array gral.
@@ -102,19 +106,26 @@ using namespace std;
         cout << endl<<endl;
     }
 
-//Asignamos la estatuilla al jugador que la ganó:
+//Asignamos la estatuilla a jugador, y la eliminamos de disponibles:
     void accionesEstatuillaGanada(
+        string jugadores[],
         string estatuilla, 
         string jug, 
-        string estatuillas_disponibles[])
+        string estatuillas_disponibles[],
+        string estatuillas_jugadores[5][2]
+        )
     {
-        int pos;
-        for(int i =0; i<2;i++){                 //Buscamos la posición del jugador en el array de jug.
-            // if(jugadores[i]==jug){
-            //     pos=i;                          //Asignamos la posición a la variable.
-            // }
+        //id_jugador: La posición del jug. en el array jugadores; (Ex variable pos)
+        int id_jugador;
+
+        if(id_jugador)
+        //Buscamos la posición del jugador en el array de jug.
+        for(int i =0; i<2;i++){                
+            if(jugadores[i]==jug){
+                id_jugador=i;                       
+            }
         }
-        asignarEstatuillaAJugador(pos,estatuilla);
+        asignarEstatuillaAJugador(id_jugador,estatuilla, estatuillas_jugadores);
         //Eliminamos la estatuilla del array de disponibles.
         eliminarEstatuilla(estatuilla,estatuillas_disponibles);
     }
@@ -122,9 +133,14 @@ using namespace std;
 //Parametros para las funciones de "obtener_{nombre estatuilla}":
 
 //Objetivo: Uno de sus dados debe ser par y el otro impar:
-    void obtener_cangrejo( bool modo_admin, 
-    int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[])
+    void obtener_cangrejo(
+    string jugadores[], 
+    bool modo_admin, 
+    int turno, 
+    string turnos[], 
+    string estatuillas_disponibles[], 
+    int dados[],
+    string estatuillas_jugadores[5][2])
     {
         string estatuilla = "CANGREJO";
     //Banderas para chequear par/impar:
@@ -144,15 +160,19 @@ using namespace std;
         if(par && impar){
             cout << "GANASTE CANGREJO";
             string jug = turnos[turno];
-            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(jugadores,estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
 
 //Objetivo: Al menos dos dados deben ser menores a 5.
     void obtener_hormiga(
+    string jugadores[],
     bool modo_admin, 
-    int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[])
+    int turno, 
+    string turnos[], 
+    string estatuillas_disponibles[], 
+    int dados[],
+    string estatuillas_jugadores[5][2])
     {
         string estatuilla = "HORMIGA";
     //
@@ -168,15 +188,19 @@ using namespace std;
         if(menores_a_cinco[0] && menores_a_cinco[1]){
             cout << "GANASTE HORMIGA";
             string jug = turnos[turno];
-            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
 
 //Objetivo: La suma de 2 de los dados lanzados debe dar exactamente 7.
     void obtener_medusa(
-    bool modo_admin, 
-    int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[])
+    string jugadores[],
+     bool modo_admin, 
+    int turno, 
+    string turnos[], 
+    string estatuillas_disponibles[], 
+    int dados[],
+    string estatuillas_jugadores[5][2])
     {
         string estatuilla = "MEDUSA";
         int resultado_esperado=7, suma=0;    //El array comienza con 2 falses.
@@ -189,15 +213,19 @@ using namespace std;
         if(suma == resultado_esperado){
             cout << "GANASTE MEDUSA";
             string jug = turnos[turno];
-            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
 
 //Objetivo: Dos de los dados lanzados deberán devolver los números 1 y 10:
     void obtener_aguila(
+    string jugadores[],
     bool modo_admin, 
-    int turno, string turnos[], 
-    string estatuillas_disponibles[], int dados[])
+    int turno, 
+    string turnos[], 
+    string estatuillas_disponibles[], 
+    int dados[],
+    string estatuillas_jugadores[5][2])
     {
        string estatuilla = "AGUILA";
         bool numero_uno=0, numero_diez=0;
@@ -215,16 +243,19 @@ using namespace std;
         if(numero_uno && numero_diez){
             cout << "GANASTE AGUILA";
             string jug = turnos[turno];
-            accionesEstatuillaGanada(estatuilla,  jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(jugadores, estatuilla,  jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
 
 //Objetivo: Los dados lanzados deben ser consecutivos. Por ejemplo (1,2), (2,3), (9,10);
     void obtener_salamandra(
-        bool modo_admin, 
-        int turno, string turnos[], 
-        string estatuillas_disponibles[], int dados[]
-        )
+    string jugadores[],
+         bool modo_admin, 
+    int turno, 
+    string turnos[], 
+    string estatuillas_disponibles[], 
+    int dados[],
+    string estatuillas_jugadores[5][2])
     {
         string estatuilla = "SALAMANDRA";
         bool numeros_consecutivos=0;
@@ -241,7 +272,7 @@ using namespace std;
         if(numeros_consecutivos){
             cout << "GANASTE SALAMANDRA";
             string jug = turnos[turno];
-            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
 
@@ -266,7 +297,7 @@ using namespace std;
         for(i;i<max;i++){
         //Seteamos los parámetros según que jugador tenga turno:
         turnoActual=i;
-            setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
+        setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
     
     /*simulamos acción lanzar dados (Apretar enter)*/
     lanzamientoManualDados(turnoActual, turnos);
@@ -277,21 +308,22 @@ using namespace std;
         la estatuilla seleccionada por el Jugador:
     */
             int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);
+
             switch(valor_formateado){
                 case 0:
-                    obtener_cangrejo(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
+                    obtener_cangrejo(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores) ;
                     break;
                 case 1:
-                    obtener_hormiga(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
+                    obtener_hormiga(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados,estatuillas_jugadores);
                     break;
                 case 2:
-                    obtener_medusa(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
+                    obtener_medusa(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados,estatuillas_jugadores);
                     break;
                 case 3:
-                    obtener_aguila(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
+                    obtener_aguila(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados,estatuillas_jugadores);
                     break;
                 case 4:
-                    obtener_salamandra(modo_admin,turnoActual, turnos, estatuillas_disponibles, dados);
+                    obtener_salamandra(jugadores, modo_admin,turnoActual, turnos, estatuillas_disponibles, dados,estatuillas_jugadores);
                     break;
 
             }
