@@ -103,16 +103,20 @@ using namespace std;
     }
 
 //Asignamos la estatuilla al jugador que la ganó:
-    void asignarEstatuillaAdquirida(string estatuilla, string jug, string estatuillas_disponibles[]){
+    void accionesEstatuillaGanada(
+        string estatuilla, 
+        string jug, 
+        string estatuillas_disponibles[])
+    {
         int pos;
         for(int i =0; i<2;i++){                 //Buscamos la posición del jugador en el array de jug.
             // if(jugadores[i]==jug){
             //     pos=i;                          //Asignamos la posición a la variable.
             // }
         }
-    asignarEstatuillaAJugador(pos,estatuilla);
-    //Eliminamos la estatuilla del array de disponibles.
-    eliminarEstatuilla(estatuilla,estatuillas_disponibles);
+        asignarEstatuillaAJugador(pos,estatuilla);
+        //Eliminamos la estatuilla del array de disponibles.
+        eliminarEstatuilla(estatuilla,estatuillas_disponibles);
     }
 
 //Parametros para las funciones de "obtener_{nombre estatuilla}":
@@ -140,7 +144,7 @@ using namespace std;
         if(par && impar){
             cout << "GANASTE CANGREJO";
             string jug = turnos[turno];
-            asignarEstatuillaAdquirida(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
         }
     }
 
@@ -164,7 +168,7 @@ using namespace std;
         if(menores_a_cinco[0] && menores_a_cinco[1]){
             cout << "GANASTE HORMIGA";
             string jug = turnos[turno];
-            asignarEstatuillaAdquirida(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
         }
     }
 
@@ -185,7 +189,7 @@ using namespace std;
         if(suma == resultado_esperado){
             cout << "GANASTE MEDUSA";
             string jug = turnos[turno];
-            asignarEstatuillaAdquirida(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
         }
     }
 
@@ -211,7 +215,7 @@ using namespace std;
         if(numero_uno && numero_diez){
             cout << "GANASTE AGUILA";
             string jug = turnos[turno];
-            asignarEstatuillaAdquirida(estatuilla,  jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(estatuilla,  jug, estatuillas_disponibles);
         }
     }
 
@@ -237,7 +241,7 @@ using namespace std;
         if(numeros_consecutivos){
             cout << "GANASTE SALAMANDRA";
             string jug = turnos[turno];
-            asignarEstatuillaAdquirida(estatuilla, jug, estatuillas_disponibles);
+            accionesEstatuillaGanada(estatuilla, jug, estatuillas_disponibles);
         }
     }
 
