@@ -23,6 +23,8 @@ int cont_estatuilla(int vPJ1[], int vPJ2[], int pos);
 //Falta determinar la variable posicion para que tome las posicion del jugador
 int lanzamiento_fase_final (int vPJ1[], int vPJ2[], int pos);
 
+//Funcion que retorna el puntaje del jugador en fase final a su vector correspondiente
+int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string jugadores[]);
 
 //----------------------------------------------------------------------//
 
@@ -70,7 +72,7 @@ int cont_estatuilla(int vPJ1[], int vPJ2[], int pos){
         vPJ2[4] ++;
     }else{
         vPJ1[4] ++;
-        vPJ2[0] ++ ;
+        vPJ2[0] ++;
     }
 return vPJ1[6], vPJ2[6];
 }
@@ -96,3 +98,14 @@ int contador_puntaje_J2(int vPJ2[]){
     vPJ2 [6] = {};
 return vPJ2[6];
 }*/
+
+int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string jugadores[]){
+
+    if (ganador_fase_final == jugadores[0]){
+        vPJ1[2] ++;
+    }else{
+        vPJ2[2] ++;
+    }
+
+    return vPJ1[6], vPJ2[6];
+}
