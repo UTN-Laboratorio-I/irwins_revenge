@@ -56,7 +56,7 @@ void comenzarJuego(string jugadores[])
     do
     {
 
-        jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final);
+        jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores);
 
 
     } while (fase_final);

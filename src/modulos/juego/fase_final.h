@@ -13,23 +13,25 @@ void jugar_fase_final(
     string jugadores[],
     string turnos[],
     int dados[], int dado_6_caras,
-    bool &fase_final)
+    bool &fase_final,
+    string estatuillas_jugadores[5][2])
 {
-    bool tiene_medusa = 0, tiene_salamandra = 0;
+
     // Declaramos la bandera de si los jugadores realizaron jugada:
     bool jugada_j1 = 0, jugada_j2 = 0;
     int i = 0, max = 2, turnoActual = 0, valor_formateado = 0;
 
     string jugador = ""; // Este define cual es el jugador que le toca tirar dado
                          //(Se define en setearParametrosJugada)
-
+    int id_jugador;
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
+        bool tiene_medusa = 0, tiene_salamandra = 0;
         bool ganador = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
-        setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
+        setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual, id_jugador);
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
@@ -38,14 +40,41 @@ void jugar_fase_final(
 
         OrdenarDados(dados); // ordena los dados que se obtuvieron de menor a mayor
 
-        // verificar_estatuillas(){}
+        // verifica si el jugador actual tiene medusa para que su tirada tenga chance de ganar
+        // por la regla de medusa
 
-        ganador = escalera(dados); // Si los dados ordenados forman escalera, ganador es true
+        tiene_medusa(dados, tiene_medusa, id_jugador, estatuillas_jugadores);
+        if (tiene_medusa)
+        {
+            ganador = dados_iguales_medusa(dados);
+            if (ganador)
+            {
+                cout << turnos[turnoActual] << " gano la partida al obtener todos los numeros iguales" << endl;
+                fase_final = 1;
+                break;
+            }
+        }
 
+        tiene_salamandra(dados, tiene_salamandra, id_jugador, estatuillas_jugadores);
+
+        if (tiene_salamandra)
+        {
+            ganador = escalera_salamandra(dados);
+            if (ganador)
+            {
+                cout << turnos[turnoActual] << " gano la partida al obtener escalera de 4 numeros" << endl;
+                fase_final = 1;
+                break;
+            }
+        }
+        
+        // si no gano ni por salamandra ni por medusa, verifica que tenga escalera complea
+        ganador = escalera_normal(dados); // Si los dados ordenados forman escalera, ganador es true
         if (ganador)
         {
-            cout << turnos[turnoActual] << " gano la partida al obtener escalera" << endl;
+            cout << turnos[turnoActual] << " gano la partida al obtener escalera completa" << endl;
             fase_final = 1;
+            break;
         }
     }
 }
