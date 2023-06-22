@@ -237,9 +237,9 @@ using namespace std;
 
         for(i; i<2; i++){
             if(dados[i]==1){
-                numero_uno==1;
+                numero_uno=1;
             }else if(dados[i]==10){
-                numero_diez==1;
+                numero_diez=1;
             }
         }
         if(numero_uno && numero_diez){

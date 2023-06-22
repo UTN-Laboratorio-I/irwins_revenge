@@ -32,22 +32,30 @@ int i=0, max=2;
 
 //Fase expedición:
     do{
-        seleccionarEstatuilla(turnos,estatuillas_disponibles, estatuillas_seleccionadas);
+        //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
+        if(j2_reseleccion_estatuilla)
+        {
+            
+        }
+            seleccionarEstatuilla(
+                turnos,
+                estatuillas_disponibles, 
+                estatuillas_seleccionadas
+            );
+            //Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
+            jugarPorEstatuilla(
+                modo_admin, 
+                jugadores, 
+                turnos, 
+                estatuillas_seleccionadas, 
+                estatuillas_jugadores, 
+                estatuillas_disponibles,
+                listado_estatuillas, 
+                dados
+            );
 
-        //Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
-        jugarPorEstatuilla(
-            modo_admin, 
-            jugadores, 
-            turnos, 
-            estatuillas_seleccionadas, 
-            estatuillas_jugadores, 
-            estatuillas_disponibles,
-            listado_estatuillas, 
-            dados);
-
-    //
+            asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
-        asignarTurno(turnos);
     }while(fase_exp);
 
 //Fase final:
