@@ -72,4 +72,10 @@ using namespace std;
                 jugador=turnos[turnoActual];
                 jugada_j2=true;
             }
+
+           /* if (fase_final)
+            {
+                logica de verificar estatuillas(medusa y salamandra)
+            }
+        */    
     }

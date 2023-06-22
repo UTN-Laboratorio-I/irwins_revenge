@@ -16,18 +16,20 @@ void mostrar_menu()
     cout << " 2 - ESTADISTICAS" << endl;
     cout << " 3 - CREDITOS" << endl;
     cout << "----------------------------" << endl;
-    cout << " 0 - SALIR" << endl << endl;
+    cout << " 0 - SALIR" << endl
+         << endl;
 }
 
-int seleccionarOpcionMenu(){
+int seleccionarOpcionMenu()
+{
     int valor;
     cin >> valor;
 
-    if(valor == 1 || valor == 2 || valor == 3 || valor ==0){
+    if (valor == 1 || valor == 2 || valor == 3 || valor == 0)
+    {
         ClearConsole();
         return valor;
     }
 }
-
 
 #endif
