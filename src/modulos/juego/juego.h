@@ -4,7 +4,7 @@
 #include "estatuillas/estatuillas.h"
 
 
-void comenzarJuego(string jugadores[]){
+void comenzarJuego(string jugadores[], int acumuladores[]){
 int i=0, max=2;
 
     bool modo_admin = 0, fase_exp=0, fase_final=0;
@@ -12,10 +12,14 @@ int i=0, max=2;
     int fase=0, turno=0, cant_jugadores=2;
     bool posee_salamandra;
     bool primer_turno=1;
+//Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
+    string maldicion_pendiente[2];
+    bool maldito = maldicion_pendiente[0] != "";
+
 //Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2]={};
-
-    string estatuillas_seleccionadas[2]={}; //Estatuillas que seleccionaron en seleccionarEstatuilla();
+//Estatuillas que seleccionaron en seleccionarEstatuilla():
+    string estatuillas_seleccionadas[2]={}; 
 
     string cangrejo="CANGREJO", hormiga="HORMIGA", medusa="MEDUSA", aguila="AGUILA", salamandra="SALAMANDRA";
     string listado_estatuillas[5]={cangrejo, hormiga, medusa, aguila, salamandra};
@@ -25,31 +29,35 @@ int i=0, max=2;
 
     solicitarNombresJugadores(jugadores, modo_admin);
 
-    //LanzarDados y primerTurno solo asignan el turno inicial (NO APLICAN PUNTOS).
+//LanzarDados y primerTurno solo asignan el turno inicial (NO APLICAN PUNTOS).
     lanzarDados(modo_admin, dado_10_caras, posee_salamandra, dados, primer_turno);
     primerTurno(dados, turnos, jugadores, fase_exp, primer_turno);
 
 //Fase expedición:
     do{
-        //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
-            seleccionarEstatuilla(
-                turnos,
-                estatuillas_disponibles, 
-                estatuillas_seleccionadas
-            );
-            //Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
-            jugarPorEstatuilla(
-                modo_admin, 
-                jugadores, 
-                turnos, 
-                estatuillas_seleccionadas, 
-                estatuillas_jugadores, 
-                estatuillas_disponibles,
-                listado_estatuillas, 
-                dados
-            );
+    //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
+        if(maldito){
+            administradorMaldiciones();
+        }
+        seleccionarEstatuilla(
+            turnos,
+            estatuillas_disponibles, 
+            estatuillas_seleccionadas
+        );
+        //Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
+        jugarPorEstatuilla(
+            modo_admin, 
+            jugadores, 
+            turnos, 
+            estatuillas_seleccionadas, 
+            estatuillas_jugadores, 
+            estatuillas_disponibles,
+            maldicion_pendiente,
+            listado_estatuillas, 
+            dados
+        );
 
-            asignarTurno(turnos);
+        asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     }while(fase_exp);
 

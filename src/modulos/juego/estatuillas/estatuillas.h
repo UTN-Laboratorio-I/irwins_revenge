@@ -295,6 +295,7 @@ using namespace std;
         string estatuillas_seleccionadas[], //Las estatuillas que fueron seleccionadas por los jugadores.
         string estatuillas_jugadores[5][2], //Las estatuillas que ya ganaron los jugadores
         string estatuillas_disponibles[],
+        string maldicion_pendiente[],
         string listado_estatuillas[], 
         int dados[])
     {
@@ -347,7 +348,7 @@ using namespace std;
                 dentro del switch, y ejecutar la jugada según
                 la estatuilla seleccionada por el Jugador:
             */
-            int valor_formateado =formatearAInt(estatuillas_seleccionadas[turnoActual]);
+            int valor_formateado = formatearAInt(estatuillas_seleccionadas[turnoActual]);
 
             switch(valor_formateado){
                 case 0:

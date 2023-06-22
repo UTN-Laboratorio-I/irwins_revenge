@@ -18,18 +18,25 @@ void solicitarNombresJugadores(string jugadores[],bool& modo_admin ){
 }
 //Se utiliza para poder utilizar el valor string en un switch:
 int formatearAInt(string valor){
-    int valor_entero;
+    int id_estatuilla;
 
     if(valor == "CANGREJO"){
-        valor_entero=0;
+        id_estatuilla=0;
     }else if(valor == "HORMIGA"){
-        valor_entero=1;
+        id_estatuilla=1;
     }else if(valor=="MEDUSA"){
-        valor_entero=2;
+        id_estatuilla=2;
     }else if(valor=="AGUILA"){
-        valor_entero=3;
+        id_estatuilla=3;
     }else if(valor=="SALAMANDRA"){
-        valor_entero=4;
+        id_estatuilla=4;
     }
-    return valor_entero;
+    return id_estatuilla;
+}
+
+void administradorMaldiciones(bool& maldito, string maldicion_pendiente){
+    int i=0, max=2, id_estatuilla;
+    for(i;i<max;i++){
+
+    }
 }
