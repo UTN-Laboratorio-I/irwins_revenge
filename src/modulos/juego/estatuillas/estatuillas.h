@@ -7,54 +7,61 @@ using namespace std;
     void seleccionarEstatuilla(
         string turnos[], //Los turnos con los nombres de los jugadores.
         string estatuillas_disponibles[],
-        string estatuillas_seleccionadas[])
+        string estatuillas_seleccionadas[],
+        bool reseleccion_estatuilla=false, //Inicializamos en false por defecto
+        string jugador="" //Inicializamos "" por defecto.
+        )
     {
-        int e=0, j=0;
         const int estatuillas_totales = 5, cant_jugadores=2;
-        string listado_seleccion_temp[estatuillas_totales]={}; //Array temporal de estatuillas.
+        int estatuilla_seleccionada=0;
 
-    //Limpiamos la selección previa de estatuillas de cada jugador:
-        for(e; e<2;e++){
-            if(estatuillas_seleccionadas[e]!=""){
-                estatuillas_seleccionadas[e]="";     
-            }
-        }
-   
-    //Iteramos por cada jugador:
-        for(j;j<cant_jugadores;j++){
-            int temp =0;
-            int estatuilla_seleccionada=0;
-            //Mostramos el jugador que selecciona:
-                cout << "----------------------------" <<endl;
-                cout << "Jugador: " << turnos[j] <<endl;
-
-            //Limpiamos el array temporal de estatuillas:
-                for (int g = 0; g < 5; g++) {
-                listado_seleccion_temp[g] = "";
+    //Si no es reselección de estatuilla, seleccionan ambos jugadores:
+        if(!reseleccion_estatuilla){
+            int e=0, j=0;
+        //Limpiamos la selección previa de estatuillas de cada jugador:
+            for(e; e<2;e++){
+                if(estatuillas_seleccionadas[e]!=""){
+                    estatuillas_seleccionadas[e]="";     
                 }
-            //!REEMPLAZAR ESTA LOGICA POR EL ARRAY DE ESTATUILLAS_DISPONIBLES (QUE YA ELIMINA LAS GANADAS):
-            //Cargamos el array temporal con las estatuillas disponibles:
-                for(int i=0; i < estatuillas_totales; i++ ){
-                    if(estatuillas_disponibles[i] != ""){
-                        string valor = estatuillas_disponibles[i];
-                        listado_seleccion_temp[temp] = estatuillas_disponibles[i];
-                        cout << temp << ") " <<valor <<endl;
-                        temp++;
-                    }
+            }
+    
+        //Iteramos por cada jugador:
+            for(j;j<cant_jugadores;j++){
+                int temp =0;
+            //Mostramos el jugador que selecciona:
+                    cout << "----------------------------" <<endl;
+                    cout << "Jugador: " << turnos[j] <<endl;
+
+        //Cargamos el array temporal con las estatuillas disponibles:
+                for(int i=0; i<estatuillas_totales;i++){
+                if(estatuillas_disponibles[i] !=""){
+                    cout << i << ") " << estatuillas_disponibles[i] <<endl;
+                }
+            }
+
+        //El jugador selecciona la estatuilla por la que jugará:
+            cout << "Selecciona la estatuilla por la que jugarás: " <<endl <<endl;
+            cin >> estatuilla_seleccionada;
+            cout << "Seleccionaste " << estatuillas_disponibles[estatuilla_seleccionada] <<endl <<endl;
+
+        //Asignamos la estuilla en el correspondiente array:
+            estatuillas_seleccionadas[j]=estatuillas_disponibles[estatuilla_seleccionada];
         }
+        }else{
+            for(int i=0; i<estatuillas_totales;i++){
+                if(estatuillas_disponibles[i] !=""){
+                    cout << i << ") " << estatuillas_disponibles[i] <<endl;
+                }
+            }
+        //El jugador selecciona la estatuilla por la que jugará:
+            cout << "Selecciona una nueva estatuilla: " <<endl <<endl;
+            cin >> estatuilla_seleccionada;
+            cout << "Seleccionaste " << estatuillas_disponibles[estatuilla_seleccionada] <<endl <<endl;
 
-    //El jugador selecciona la estatuilla por la que jugará:
-        cout << "Selecciona la estatuilla por la que jugarás: " <<endl <<endl;
-        cin >> estatuilla_seleccionada;
-        cout << "Seleccionaste " << listado_seleccion_temp[estatuilla_seleccionada] <<endl <<endl;
-
-    //Asignamos la estuilla en el correspondiente array:
-        estatuillas_seleccionadas[j]=listado_seleccion_temp[estatuilla_seleccionada];
-       }
+        //Asignamos la estuilla al jugador que re-seleccionó
+            estatuillas_seleccionadas[1] = estatuillas_disponibles[estatuilla_seleccionada];
+        }
     }
-
-
-
 
     void agregar(
         string estatuillas_jugador1[], 
@@ -293,15 +300,44 @@ using namespace std;
     {
     //Declaramos la bandera de si los jugadores realizaron jugada:
         bool jugada_j1=0, jugada_j2=0;
-        int i=0, max=2, turnoActual=0, valor_formateado=0;
+        bool reseleccion_estatuilla=0;
+        int i=0, max_jugadores=2, max_estatuillas=5, turnoActual=0, valor_formateado=0;
 
         string jugador=""; //Este define cual es el jugador que le toca tirar dado (Se define en setearParametrosJugada)
 
     //Iteramos por cada jugador dentro del array de turnos:
-        for(i;i<max;i++){
+        for(i;i<max_jugadores;i++){
+            //Si ambos jugadores eligieron la misma estatuilla, y uno de los 2 ya jugó
+            //chequeamos que siga disponible.
+            if(
+                estatuillas_seleccionadas[0] == estatuillas_seleccionadas[1] //Si son iguales.
+                && // Y
+                jugada_j1 || jugada_j2 //Si alguno de los 2 jugó.
+            )
+            {
+                bool aun_disponible;
+                int x=0;
+                for(x;x<max_estatuillas;x++){
+                    //Buscamos si existe la estatuilla en el array de disponibles:
+                    aun_disponible = estatuillas_disponibles[i]==estatuillas_seleccionadas[0];
+                }
+                if(!aun_disponible){
+                    //Si no está disponible, es porque la ganó el otro jugador, tiene que seleccionar:
+                    cout << endl << jugador <<" debe re-seleccionar estatuilla:" <<endl;
+
+                    seleccionarEstatuilla(
+                        turnos, 
+                        estatuillas_disponibles, 
+                        estatuillas_seleccionadas,
+                        reseleccion_estatuilla=1,
+                        jugador=turnos[1] //Le pasamos el jugador del 2do turno;
+                    );
+                }
+            }
             //Seteamos los parámetros según que jugador tenga turno:
             turnoActual=i;
             setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
+
     
             /*simulamos acción lanzar dados (Apretar enter)*/
             lanzamientoManualDados(turnoActual, turnos);

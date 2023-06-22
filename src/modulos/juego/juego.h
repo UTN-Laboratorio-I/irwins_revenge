@@ -13,7 +13,6 @@ int i=0, max=2;
     bool posee_salamandra;
     bool primer_turno=1;
 //Booleano utilizado cuando el J1 gana la misma estatuilla.
-    bool j2_reseleccion_estatuilla=0;
     string estatuillas_jugadores[5][2]={};
 
     string estatuillas_seleccionadas[2]={}; //Estatuillas que seleccionaron en seleccionarEstatuilla();
@@ -33,10 +32,6 @@ int i=0, max=2;
 //Fase expedición:
     do{
         //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
-        if(j2_reseleccion_estatuilla)
-        {
-            
-        }
             seleccionarEstatuilla(
                 turnos,
                 estatuillas_disponibles, 
