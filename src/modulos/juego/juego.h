@@ -37,7 +37,7 @@ void comenzarJuego(
     solicitarNombresJugadores(jugadores, modo_admin);
 
     // LanzarDados y primerTurno solo asignan el turno inicial (NO APLICAN PUNTOS).
-    lanzarDados(modo_admin, dado_10_caras, posee_salamandra, dados, primer_turno);
+    lanzarDados(modo_admin, dado_10_caras, posee_salamandra, dados, primer_turno, fase_exp);
     primerTurno(dados, turnos, jugadores, fase_exp, primer_turno);
 
 //Fase expedición:

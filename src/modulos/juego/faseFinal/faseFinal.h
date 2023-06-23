@@ -44,7 +44,7 @@ void jugar_fase_final(
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
 
-        lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+        lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
         OrdenarDados(dados); // ordena los dados que se obtuvieron de menor a mayor
 
@@ -63,7 +63,7 @@ void jugar_fase_final(
                 cin >> tirar;
                 if (tirar == 1)
                 {
-                    lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+                    lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
                     OrdenarDados(dados);
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);

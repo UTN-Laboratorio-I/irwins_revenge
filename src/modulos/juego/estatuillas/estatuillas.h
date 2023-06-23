@@ -156,7 +156,7 @@ using namespace std;
         bool impar=0;
         int i = 0;
 
-        lanzarDados(modo_admin, 10, false, dados, false);
+        lanzarDados(modo_admin, 10, false, dados, false, true);
 
         for(i; i<2; i++){
             if (dados[i]%2 == 0){
@@ -186,7 +186,7 @@ using namespace std;
     //
         bool menores_a_cinco[2]={0,0};     //El array comienza con 2 falses.
         int i = 0;
-        lanzarDados(modo_admin, 10, false, dados, false);
+        lanzarDados(modo_admin, 10, false, dados, false, true);
     
     //Acá definimos cuantos dados vamos a utilizar:
         for(i; i<2; i++){
@@ -214,7 +214,7 @@ using namespace std;
         string estatuilla = "MEDUSA";
         int resultado_esperado=7, suma=0;    //El array comienza con 2 falses.
         int i = 0;
-        lanzarDados(modo_admin, 10, false, dados, false);
+        lanzarDados(modo_admin, 10, false, dados, false, true);
 
         for(i; i<2; i++){
             suma+=dados[i];
@@ -239,7 +239,7 @@ using namespace std;
        string estatuilla = "AGUILA";
         bool numero_uno=0, numero_diez=0;
         int i=0;
-        lanzarDados(modo_admin, 10, false, dados, false);
+        lanzarDados(modo_admin, 10, false, dados, false, true);
 
 
         for(i; i<2; i++){
@@ -268,7 +268,7 @@ using namespace std;
     {
         string estatuilla = "SALAMANDRA";
         bool numeros_consecutivos=0;
-        lanzarDados(modo_admin, 10, false, dados, false);
+        lanzarDados(modo_admin, 10, false, dados, false, true);
 
     //calc1: Si el primer valor * 2 +1 es igual a la suma de los dos dados juntos, son consecutivos.
         int i=0, calc1=(dados[0]*2+1), calc2=dados[0]+dados[1];
@@ -284,8 +284,6 @@ using namespace std;
             accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores);
         }
     }
-
-
 
 //Función que administra el juego por una estatuilla:
     void jugarPorEstatuilla(
