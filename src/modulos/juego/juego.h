@@ -78,7 +78,6 @@ void comenzarJuego(
     {
 
         jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores);
-        asignarTurno(turnos);
 
     } while (fase_final);
 }

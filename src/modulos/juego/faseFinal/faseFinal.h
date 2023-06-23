@@ -1,3 +1,9 @@
+#ifndef DADOS_H_INCLUDED
+#define DADOS_H_INCLUDED
+#ifndef TURNOS_H_INCLUDED
+#define TURNOS_H_INCLUDED
+#ifndef BENDICIONES_H_INCLUDED
+#define BENDICIONES_H_INCLUDED
 // #include "Bendiciones/bendiciones.h"
 #include <iostream>
 #include <string>
@@ -90,3 +96,6 @@ void jugar_fase_final(
     }
 }
 
+#endif
+#endif
+#endif
