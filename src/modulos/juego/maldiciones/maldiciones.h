@@ -43,8 +43,35 @@ void maldicion_cangrejo(
 /*
 Rival tira 2 dados de 10 caras, valor obtenido se le descuenta al ganador de la estatuilla.
 */
-void maldicion_hormiga(int& contador_turnos_jugadores, string jugadores[], int dados[]){
+void maldicion_hormiga(
+    int& contador_turnos_jugadores, 
+    string maldicion_pendiente[],
+    string jugadores[],
+    int dados[],
+    bool modo_admin,
+    int puntaje_descontado[]
+    )
+    {
+        int i=0, max=2, dado_10_caras=10;
+        string jugador_rival;
+        int id_jugador_afectado, valor_dado;
 
+    //Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
+    //Y buscamos el id del jugador al que se le descontarán los puntos:
+        if(maldicion_pendiente[1]==jugadores[0]){
+            jugador_rival=jugadores[1];
+            id_jugador_afectado=0;
+        }else{
+            jugador_rival=jugadores[0];
+            id_jugador_afectado=1;
+        }
+
+        lanzarDados(modo_admin, dado_10_caras, false, dados, false);
+
+    //Valor del primer dado:
+        valor_dado= dados[0]+dados[1];
+    //Descontamos puntos al jugador afectado:
+        puntaje_descontado[id_jugador_afectado]-=valor_dado;
 }
 
 void maldicion_medusa(int& contador_turnos_jugadores, string maldicion_pendiente){
