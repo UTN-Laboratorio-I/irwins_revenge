@@ -28,6 +28,12 @@ int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas
 
 //REVISAR!!
 int puntaje_jugadores(int vPJ1[],int vPJ2 [], int puntos_victoria[]){
+//1 +5 Estatuilla Obtenerunaestatuilla
+//2 +10 Estatuilla++ Obtieneunaestatuillaenelprimerintentoporobtenerla
+//3 +15 Ganador GanadordelaFaseFinal
+//4 +50 Ganador++ GanadordelaFaseFinalsinestatuillas
+//5 -3 Estatuilla-- Rivalobtieneunaestatuilla
+//6 -1 Lanzamiento Lanzamientoenlafasefinal
 
     puntaje_de_hitos (puntos_victoria);
 

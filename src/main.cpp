@@ -8,45 +8,46 @@ using namespace std;
 
 int main()
 {
-    bool juego_activo=1;
-    string jugadores[2]={};
+    bool juego_activo = 1;
+    string jugadores[2] = {};
     int opcion_seleccionada;
 
-//Variables estadísticas:
-    int m[6][2]={};
-    int acumuladores[2]={};
-    int puntaje_descontado[2]={};
+    // Variables estadísticas:
+    int m[6][2] = {};
+    int acumuladores[2] = {};
+    int puntaje_descontado[2] = {};
     srand(time(0));
+    string ordenEstatuillas[5] = {};
 
-    do{
+    do
+    {
         mostrar_menu();
         opcion_seleccionada = seleccionarOpcionMenu();
 
         switch (opcion_seleccionada)
         {
-            case 1:
-                comenzarJuego(
-                    jugadores,
-                    acumuladores,
-                    puntaje_descontado
-                );
-                break;
-            case 2:
-                mostrar_estadisticas(m, jugadores, acumuladores);
-                break;
-            case 3:
-                mostrar_creditos();
-                break;
-            case 0:
-                juego_activo=0;
-                break;
+        case 1:
+            comenzarJuego(
+                jugadores,
+                m,
+                ordenEstatuillas);
+            break;
+        case 2:
+            mostrar_estadisticas(m, jugadores, ordenEstatuillas);
+            break;
+        case 3:
+            mostrar_creditos();
+            break;
+        case 0:
+            juego_activo = 0;
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
-        
+
         system("cls");
-    }while(juego_activo);
+    } while (juego_activo);
     system("exit");
     return 0;
 }

@@ -2,9 +2,6 @@
 #include <string>
 using namespace std;
 
-
-
-    
     void mostrar_creditos (){
     cout << "TRABAJO PRACTICO GRUPAL - IRWIN'S REVENGE" << "\n" << "\n";
     cout << "--------------------------------------------------------------------------------------" << "\n" << "\n";
