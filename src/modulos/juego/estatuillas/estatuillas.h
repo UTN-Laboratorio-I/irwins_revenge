@@ -166,6 +166,7 @@ void accionesEstatuillaGanada(
         if (ordenEstatuillas[i] == "")
         {
             ordenEstatuillas[i] = estatuilla;
+            break;
         }
     }
 }
