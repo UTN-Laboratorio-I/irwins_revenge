@@ -73,3 +73,31 @@ using namespace std;
                 jugada_j2=true;
             }
     }
+
+    void setearParametrosJugadaFaseFinal(
+    string turnos[],
+    string jugadores[],
+    bool &jugada_j1, // Define si el j1 jugó su mano.
+    bool &jugada_j2, // Define si el j2 jugó su mano.
+    string &jugador,
+    int &turnoActual,
+    int &id_jugador)
+{
+    // Si el nombre del jugador corresponde, y no jugó, se le otorga la tirada:
+    // EJEMPLO:
+    // turnos=["PABLO", "FELIPE"];
+    // jugada_j1 = false;
+
+    if (turnos[turnoActual] == jugadores[0] && !jugada_j1)
+    {
+        jugador = turnos[turnoActual];
+        jugada_j1 = true;
+        id_jugador = 0;
+    }
+    else if (turnos[turnoActual] == jugadores[1] && !jugada_j2)
+    {
+        jugador = turnos[turnoActual];
+        jugada_j2 = true;
+        id_jugador = 1;
+    }
+}
