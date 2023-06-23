@@ -30,3 +30,10 @@ void showMessageAndClear(int tipo_mensaje, string message)
             break;
     }
 }
+
+void mostrarMensajeCambioFase(){
+    cout << "----------------------" << endl;
+    cout << "FINALIZA FASE DE EXPEDICION!!" << endl;
+    cout << "----------------------" << endl;
+    cout << "COMIENZA FASE FINAL - JUGADORES PREPARENSE" << endl;
+}

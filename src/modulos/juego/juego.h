@@ -71,10 +71,8 @@ void comenzarJuego(
         asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
-    cout << "----------------------" << endl;
-    cout << "FINALIZA FASE DE EXPEDICION!!" << endl;
-    cout << "----------------------" << endl;
-    cout << "COMIENZA FASE FINAL - JUGADORES PREPARENSE" << endl;
+    
+    mostrarMensajeCambioFase();
     // Fase final:
     do
     {
