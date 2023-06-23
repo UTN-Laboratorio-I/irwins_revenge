@@ -58,7 +58,8 @@ void jugar_fase_final(
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
-        lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+
+        lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
         if (tiene_hormiga)
         {
@@ -97,7 +98,7 @@ void jugar_fase_final(
                 cin >> tirar;
                 if (tirar == 1)
                 {
-                    lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+                    lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
                     OrdenarDados(dados);
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);
