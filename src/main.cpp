@@ -8,15 +8,19 @@ using namespace std;
 
 int main()
 {
-    bool juego_activo=1;
-    string jugadores[2]={};
+    bool juego_activo = 1;
+    string jugadores[2] = {};
     int opcion_seleccionada;
 
-//Variables estadísticas:
-    int m[6][2]={};
+
+    // Variables estadísticas:
+    int m[6][2] = {};
+    int acumuladores[2] = {};
+    int puntaje_descontado[2] = {};
     srand(time(0));
 
-    do{
+    do
+    {
         mostrar_menu();
         opcion_seleccionada = seleccionarOpcionMenu();
 
@@ -38,12 +42,12 @@ int main()
                 juego_activo=0;
                 break;
 
-            default:
-                break;
+        default:
+            break;
         }
-        
+
         system("cls");
-    }while(juego_activo);
+    } while (juego_activo);
     system("exit");
     return 0;
 }
