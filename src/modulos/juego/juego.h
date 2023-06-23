@@ -2,12 +2,13 @@
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
+#include "maldiciones/maldiciones.h"
+using namespace std;
 
 
 void comenzarJuego(
     string jugadores[], 
-    int acumuladores[],
-    int puntaje_descontado[]
+    int m[6][2]
     )
     {
     int i=0, max=2;
@@ -40,7 +41,16 @@ void comenzarJuego(
 
 //Fase expedición:
     do{
-       
+       if(maldito){
+        administradorMaldiciones(
+            maldito,
+            maldicion_pendiente,
+            cont_turnos_maldicion,
+            jugadores,
+            dados,
+            modo_admin
+        );
+       }
         seleccionarEstatuilla(
             turnos,
             estatuillas_disponibles, 
