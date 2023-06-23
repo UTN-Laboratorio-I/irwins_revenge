@@ -32,12 +32,11 @@ using namespace std;
 
     void mostrar_estadisticas(
         int m[][2], 
-        string jugadores[],
-        int acumuladores[]
+        string jugadores[]
     )
     {
         string n_J1=jugadores[0], n_J2=jugadores[1];
-        int acuJ1=acumuladores[0], acuJ2=acumuladores[1];
+        int acuJ1=0, acuJ2=0;
     int i, j;
     
     // Este vector muestra la columna con los hitos a mostrar por pantalla

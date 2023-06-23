@@ -2,17 +2,20 @@
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
+#include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
+using namespace std;
+
 
 void comenzarJuego(
-    string jugadores[],
-    int acumuladores[],
-    int puntaje_descontado[])
-{
-    int i = 0, max = 2;
-    bool modo_admin = 0, fase_exp = 0, fase_final = 0;
-    int dados[5] = {}, dado_6_caras = 6, dado_10_caras = 10;
-    int fase = 0, turno = 0, cant_jugadores = 2;
+    string jugadores[], 
+    int m[6][2]
+    )
+    {
+    int i=0, max=2;
+    bool modo_admin = 0, fase_exp=0, fase_final=0;
+    int dados[5]={}, dado_6_caras=6, dado_10_caras=10;
+    int fase=0, turno=0, cant_jugadores=2;
     bool posee_salamandra;
     bool primer_turno = 1;
     // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
@@ -37,10 +40,18 @@ void comenzarJuego(
     lanzarDados(modo_admin, dado_10_caras, posee_salamandra, dados, primer_turno);
     primerTurno(dados, turnos, jugadores, fase_exp, primer_turno);
 
-    // Fase expedición:
-    do
-    {
-
+//Fase expedición:
+    do{
+       if(maldito){
+        administradorMaldiciones(
+            maldito,
+            maldicion_pendiente,
+            cont_turnos_maldicion,
+            jugadores,
+            dados,
+            modo_admin
+        );
+       }
         seleccionarEstatuilla(
             turnos,
             estatuillas_disponibles,
@@ -60,10 +71,8 @@ void comenzarJuego(
         asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
-    cout << "----------------------" << endl;
-    cout << "FINALIZA FASE DE EXPEDICION!!" << endl;
-    cout << "----------------------" << endl;
-    cout << "COMIENZA FASE FINAL - JUGADORES PREPARENSE" << endl;
+    
+    mostrarMensajeCambioFase();
     // Fase final:
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
