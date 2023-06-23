@@ -77,6 +77,7 @@ void jugar_fase_final(
                 }
                 cin >> opcionDado;
                 dados[opcionDado + 1] = dadoHormiga;
+                cout << dados[opcionDado + 1];
             }
         }
 
