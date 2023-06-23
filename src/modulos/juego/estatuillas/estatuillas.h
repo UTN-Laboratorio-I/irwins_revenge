@@ -313,7 +313,7 @@ using namespace std;
             if(
                 estatuillas_seleccionadas[0] == estatuillas_seleccionadas[1] //Si son iguales.
                 && // Y
-                jugada_j1 || jugada_j2 //Si alguno de los 2 jugó.
+                (jugada_j1 || jugada_j2) //Si alguno de los 2 jugó.
             )
             {
                 bool aun_disponible;

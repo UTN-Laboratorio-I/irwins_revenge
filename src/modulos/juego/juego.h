@@ -2,7 +2,7 @@
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
-//#include "faseFinal/faseFinal.h"
+#include "faseFinal/faseFinal.h"
 
 void comenzarJuego(
     string jugadores[],
@@ -40,7 +40,7 @@ void comenzarJuego(
     // Fase expedición:
     do
     {
-       
+
         seleccionarEstatuilla(
             turnos,
             estatuillas_disponibles,
@@ -60,12 +60,15 @@ void comenzarJuego(
         asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
-
+    cout << "----------------------" << endl;
+    cout << "FINALIZA FASE DE EXPEDICION!!" << endl;
+    cout << "----------------------" << endl;
+    cout << "COMIENZA FASE FINAL - JUGADORES PREPARENSE" << endl;
     // Fase final:
-    // do
-    // {
+    do
+    {
 
-    //     jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores);
+        jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores);
 
-    // } while (fase_final);
+    } while (fase_final);
 }
