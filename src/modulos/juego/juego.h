@@ -75,9 +75,10 @@ void comenzarJuego(
     // Fase final:
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
+    int dadoHormiga=0;
     do
     {
-        int dadoHormiga=0;
+        
         jugar_fase_final(modo_admin,
                          jugadores,
                          turnos,
@@ -85,7 +86,8 @@ void comenzarJuego(
                          dado_6_caras,
                          fase_final,
                          estatuillas_jugadores,
-                         primerTiroJugadores, dadoHormiga);
+                         primerTiroJugadores, 
+                         dadoHormiga);
 
     } while (fase_final);
 }

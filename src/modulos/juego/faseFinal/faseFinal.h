@@ -19,7 +19,9 @@ void jugar_fase_final(
     string turnos[],
     int dados[], int dado_6_caras,
     bool &fase_final,
-    string estatuillas_jugadores[5][2], bool primerTiroJugadores[], int &dadoHormiga)
+    string estatuillas_jugadores[5][2], 
+    bool primerTiroJugadores[], 
+    int &dadoHormiga)
 {
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
@@ -70,7 +72,6 @@ void jugar_fase_final(
             {
                 cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
                 for (i = 0; i < 5; i++)
-                    ;
                 {
                     cout << i + 1 << " - " << dados[i] << endl;
                 }
