@@ -23,21 +23,40 @@ int valorAleatorio(int caras)
     return rand() % caras + 1;
 }
 
-void lanzarDados(bool &modo_admin, int caras, bool salamandra, int dados[], bool primer_turno)
+void lanzarDados(bool &modo_admin, int caras, bool salamandra, int dados[], bool primer_turno, bool fase_exp)
 {
-    //! AÑADIR AL FINAL DE LA FUNCIÓN LA VISUALIZACIÓN
-    //!  DE LOS DADOS QUE FUERON ARROJADOS.
 
-    int i, tam = 5;
+    int i, cant_dados=2;
+    
+    //Definimos la cantidad de dados a utilizar:
+    if(primer_turno){
+        cant_dados=2;
+    }
+    else if(!fase_exp){
+        cant_dados=5;
+    }else if(salamandra){
+        cant_dados=3;
+    }
+
     // La variable primer_turno unicamente indica que los dados NO PUEDEN SER IGUALES:
     if (primer_turno)
     {
         bool distintos = 0;
         do
         {
-            for (i = 0; i < tam; i++)
-            {
-                dados[i] = valorAleatorio(caras);
+            cout << "Lanzamiento de dados por el 1er turno:" <<endl;
+
+            if(modo_admin==false){
+                for (i = 0; i < cant_dados; i++)
+                {
+                    dados[i] = valorAleatorio(caras);
+                }
+            }else{
+            cout << "Ingrese los "<<cant_dados<< " dados manualmente: " << endl;
+                for (i = 0; i < cant_dados; i++)
+                {
+                    cin >> dados[i];
+                }
             }
             // Si los dados son distintos, los tomamos y finalizamos la iteración:
             distintos = dados[0] == dados[1] ? 1 : 0;
@@ -48,25 +67,32 @@ void lanzarDados(bool &modo_admin, int caras, bool salamandra, int dados[], bool
     {
         if (modo_admin == false)
         {
-            for (i = 0; i < tam; i++)
+            for (i = 0; i < cant_dados; i++)
             {
                 dados[i] = rand() % caras + 1;
             }
         }
         else
         {
-            cout << "ingrese los dados manualmente: " << endl;
-            for (i = 0; i < tam; i++)
+            cout << "Ingrese los "<<cant_dados<< " dados manualmente: " << endl;
+            for (i = 0; i < cant_dados; i++)
             {
                 cin >> dados[i];
             }
         }
     }
     cout << endl;
-    cout << "Sus dados fueron(ignorar los dados que no correspondan segun fase o maldicion): " << endl;
-    for (i = 0; i < tam; i++)
+    cout << "Sus dados: " << endl;
+    
+    //Mostramos los dados que corresponden mostrar:
+   
+
+    for (i = 0; i < cant_dados; i++)
     {
-        cout << dados[i] << " - ";
+        cout << dados[i];
+        if(i != cant_dados-1){
+            cout <<" - ";
+        }        
     }
     cout << endl;
 }

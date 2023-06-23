@@ -30,7 +30,7 @@ void maldicion_cangrejo(
 
     }
 
-    lanzarDados(modo_admin, dado_10_caras, false, dados, false);
+    lanzarDados(modo_admin, dado_10_caras, false, dados, false, true);
 
 //Valor del primer dado:
     valor_dado=dados[0];
@@ -64,7 +64,7 @@ void maldicion_hormiga(
             id_jugador_afectado=1;
         }
 
-        lanzarDados(modo_admin, dado_10_caras, false, dados, false);
+        lanzarDados(modo_admin, dado_10_caras, false, dados, false, true);
 
     //Valor del primer dado:
         valor_dado= dados[0]+dados[1];
