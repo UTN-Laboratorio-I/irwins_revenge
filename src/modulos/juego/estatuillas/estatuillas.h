@@ -323,6 +323,7 @@ using namespace std;
                     aun_disponible = estatuillas_disponibles[i]==estatuillas_seleccionadas[0];
                 }
                 if(!aun_disponible){
+                    jugador = jugador == jugadores[0]? jugadores[1]:jugadores[0];
                     //Si no está disponible, es porque la ganó el otro jugador, tiene que seleccionar:
                     cout << endl << jugador <<" debe re-seleccionar estatuilla:" <<endl;
 

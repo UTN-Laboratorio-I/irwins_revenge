@@ -21,7 +21,6 @@ void maldicion_cangrejo(
     int id_jugador_afectado, valor_dado;
 
 //Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
-//Y buscamos el id del jugador al que se le descontarán los puntos:
     if(maldicion_pendiente[1]==jugadores[0]){
         jugador_rival=jugadores[1];
         id_jugador_afectado=0;
@@ -36,7 +35,7 @@ void maldicion_cangrejo(
 //Valor del primer dado:
     valor_dado=dados[0];
 //Descontamos puntos al jugador afectado:
-    // puntaje_descontado[id_jugador_afectado]-=valor_dado;
+    // puntaje_jugadores
 }
 
 
