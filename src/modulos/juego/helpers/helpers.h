@@ -34,9 +34,3 @@ int formatearAInt(string valor){
     return id_estatuilla;
 }
 
-void administradorMaldiciones(bool& maldito, string maldicion_pendiente){
-    int i=0, max=2, id_estatuilla;
-    for(i;i<max;i++){
-
-    }
-}

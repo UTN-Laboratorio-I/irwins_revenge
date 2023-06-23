@@ -2,11 +2,16 @@
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
+#include "maldiciones/maldiciones.h"
 
 
-void comenzarJuego(string jugadores[], int acumuladores[]){
-int i=0, max=2;
-
+void comenzarJuego(
+    string jugadores[], 
+    int acumuladores[],
+    int puntaje_descontado[]
+    )
+    {
+    int i=0, max=2;
     bool modo_admin = 0, fase_exp=0, fase_final=0;
     int dados[5]={}, dado_6_caras=6, dado_10_caras=10;
     int fase=0, turno=0, cant_jugadores=2;
@@ -15,6 +20,7 @@ int i=0, max=2;
 //Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
     string maldicion_pendiente[2];
     bool maldito = maldicion_pendiente[0] != "";
+    int cont_turnos_maldicion=0;
 
 //Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2]={};
@@ -37,7 +43,16 @@ int i=0, max=2;
     do{
     //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
         if(maldito){
-            administradorMaldiciones();
+            administradorMaldiciones(
+                maldito,
+                maldicion_pendiente, 
+                cont_turnos_maldicion,
+                jugadores,
+                dados,
+                modo_admin,
+                puntaje_descontado
+            );
+           
         }
         seleccionarEstatuilla(
             turnos,

@@ -15,6 +15,7 @@ int main()
 //Variables estadísticas:
     int m[6][2]={};
     int acumuladores[2]={};
+    int puntaje_descontado[2]={}
     srand(time(0));
 
     do{
@@ -24,7 +25,11 @@ int main()
         switch (opcion_seleccionada)
         {
             case 1:
-                comenzarJuego(jugadores, acumuladores);
+                comenzarJuego(
+                    jugadores,
+                    acumuladores,
+                    puntaje_descontado
+                );
                 break;
             case 2:
                 mostrar_estadisticas(m, jugadores, acumuladores);
