@@ -50,7 +50,7 @@ void jugar_fase_final(
         {
             cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
             lanzamientoManualDados(turnoActual, turnos);
-            lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+            lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
             cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
             dadoHormiga = dados[0];
             cout << endl;
