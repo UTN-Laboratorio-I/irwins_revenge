@@ -122,11 +122,11 @@ int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas
         }
     }
 
-    if(contador_J1<0){
+    if(contador_J1>0){
         vPJ1[3]++;
-    }else if(contador_J2 <0){
+    }else if(contador_J2>0){
         vPJ2[3]++;
     }
 
-    return vPJ1[3], vPJ2[3];
+    return vPJ1[6], vPJ2[6];
 }
