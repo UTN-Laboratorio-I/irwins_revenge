@@ -8,7 +8,8 @@ using namespace std;
 
 void comenzarJuego(
     string jugadores[],
-    int m[6][2])
+    int m[6][2],
+    string ordenEstatuillas[])
 {
     int i = 0, max = 2;
     bool modo_admin = 0, fase_exp = 0, fase_final = 0;
@@ -29,6 +30,7 @@ void comenzarJuego(
     string cangrejo = "CANGREJO", hormiga = "HORMIGA", medusa = "MEDUSA", aguila = "AGUILA", salamandra = "SALAMANDRA";
     string listado_estatuillas[5] = {cangrejo, hormiga, medusa, aguila, salamandra};
     string estatuillas_disponibles[5] = {cangrejo, hormiga, medusa, aguila, salamandra};
+    
 
     string turnos[2] = {}; // turnos = ["PABLO", "FELIPE"] --> Si rotan los turnos es: = ["FELIPE", "PABLO"];
 
@@ -65,7 +67,8 @@ void comenzarJuego(
             estatuillas_disponibles,
             maldicion_pendiente,
             listado_estatuillas,
-            dados);
+            dados,
+            ordenEstatuillas);
 
         asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
@@ -90,4 +93,6 @@ void comenzarJuego(
                          dadoHormiga);
 
     } while (fase_final);
+
+    
 }

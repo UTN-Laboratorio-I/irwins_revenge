@@ -61,26 +61,26 @@ void jugar_fase_final(
 
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
-        if (tiene_hormiga)
-        {
-            int opcionDado, opcion;
-            cout << "al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
-            cout << "¿Desea cambiar algun dado?" << endl;
-            cout << " 1 - SI" << endl;
-            cout << " 2 - NO" << endl;
-            cin >> opcion;
-            if (opcion == 1)
-            {
-                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
-                for (i = 0; i < 5; i++)
-                {
-                    cout << i + 1 << " - " << dados[i] << endl;
-                }
-                cin >> opcionDado;
-                dados[opcionDado + 1] = dadoHormiga;
-                cout << dados[opcionDado + 1];
-            }
-        }
+        // if (tiene_hormiga)
+        // {
+        //     int opcionDado, opcion;
+        //     cout << "al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
+        //     cout << "¿Desea cambiar algun dado?" << endl;
+        //     cout << " 1 - SI" << endl;
+        //     cout << " 2 - NO" << endl;
+        //     cin >> opcion;
+        //     if (opcion == 1)
+        //     {
+        //         cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
+        //         for (i = 0; i < 5; i++)
+        //         {
+        //             cout << i + 1 << " - " << dados[i] << endl;
+        //         }
+        //         cin >> opcionDado;
+        //         dados[opcionDado + 1] = dadoHormiga;
+        //         cout << dados[opcionDado + 1];
+        //     }
+        // }
 
         OrdenarDados(dados); // ordena los dados que se obtuvieron de menor a mayor
 
