@@ -10,12 +10,6 @@ int puntaje_de_hitos (int vec_puntos[6]);
 //A esta funcion le pasamos los dos vectores de los 2 jugadores y nos retorna la matriz con los rusultados
 int puntaje_jugadores( int vPJ1[],int vPJ2 [], int puntos_victoria[]);
 
-/*//Funcion que contiene los contadores de los HITOS del jugador 1
-int ganador_ronda_J1(int J1, int vPJ1[6]);
-
-//Funcion que contiene los contadores de los HITOS del jugador 2
-int ganador_ronda_J2(int J2, int vPJ2[6]);*/
-
 //Funcion contabiliza la cantidad de estatuillas ganadas/perdidas (ASIGNAR EN ESTATUILLAS.H LINEA 107)
 int cont_estatuilla(int vPJ1[], int vPJ2[], int pos);
 
@@ -25,6 +19,10 @@ int lanzamiento_fase_final (int vPJ1[], int vPJ2[], int pos);
 
 //Funcion que retorna el puntaje del jugador en fase final a su vector correspondiente
 int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string jugadores[]);
+
+//Funcion que usa un for para encontrar si el array estatuillas_jugadores esta vacio, suma puntos al jugador correspondiente
+int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas_jugadores[][2],string jugadores[], string ganador_fase_final);
+
 
 //----------------------------------------------------------------------//
 
@@ -108,4 +106,27 @@ int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string 
     }
 
     return vPJ1[6], vPJ2[6];
+}
+
+int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas_jugadores[][2],string jugadores[], string ganador_fase_final){
+
+    int i;
+    int contador_J1 = 0;
+    int contador_J2 = 0;
+
+    for(i=0;i<5;i++){
+        if(estatuillas_jugadores[i][0] == "" && jugadores[0] == ganador_fase_final){
+            contador_J1 ++;
+        }else if(estatuillas_jugadores[i][1] == "" && jugadores[1] == ganador_fase_final){
+            contador_J2 ++;
+        }
+    }
+
+    if(contador_J1<0){
+        vPJ1[3]++;
+    }else if(contador_J2 <0){
+        vPJ2[3]++;
+    }
+
+    return vPJ1[3], vPJ2[3];
 }

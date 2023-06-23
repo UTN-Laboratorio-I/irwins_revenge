@@ -40,6 +40,7 @@ void comenzarJuego(
     // Fase expedición:
     do
     {
+       
         seleccionarEstatuilla(
             turnos,
             estatuillas_disponibles,
