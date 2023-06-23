@@ -314,11 +314,13 @@ using namespace std;
                 (jugada_j1 || jugada_j2) //Si alguno de los 2 jugó.
             )
             {
-                bool aun_disponible;
+                bool aun_disponible=false;
                 int x=0;
                 for(x;x<max_estatuillas;x++){
                     //Buscamos si existe la estatuilla en el array de disponibles:
-                    aun_disponible = estatuillas_disponibles[i]==estatuillas_seleccionadas[0];
+                    if(estatuillas_disponibles[i]==estatuillas_seleccionadas[0]){
+                        aun_disponible=true;
+                    }
                 }
                 if(!aun_disponible){
                     jugador = jugador == jugadores[0]? jugadores[1]:jugadores[0];
