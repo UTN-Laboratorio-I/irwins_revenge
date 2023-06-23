@@ -32,17 +32,6 @@ void jugar_fase_final(
     int id_jugador;
     bool tiene_hormiga = 0;
 
-    // el jugador que tiene hormiga setea un dado para poder reemplazar luego
-    verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
-    if ((dadoHormiga == 0) && tiene_hormiga)
-    {
-        cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
-        lanzamientoManualDados(turnoActual, turnos);
-        lanzarDados(modo_admin, dado_6_caras, false, dados, false);
-        cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
-        dadoHormiga=dados[0];
-    }
-
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
@@ -52,6 +41,18 @@ void jugar_fase_final(
         turnoActual = i;
 
         setearParametrosJugadaFaseFinal(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual, id_jugador);
+
+        // el jugador que tiene hormiga setea un dado para poder reemplazar luego
+        verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
+        if ((dadoHormiga == 0) && tiene_hormiga)
+        {
+            cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
+            lanzamientoManualDados(turnoActual, turnos);
+            lanzarDados(modo_admin, dado_6_caras, false, dados, false);
+            cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
+            dadoHormiga = dados[0];
+            cout << endl;
+        }
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
