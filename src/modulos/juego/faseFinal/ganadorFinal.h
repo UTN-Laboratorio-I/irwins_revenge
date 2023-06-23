@@ -73,7 +73,7 @@ bool escalera_salamandra(int dados[])
     return escalera;
 }
 
-void verificar_si_tiene_medusa(int dados[], bool &tiene_medusa, int id_jugador, string estatuillas_jugadores[5][2])
+void verificar_si_tiene_medusa(bool &tiene_medusa, int id_jugador, string estatuillas_jugadores[5][2])
 {
     int i = 0, max_filas = 5;
 
@@ -87,7 +87,7 @@ void verificar_si_tiene_medusa(int dados[], bool &tiene_medusa, int id_jugador, 
     }
 }
 
-void verificar_si_tiene_salamandra(int dados[], bool &tiene_salamandra, int id_jugador, string estatuillas_jugadores[5][2])
+void verificar_si_tiene_salamandra(bool &tiene_salamandra, int id_jugador, string estatuillas_jugadores[5][2])
 {
     int i = 0, max_filas = 5;
 
@@ -96,6 +96,48 @@ void verificar_si_tiene_salamandra(int dados[], bool &tiene_salamandra, int id_j
         if (estatuillas_jugadores[i][id_jugador] == "SALAMANDRA")
         {
             tiene_salamandra = true;
+            break;
+        }
+    }
+}
+
+void verificar_si_tiene_hormiga(bool& tiene_hormiga, int id_jugador, string estatuillas_jugadores[5][2])
+{
+    int i = 0, max_filas = 5;
+
+    for (i; i < max_filas; i++)
+    {
+        if (estatuillas_jugadores[i][id_jugador] == "HORMIGA")
+        {
+            tiene_hormiga = true;
+            break;
+        }
+    }
+}
+
+void verificar_si_tiene_aguila(bool &tiene_aguila, int id_jugador, string estatuillas_jugadores[5][2])
+{
+    int i = 0, max_filas = 5;
+
+    for (i; i < max_filas; i++)
+    {
+        if (estatuillas_jugadores[i][id_jugador] == "AGUILA")
+        {
+            tiene_aguila = true;
+            break;
+        }
+    }
+}
+
+void verificar_si_tiene_cangrejo(bool &tiene_cangrejo, int id_jugador, string estatuillas_jugadores[5][2])
+{
+    int i = 0, max_filas = 5;
+
+    for (i; i < max_filas; i++)
+    {
+        if (estatuillas_jugadores[i][id_jugador] == "CANGREJO")
+        {
+            tiene_cangrejo = true;
             break;
         }
     }

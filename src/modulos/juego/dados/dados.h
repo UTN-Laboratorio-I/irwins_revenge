@@ -27,6 +27,7 @@ void lanzarDados(bool &modo_admin, int caras, bool salamandra, int dados[], bool
 {
     //! AÑADIR AL FINAL DE LA FUNCIÓN LA VISUALIZACIÓN
     //!  DE LOS DADOS QUE FUERON ARROJADOS.
+
     int i, tam = 5;
     // La variable primer_turno unicamente indica que los dados NO PUEDEN SER IGUALES:
     if (primer_turno)
