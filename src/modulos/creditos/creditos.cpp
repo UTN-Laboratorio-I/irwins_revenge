@@ -5,7 +5,7 @@ using namespace std;
 
 // CREDITOS
 
-    void creditos (int);
+
 
 /*int main (){
 
