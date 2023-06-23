@@ -33,7 +33,7 @@ int main()
                 ordenEstatuillas);
             break;
         case 2:
-            mostrar_estadisticas(m, jugadores, ordenEstatuillas);
+            mostrar_estadisticas(m, jugadores, ordenEstatuillas); // AL TERMINAR EL JUEGO SE DEBE CONSULTAR LAS ESTADISTICAS DESDE EL MENU
             break;
         case 3:
             mostrar_creditos();

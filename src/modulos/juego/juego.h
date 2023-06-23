@@ -4,6 +4,7 @@
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
+
 using namespace std;
 
 void comenzarJuego(
@@ -94,5 +95,5 @@ void comenzarJuego(
 
     } while (fase_final);
 
-    
 }
+
