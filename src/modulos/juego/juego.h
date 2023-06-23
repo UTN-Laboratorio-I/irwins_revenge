@@ -65,10 +65,12 @@ void comenzarJuego(
     cout << "----------------------" << endl;
     cout << "COMIENZA FASE FINAL - JUGADORES PREPARENSE" << endl;
     // Fase final:
+    // verificar primeros tiros de cada jugador
+    bool primerTiroJugadores[2] = {1, 1};
     do
     {
 
-        jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores);
+        jugar_fase_final(modo_admin, jugadores, turnos, dados, dado_6_caras, fase_final, estatuillas_jugadores, primerTiroJugadores);
 
     } while (fase_final);
 }

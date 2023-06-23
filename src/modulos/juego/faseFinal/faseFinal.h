@@ -19,10 +19,8 @@ void jugar_fase_final(
     string turnos[],
     int dados[], int dado_6_caras,
     bool &fase_final,
-    string estatuillas_jugadores[5][2])
+    string estatuillas_jugadores[5][2], bool primerTiroJugadores[])
 {
-    // verificar primeros tiros de cada jugador
-    bool primerTiroJugadores[2] = {1, 1};
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
     bool jugada_j1 = 0, jugada_j2 = 0;
@@ -33,7 +31,7 @@ void jugar_fase_final(
                          //(Se define en setearParametrosJugada)
     int id_jugador;
 
-        // Iteramos por cada jugador dentro del array de turnos:
+    // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
         bool tiene_medusa = 0, tiene_salamandra = 0;
