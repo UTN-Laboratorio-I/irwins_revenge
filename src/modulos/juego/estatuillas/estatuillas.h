@@ -16,7 +16,7 @@ using namespace std;
         int estatuilla_seleccionada=0;
 
     //Si no es reselección de estatuilla, seleccionan ambos jugadores:
-        if(!reseleccion_estatuilla){
+        if(reseleccion_estatuilla){
             int e=0, j=0;
         //Limpiamos la selección previa de estatuillas de cada jugador:
             for(e; e<2;e++){
