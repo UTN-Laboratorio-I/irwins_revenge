@@ -12,7 +12,6 @@ int main()
     string jugadores[2] = {};
     int opcion_seleccionada;
 
-
     // Variables estadísticas:
     int m[6][2] = {};
     int acumuladores[2] = {};
