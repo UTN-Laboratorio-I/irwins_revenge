@@ -2,7 +2,6 @@
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
-#include "maldiciones/maldiciones.h"
 
 
 void comenzarJuego(
@@ -41,19 +40,6 @@ void comenzarJuego(
 
 //Fase expedición:
     do{
-    //Si J2 no tiene que re-seleccionar estatuilla, se juega normal:
-        if(maldito){
-            administradorMaldiciones(
-                maldito,
-                maldicion_pendiente, 
-                cont_turnos_maldicion,
-                jugadores,
-                dados,
-                modo_admin,
-                puntaje_descontado
-            );
-           
-        }
         seleccionarEstatuilla(
             turnos,
             estatuillas_disponibles, 
