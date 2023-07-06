@@ -5,7 +5,7 @@ using namespace std;
 int contadores_jugadores_en_cero (int vPJ1[6],int vPJ2[6]);*/
 
 //Vector que contiene los valores de los puntajes por HITO
-void puntaje_de_hitos (int vec_puntos[6]);
+void puntaje_de_hitos (int puntaje_hitos[6]);
 
 //A esta funcion le pasamos los dos vectores de los 2 jugadores y nos retorna la matriz con los rusultados
 void puntaje_jugadores_final( int vPJ1[6],int vPJ2 [6], int puntos_victoria[6], int puntaje_jugadores[6][2]);
@@ -30,10 +30,11 @@ void contador_seleccion_estatuilla(string estatuillas_seleccionadas[2], string e
 
 
 
+
 //----------------------------------------------------------------------//
 
 //REVISAR!!
-void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int puntos_victoria[6], int puntaje_jugadores[6][2]){
+void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int puntaje_hitos[6], int puntaje_jugadores[6][2]){
 //1 +5 Estatuilla Obtenerunaestatuilla
 //2 +10 Estatuilla++ Obtieneunaestatuillaenelprimerintentoporobtenerla
 //3 +15 Ganador GanadordelaFaseFinal
@@ -45,21 +46,21 @@ void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int puntos_victoria[6], i
     int i;
     
     for(i=0;i<6;i++){
-            puntaje_jugadores [i][0] = puntos_victoria [i] * vPJ1 [i];
-            puntaje_jugadores [i][1] = puntos_victoria [i] * vPJ2 [i];    
+            puntaje_jugadores [i][0] = puntaje_hitos [i] * vPJ1 [i];
+            puntaje_jugadores [i][1] = puntaje_hitos [i] * vPJ2 [i];    
     }
 
 
 }
 
 
-void puntaje_de_hitos (int vec_puntos[6]){
-    vec_puntos [0] = 5;
-    vec_puntos [1] = 10;
-    vec_puntos [2] = 15;
-    vec_puntos [3] = 50;
-    vec_puntos [4] = -3;
-    vec_puntos [5] = -1;
+void puntaje_de_hitos (int puntaje_hitos[6]){
+    puntaje_hitos [0] = 5;
+    puntaje_hitos [1] = 10;
+    puntaje_hitos [2] = 15;
+    puntaje_hitos [3] = 50;
+    puntaje_hitos [4] = -3;
+    puntaje_hitos [5] = -1;
 
 }
 
@@ -129,7 +130,12 @@ void puntaje_lanzamiento_fase_final(bool &fase_final, string jugadores[2], int v
     if (fase_final == true){
         if(turnos[0] == jugadores[0]){
             vPJ1[5] ++;
-        }else{
+        }else if(turnos[1] == jugadores[0]){
+            vPJ1[5] ++;
+        }
+        if(turnos[0] == jugadores[1]){
+            vPJ2[5] ++;
+        }else if(turnos[1] == jugadores[1]){
             vPJ2[5] ++;
         }
     }
