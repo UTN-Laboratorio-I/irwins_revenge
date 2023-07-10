@@ -1,32 +1,10 @@
 #include <iostream>
 using namespace std;
-
-/*//Funcion que limpia los vectores de jugadores (ASIGNAR AL PRINCIPIO DEL JUEGO)
-int contadores_jugadores_en_cero (int vPJ1[6],int vPJ2[6]);*/
-
-//Vector que contiene los valores de los puntajes por HITO
-void puntaje_de_hitos (int puntaje_hitos[6]);
-
-//A esta funcion le pasamos los dos vectores de los 2 jugadores y nos retorna la matriz con los rusultados
-void puntaje_jugadores_final( int vPJ1[6],int vPJ2 [6], int puntos_victoria[6], int puntaje_jugadores[6][2]);
-
-//Funcion contabiliza la cantidad de estatuillas ganadas/perdidas
-void contador_obetener_estatuilla(int vPJ1[6], int vPJ2[6], string estatuillas_jugadores[5][2]);
-
-//Funcion que retorna el puntaje del jugador en fase final a su vector correspondiente (falta variable para determinarla en el MAIN)
-void ganador_fase_final(string ganador_fase_final, int vPJ1[6],int vPJ2[6], string jugadores[2]);
-
-//Funcion que usa un for para encontrar si el array estatuillas_jugadores esta vacio, suma puntos al jugador correspondiente
-void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuillas_jugadores[5][2],string jugadores[2], string ganador_fase_final);
-
-//Funcion que cuenta los lanzamientos en la fase final.
-void puntaje_lanzamiento_fase_final(bool &fase_final, string jugadores[2], int vPJ1[6], int vPJ2[6], string turnos[2]);
-
-//Funcion que retorna el puntaje correspondiente a obtener estatuilla en el primer intento
-void puntaje_estatuilla_primer_intento(int vPJ1[6], int vPJ2[6], int contador_estatuillas_seleccionadas[5][2]);
-
-//Funcion que cuenta la cantidad de veces que se selecciono una estatuilla
-void contador_seleccion_estatuilla(string estatuillas_seleccionadas[2], string estatuillas_jugadores[5][2], int contador_estatuillas_seleccionadas[5][2], string turnos[2], string jugadores[2]);
+    
+    int vPJ1[6] = {};
+    int vPJ2[6] = {};
+    int valor_hitos[6] = {};
+    int contador_estatuillas_seleccionadas[5][2] = {};
 
 
 
@@ -34,7 +12,7 @@ void contador_seleccion_estatuilla(string estatuillas_seleccionadas[2], string e
 //----------------------------------------------------------------------//
 
 //REVISAR!!
-void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int puntaje_hitos[6], int puntaje_jugadores[6][2]){
+void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int valor_hitos[6], int puntaje_jugadores[6][2]){
 //1 +5 Estatuilla Obtenerunaestatuilla
 //2 +10 Estatuilla++ Obtieneunaestatuillaenelprimerintentoporobtenerla
 //3 +15 Ganador GanadordelaFaseFinal
@@ -46,21 +24,21 @@ void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int puntaje_hitos[6], int
     int i;
     
     for(i=0;i<6;i++){
-            puntaje_jugadores [i][0] = puntaje_hitos [i] * vPJ1 [i];
-            puntaje_jugadores [i][1] = puntaje_hitos [i] * vPJ2 [i];    
+            puntaje_jugadores [i][0] = valor_hitos [i] * vPJ1 [i];
+            puntaje_jugadores [i][1] = valor_hitos [i] * vPJ2 [i];    
     }
 
 
 }
 
 
-void puntaje_de_hitos (int puntaje_hitos[6]){
-    puntaje_hitos [0] = 5;
-    puntaje_hitos [1] = 10;
-    puntaje_hitos [2] = 15;
-    puntaje_hitos [3] = 50;
-    puntaje_hitos [4] = -3;
-    puntaje_hitos [5] = -1;
+void puntos_de_hitos (int valor_hitos[6]){
+    valor_hitos [0] = 5;
+    valor_hitos [1] = 10;
+    valor_hitos [2] = 15;
+    valor_hitos [3] = 50;
+    valor_hitos [4] = -3;
+    valor_hitos [5] = -1;
 
 }
 
@@ -73,25 +51,6 @@ void puntaje_de_hitos (int puntaje_hitos[6]){
     return vPJ1[6],vPJ2[6];
 }*/
 
-void contador_obetener_estatuilla(int vPJ1[6], int vPJ2[6], string estatuillas_jugadores[5][2])
-{
-
-    int i, j;
-
-    for (i = 0; i < 5; i++)
-    {
-        if (estatuillas_jugadores[i][0] != "")
-        {
-            vPJ1[0]++;
-            vPJ2[4]++;
-        }
-        if (estatuillas_jugadores[i][1] != "")
-        {
-            vPJ1[4]++;
-            vPJ2[0]++;
-        }
-    }
-}
 
 void ganador_fase_final (string ganador_fase_final, int vPJ1[6],int vPJ2[6], string jugadores[2]){
 
@@ -142,22 +101,45 @@ void puntaje_lanzamiento_fase_final(bool &fase_final, string jugadores[2], int v
 
 }
 
+void contador_obtener_estatuilla (int vPJ1[], int vPJ2[], string estatuillas_jugadores[][2], int id_jugador, string estatuilla)
+{
 
-void puntaje_estatuilla_primer_intento(int vPJ1[6], int vPJ2[6], int contador_estatuillas_seleccionadas[5][2])
+    int i, j;
+
+    for (i = 0; i < 5; i++)
+    {
+        if (estatuillas_jugadores[i][0] != "" && id_jugador == 0 && estatuillas_jugadores[i][0] == estatuilla)
+        {
+            vPJ1[0]++;
+            vPJ2[4]++;
+        }
+        if (estatuillas_jugadores[i][1] != "" && id_jugador == 1 && estatuillas_jugadores[i][1] == estatuilla)
+        {
+            vPJ1[4]++;
+            vPJ2[0]++;
+        }
+    }
+}
+
+void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2], string estatuillas_jugadores[][2])
 {
 
     int i;
+    bool estatuilla_ganada_j1 = false;
+    bool estatuilla_ganada_j2 = false;
 
     for (i = 0; i < 5; i++)
     {
 
-        if (contador_estatuillas_seleccionadas[i][0] == 1)
+        if (contador_estatuillas_seleccionadas[i][0] == 1 && estatuillas_jugadores[i][0] != "" && estatuilla_ganada_j1 == false)
         {
             vPJ1[1]++;
+            estatuilla_ganada_j1 = true;
         }
-        if (contador_estatuillas_seleccionadas[i][1] == 1)
+        if (contador_estatuillas_seleccionadas[i][1] == 1 && estatuillas_jugadores[i][1] != ""&& estatuilla_ganada_j2 == false)
         {
             vPJ2[1]++;
+            estatuilla_ganada_j2 = true;
         }
     }
 }
@@ -165,31 +147,44 @@ void puntaje_estatuilla_primer_intento(int vPJ1[6], int vPJ2[6], int contador_es
 
 
 
-void contador_seleccion_estatuilla(string estatuillas_seleccionadas[2], string estatuillas_jugadores[5][2], int contador_estatuillas_seleccionadas[5][2], string turnos[2], string jugadores[2])
+void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], string estatuillas_seleccionadas[], string estatuillas_disponibles[], string jugador, string turnos[], string jugadores[])
 {
-
-    int i, j;
-
-    for (i = 0; i < 5; i++)
-    {
-
-        if (estatuillas_seleccionadas[0] == estatuillas_jugadores[i][0] && jugadores[0] == turnos[0])
-        {
-            contador_estatuillas_seleccionadas[i][0]++;
+        int i, j, z;
+        int id_jugador;
+        int id_turno;
+        bool estatuilla_contada = false;
+        
+        for(j=0; j<2; j++){
+            
+            if (jugadores[j] == jugador)
+            {
+                id_jugador = j;                
+            }
+            if (turnos[j] == jugador){
+                id_turno = j;
+            }
         }
-        else if (estatuillas_seleccionadas[1] == estatuillas_jugadores[i][1] && jugadores[1] == turnos[0])
-        {
-            contador_estatuillas_seleccionadas[i][1]++;
-        }
+            
+        for(z=0; z<2; z++){
 
-        if (estatuillas_seleccionadas[0] == estatuillas_jugadores[i][0] && jugadores[0] == turnos[1])
-        {
-            contador_estatuillas_seleccionadas[i][0]++;
-        }
-        else if (estatuillas_seleccionadas[1] == estatuillas_jugadores[i][1] && jugadores[1] == turnos[1])
-        {
-            contador_estatuillas_seleccionadas[i][1]++;
-        }
-    }
+            for (i = 0; i < 5; i++)
+            {
+                if (estatuillas_seleccionadas[id_turno] == estatuillas_disponibles[i] && jugadores[id_jugador] == jugador && id_turno == z && estatuilla_contada == false)
+                {
+                    contador_estatuillas_seleccionadas[i][id_jugador]++;
+                    estatuilla_contada = true;
+                    break;
+                }
+                /*else if (estatuillas_seleccionadas[j] == estatuillas_disponibles[i] && jugadores[j] == jugador && id_jugador == 1)
+                {
+                    contador_estatuillas_seleccionadas[i][1]++;
+
+                    break;
+                }*/
+
+            }            
+        }    
+        
+
 }
 

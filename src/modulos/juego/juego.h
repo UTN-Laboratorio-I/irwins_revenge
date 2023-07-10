@@ -4,12 +4,17 @@
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
+
 using namespace std;
 
 void comenzarJuego(
     string jugadores[],
-    int m[6][2],
-    string ordenEstatuillas[])
+    int puntaje_jugadores[6][2],
+    string ordenEstatuillas[],
+    int vPJ1[6], int vPJ2[6],
+    int valor_hitos[6],
+    int contador_estatuillas_seleccionadas[5][2]
+    )
 {
     int i = 0, max = 2;
     bool modo_admin = 0, fase_exp = 0, fase_final = 0;
@@ -54,9 +59,13 @@ void comenzarJuego(
                 modo_admin);
         }
         seleccionarEstatuilla(
+            jugadores,
             turnos,
             estatuillas_disponibles,
-            estatuillas_seleccionadas);
+            estatuillas_seleccionadas
+        );
+
+
         // Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
         jugarPorEstatuilla(
             modo_admin,
@@ -69,8 +78,11 @@ void comenzarJuego(
             listado_estatuillas,
             dados,
             ordenEstatuillas);
-
         asignarTurno(turnos);
+        
+        
+        puntaje_estatuilla_primer_intento(vPJ1, vPJ2, contador_estatuillas_seleccionadas, estatuillas_jugadores);
+        
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
 

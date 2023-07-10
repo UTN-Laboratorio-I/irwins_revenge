@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
 #include "../dados/dados.h"
+#include "../puntaje/puntaje.h"
 using namespace std;
 
 // Selección de la estatuilla que jugará el jugador:
 void seleccionarEstatuilla(
+    string jugadores[],
     string turnos[], // Los turnos con los nombres de los jugadores.
     string estatuillas_disponibles[],
     string estatuillas_seleccionadas[],
@@ -54,6 +56,9 @@ void seleccionarEstatuilla(
 
             // Asignamos la estuilla en el correspondiente array:
             estatuillas_seleccionadas[j] = estatuillas_disponibles[estatuilla_seleccionada];
+            jugador = turnos[j];
+        //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
+        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas,estatuillas_disponibles, jugador ,turnos, jugadores);
         }
     }
     else
@@ -74,6 +79,8 @@ void seleccionarEstatuilla(
 
         // Asignamos la estuilla al jugador que re-seleccionó
         estatuillas_seleccionadas[1] = estatuillas_disponibles[estatuilla_seleccionada];
+        //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
+        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas,estatuillas_disponibles, jugador ,turnos, jugadores);
     }
 }
 
@@ -92,7 +99,7 @@ void agregar(
     }
 }
 
-void asignarEstatuillaAJugador(int id_jugador, string estatuilla, string estatuillas_jugadores[5][2])
+void asignarEstatuillaAJugador(int id_jugador, string estatuilla, string estatuillas_jugadores[5][2], int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2])
 {
     // i --> filas (estatuillas);
     // j --> utilizamos el id_jugador;
@@ -110,7 +117,10 @@ void asignarEstatuillaAJugador(int id_jugador, string estatuilla, string estatui
             break;
         }
     }
+    //Esta funcion suma puntos cada vez que un jugador gana una estatuilla y descuenta puntos al rival
+    contador_obtener_estatuilla(vPJ1, vPJ2, estatuillas_jugadores,id_jugador, estatuilla);
 }
+
 
 // Guardamos la estatuilla y la eliminamos del array gral.
 void eliminarEstatuilla(
@@ -157,7 +167,7 @@ void accionesEstatuillaGanada(
             id_jugador = i;
         }
     }
-    asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores);
+    asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
     // Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla, estatuillas_disponibles);
 
@@ -387,6 +397,7 @@ void jugarPorEstatuilla(
                      << jugador << " debe re-seleccionar estatuilla:" << endl;
 
                 seleccionarEstatuilla(
+                    jugadores,
                     turnos,
                     estatuillas_disponibles,
                     estatuillas_seleccionadas,

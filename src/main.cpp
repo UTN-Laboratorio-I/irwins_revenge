@@ -4,6 +4,9 @@
 #include "modulos/estadisticas/estadisticas.h"
 #include "modulos/creditos/creditos.h"
 
+
+
+
 using namespace std;
 
 int main()
@@ -13,11 +16,18 @@ int main()
     int opcion_seleccionada;
 
     // Variables estadísticas:
-    int m[6][2] = {};
+    int puntaje_jugadores[6][2] = {};
     int acumuladores[2] = {};
     int puntaje_descontado[2] = {};
     srand(time(0));
     string ordenEstatuillas[5] = {};
+
+    // Variables puntajes:
+    //int vPJ1[6] = {};
+    //int vPJ2[6] = {};
+    //int valor_hitos[6] = {};
+    puntos_de_hitos(valor_hitos);
+    //int contador_estatuillas_seleccionadas[5][2] = {};
 
     do
     {
@@ -29,11 +39,15 @@ int main()
         case 1:
             comenzarJuego(
                 jugadores,
-                m,
-                ordenEstatuillas);
+                puntaje_jugadores,
+                ordenEstatuillas,
+                vPJ1, vPJ2,
+                valor_hitos,
+                contador_estatuillas_seleccionadas
+                );
             break;
         case 2:
-            mostrar_estadisticas(m, jugadores, ordenEstatuillas);
+            mostrar_estadisticas(puntaje_jugadores, jugadores, ordenEstatuillas);
             break;
         case 3:
             mostrar_creditos();

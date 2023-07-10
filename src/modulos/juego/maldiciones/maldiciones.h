@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../puntaje/puntaje.h"
 using namespace std;
 
 
