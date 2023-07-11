@@ -4,6 +4,7 @@ using namespace std;
     int vPJ1[6] = {};
     int vPJ2[6] = {};
     int valor_hitos[6] = {};
+    int puntaje_jugadores[6][2] = {};
     int contador_estatuillas_seleccionadas[5][2] = {};
 
 
@@ -12,7 +13,7 @@ using namespace std;
 //----------------------------------------------------------------------//
 
 //REVISAR!!
-void puntaje_jugadores_final(int vPJ1[6],int vPJ2 [6], int valor_hitos[6], int puntaje_jugadores[6][2]){
+void puntaje_jugadores_final(int vPJ1[],int vPJ2 [], int valor_hitos[], int puntaje_jugadores[][2]){
 //1 +5 Estatuilla Obtenerunaestatuilla
 //2 +10 Estatuilla++ Obtieneunaestatuillaenelprimerintentoporobtenerla
 //3 +15 Ganador GanadordelaFaseFinal
@@ -62,16 +63,16 @@ void ganador_fase_final (string ganador_fase_final, int vPJ1[6],int vPJ2[6], str
 
 }
 
-void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuillas_jugadores[5][2],string jugadores[2], string ganador_fase_final){
+void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuillas_jugadores[5][2],string jugadores[2], string nombre_ganador_fase_final){
 
     int i;
     int contador_J1 = 0;
     int contador_J2 = 0;
 
     for(i=0;i<5;i++){
-        if(estatuillas_jugadores[i][0] == "" && jugadores[0] == ganador_fase_final){
+        if(estatuillas_jugadores[i][0] == "" && jugadores[0] == nombre_ganador_fase_final){
             contador_J1 ++;
-        }else if(estatuillas_jugadores[i][1] == "" && jugadores[1] == ganador_fase_final){
+        }else if(estatuillas_jugadores[i][1] == "" && jugadores[1] == nombre_ganador_fase_final){
             contador_J2 ++;
         }
     }
@@ -84,9 +85,16 @@ void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuil
 
 }
 
-void puntaje_lanzamiento_fase_final(bool &fase_final, string jugadores[2], int vPJ1[6], int vPJ2[6], string turnos[2]){
+void puntaje_lanzamiento_fase_final(int vPJ1[], int vPJ2[], int id_jugador){
 
-    if (fase_final == true){
+    
+    if(id_jugador == 0){
+        vPJ1[5] ++;
+    }else{
+        vPJ2[5] ++;
+    }
+    
+    /*if (fase_final == true){
         if(turnos[0] == jugadores[0]){
             vPJ1[5] ++;
         }else if(turnos[1] == jugadores[0]){
@@ -97,7 +105,7 @@ void puntaje_lanzamiento_fase_final(bool &fase_final, string jugadores[2], int v
         }else if(turnos[1] == jugadores[1]){
             vPJ2[5] ++;
         }
-    }
+    }*/
 
 }
 

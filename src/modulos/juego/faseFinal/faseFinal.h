@@ -9,11 +9,16 @@
 #include <string>
 // #include "turnos/turnos.h"
 #include "ganadorfinal.h"
+#include "../estadisticas/estadisticas.h"
 // #include "dados/dados.h"
 using namespace std;
 
 // Función que administra el juego por una estatuilla:
 void jugar_fase_final(
+    string ordenEstatuillas[],
+    string nombre_ganador_fase_final,
+    int vPJ1[],
+    int vPJ2[],
     bool &modo_admin,
     string jugadores[],
     string turnos[],
@@ -21,7 +26,9 @@ void jugar_fase_final(
     bool &fase_final,
     string estatuillas_jugadores[5][2], 
     bool primerTiroJugadores[], 
-    int &dadoHormiga)
+    int &dadoHormiga
+    
+    )
 {
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
@@ -60,6 +67,9 @@ void jugar_fase_final(
         lanzamientoManualDados(turnoActual, turnos);
 
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+
+        //Esta funcion descuenta puntos por cada tirada de dados al array correspondiente segun id_jugador
+        puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador);
 
         // if (tiene_hormiga)
         // {
@@ -127,7 +137,26 @@ void jugar_fase_final(
             fase_final = 0;
             break;
         }
+        
+        nombre_ganador_fase_final = turnos[turnoActual];
+
+        //Asigna el puntaje de ganador en fase final
+        if(turnos[turnoActual] == jugadores[0]){
+            vPJ1[2]++;
+        }else{
+            vPJ2[2]++;
+        }
+        
+        //Asigna el puntaje de ganador sin estatuillas
+        ganador_fase_final_sin_estatuillas(vPJ1, vPJ2, estatuillas_jugadores, jugadores, nombre_ganador_fase_final);
+
     }
+    // Carga todos los puntos recolectados del juego
+    puntaje_jugadores_final(vPJ1 ,vPJ2 ,valor_hitos, puntaje_jugadores);
+    
+    // Muesta las estadisticas finales del juego
+    mostrar_estadisticas(puntaje_jugadores, jugadores, ordenEstatuillas);
+
 }
 
 #endif

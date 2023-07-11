@@ -21,6 +21,7 @@ int main()
     int puntaje_descontado[2] = {};
     srand(time(0));
     string ordenEstatuillas[5] = {};
+    string nombre_ganador_fase_final;
 
     // Variables puntajes:
     //int vPJ1[6] = {};
@@ -44,7 +45,8 @@ int main()
                 vPJ1,
                 vPJ2,
                 valor_hitos,
-                contador_estatuillas_seleccionadas
+                contador_estatuillas_seleccionadas,
+                nombre_ganador_fase_final
                 );
             break;
         case 2:

@@ -13,7 +13,8 @@ void comenzarJuego(
     string ordenEstatuillas[],
     int vPJ1[6], int vPJ2[6],
     int valor_hitos[6],
-    int contador_estatuillas_seleccionadas[5][2]
+    int contador_estatuillas_seleccionadas[5][2],
+    string nombre_ganador_fase_final
     )
 {
     int i = 0, max = 2;
@@ -90,15 +91,20 @@ void comenzarJuego(
     do
     {
         
-        jugar_fase_final(modo_admin,
-                         jugadores,
-                         turnos,
-                         dados,
-                         dado_6_caras,
-                         fase_final,
-                         estatuillas_jugadores,
-                         primerTiroJugadores, 
-                         dadoHormiga);
+        jugar_fase_final(
+                        ordenEstatuillas,
+                        nombre_ganador_fase_final,
+                        vPJ1,
+                        vPJ2,
+                        modo_admin,
+                        jugadores,
+                        turnos,
+                        dados,
+                        dado_6_caras,
+                        fase_final,
+                        estatuillas_jugadores,
+                        primerTiroJugadores, 
+                        dadoHormiga);
 
     } while (fase_final);
 

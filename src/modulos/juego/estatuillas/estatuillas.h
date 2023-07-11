@@ -56,7 +56,9 @@ void seleccionarEstatuilla(
 
             // Asignamos la estuilla en el correspondiente array:
             estatuillas_seleccionadas[j] = estatuillas_disponibles[estatuilla_seleccionada];
-            jugador = turnos[j];
+            
+            jugador = turnos[j]; //Seteo de jugador en el turno actual
+        
         //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
         contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas, estatuillas_disponibles, jugador, turnos, jugadores);
         }
