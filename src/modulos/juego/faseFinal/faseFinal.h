@@ -19,9 +19,10 @@ void jugar_fase_final(
     string turnos[],
     int dados[], int dado_6_caras,
     bool &fase_final,
-    string estatuillas_jugadores[5][2], 
-    bool primerTiroJugadores[], 
-    int &dadoHormiga)
+    string estatuillas_jugadores[5][2],
+    bool primerTiroJugadores[],
+    int &dadoHormiga,
+    int &dadoAguila)
 {
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
@@ -37,7 +38,7 @@ void jugar_fase_final(
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
-        bool tiene_medusa = 0, tiene_salamandra = 0;
+        bool tiene_medusa = 0, tiene_salamandra = 0, tiene_cangrejo = 0;
         bool ganador = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
@@ -48,49 +49,48 @@ void jugar_fase_final(
         verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
-            cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
-            lanzamientoManualDados(turnoActual, turnos);
-            lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
-            cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
-            dadoHormiga = dados[0];
+            cout << "usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
+            cout << "Elija numero: " << endl;
+            cin >> dadoHormiga;
+            cout << "Usted elijio:  " << dadoHormiga << ". podra usar este dado en el futuro" << endl;
             cout << endl;
         }
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
-
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
-        // if (tiene_hormiga)
-        // {
-        //     int opcionDado, opcion;
-        //     cout << "al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
-        //     cout << "¿Desea cambiar algun dado?" << endl;
-        //     cout << " 1 - SI" << endl;
-        //     cout << " 2 - NO" << endl;
-        //     cin >> opcion;
-        //     if (opcion == 1)
-        //     {
-        //         cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
-        //         for (i = 0; i < 5; i++)
-        //         {
-        //             cout << i + 1 << " - " << dados[i] << endl;
-        //         }
-        //         cin >> opcionDado;
-        //         dados[opcionDado + 1] = dadoHormiga;
-        //         cout << dados[opcionDado + 1];
-        //     }
-        // }
+        if (tiene_hormiga)
+        {
+            int opcionDado, opcion;
+            cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
+            cout << "¿Desea cambiar algun dado?" << endl;
+            cout << " 1 - SI" << endl;
+            cout << " 2 - NO" << endl;
+            cin >> opcion;
+            if (opcion == 1)
+            {
+                cout << "¿Cual dado desea cambiar? (elija entre 1 y 6)" << endl;
+                for (i = 0; i < 6; i++)
+                {
+                    cout << i + 1 << " - " << dados[i] << endl;
+                }
+                cin >> opcionDado;
+                dados[opcionDado - 1] = dadoHormiga;
+                cout << dados[opcionDado - 1] << endl;
+            }
+        }
 
         OrdenarDados(dados); // ordena los dados que se obtuvieron de menor a mayor
 
-        // verifica si el jugador actual tiene medusa para que su tirada tenga chance de ganar
+        // verifica si el jugador actual tiene medusa para que su tirada tenga chance
+        // de ganar
         // por la regla de medusa y tambien para tirar dos veces los dados
 
-        verificar_si_tiene_medusa(tiene_medusa, id_jugador, estatuillas_jugadores);
-        if (tiene_medusa)
+        verificar_si_tiene_cangrejo(tiene_cangrejo, id_jugador, estatuillas_jugadores);
+        if (tiene_cangrejo)
         {
-            if (tiene_medusa && primerTiroJugadores[turnoActual])
+            if (tiene_cangrejo && primerTiroJugadores[turnoActual])
             {
                 int tirar;
                 cout << "¿Quiere tirar una segunda vez? (esta tirada reemplaza a la anterior)" << endl;
@@ -107,7 +107,8 @@ void jugar_fase_final(
             ganador = dados_iguales_medusa(dados);
         }
 
-        // verifica si el jugador actual tiene SALAMANDRA para que su tirada tenga chance de ganar
+        // verifica si el jugador actual tiene SALAMANDRA para que su tirada
+        // tenga chance de ganar
         // por la regla de salamandra
         verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
 

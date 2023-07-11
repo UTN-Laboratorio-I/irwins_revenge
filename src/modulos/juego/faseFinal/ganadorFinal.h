@@ -101,7 +101,7 @@ void verificar_si_tiene_salamandra(bool &tiene_salamandra, int id_jugador, strin
     }
 }
 
-void verificar_si_tiene_hormiga(bool& tiene_hormiga, int id_jugador, string estatuillas_jugadores[5][2])
+void verificar_si_tiene_hormiga(bool &tiene_hormiga, int id_jugador, string estatuillas_jugadores[5][2])
 {
     int i = 0, max_filas = 5;
 

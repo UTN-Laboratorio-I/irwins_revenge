@@ -31,7 +31,6 @@ void comenzarJuego(
     string cangrejo = "CANGREJO", hormiga = "HORMIGA", medusa = "MEDUSA", aguila = "AGUILA", salamandra = "SALAMANDRA";
     string listado_estatuillas[5] = {cangrejo, hormiga, medusa, aguila, salamandra};
     string estatuillas_disponibles[5] = {cangrejo, hormiga, medusa, aguila, salamandra};
-    
 
     string turnos[2] = {}; // turnos = ["PABLO", "FELIPE"] --> Si rotan los turnos es: = ["FELIPE", "PABLO"];
 
@@ -79,10 +78,10 @@ void comenzarJuego(
     // Fase final:
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
-    int dadoHormiga=0;
+    int dadoHormiga = 0, dadoAguila = 0;
     do
     {
-        
+
         jugar_fase_final(modo_admin,
                          jugadores,
                          turnos,
@@ -90,10 +89,9 @@ void comenzarJuego(
                          dado_6_caras,
                          fase_final,
                          estatuillas_jugadores,
-                         primerTiroJugadores, 
-                         dadoHormiga);
+                         primerTiroJugadores,
+                         dadoHormiga,
+                         dadoAguila);
 
     } while (fase_final);
-
 }
-

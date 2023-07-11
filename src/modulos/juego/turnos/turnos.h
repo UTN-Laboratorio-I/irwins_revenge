@@ -82,7 +82,6 @@ void setearParametrosJugada(
     }
 }
 
-
 void setearParametrosJugadaFaseFinal(
     string turnos[],
     string jugadores[],
@@ -118,18 +117,16 @@ void setearPrimerTurno(
     string &jugador,
     int &turnoActual)
 {
-  // convertimos en false el primero turno de la fase final de cada jugador, una vez jugada
-  
+    // convertimos en false el primero turno de la fase final de cada jugador, una vez jugada
+
     if (turnos[turnoActual] == jugadores[0] && primerTiroJugadores[0])
     {
         jugador = turnos[turnoActual];
         primerTiroJugadores[0] = false;
-       
     }
     else if (turnos[turnoActual] == jugadores[1] && primerTiroJugadores[1])
     {
         jugador = turnos[turnoActual];
-        primerTiroJugadores[1]=false;
-    
+        primerTiroJugadores[1] = false;
     }
 }
