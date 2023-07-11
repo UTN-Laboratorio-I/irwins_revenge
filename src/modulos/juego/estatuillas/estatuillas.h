@@ -58,7 +58,7 @@ void seleccionarEstatuilla(
             estatuillas_seleccionadas[j] = estatuillas_disponibles[estatuilla_seleccionada];
             jugador = turnos[j];
         //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
-        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas,estatuillas_disponibles, jugador ,turnos, jugadores);
+        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas, estatuillas_disponibles, jugador, turnos, jugadores);
         }
     }
     else
@@ -80,7 +80,7 @@ void seleccionarEstatuilla(
         // Asignamos la estuilla al jugador que re-seleccionó
         estatuillas_seleccionadas[1] = estatuillas_disponibles[estatuilla_seleccionada];
         //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
-        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas,estatuillas_disponibles, jugador ,turnos, jugadores);
+        contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas, estatuillas_disponibles, jugador, turnos, jugadores);
     }
 }
 
@@ -119,6 +119,7 @@ void asignarEstatuillaAJugador(int id_jugador, string estatuilla, string estatui
     }
     //Esta funcion suma puntos cada vez que un jugador gana una estatuilla y descuenta puntos al rival
     contador_obtener_estatuilla(vPJ1, vPJ2, estatuillas_jugadores,id_jugador, estatuilla);
+    puntaje_estatuilla_primer_intento(vPJ1, vPJ2, contador_estatuillas_seleccionadas, estatuillas_jugadores, estatuilla);
 }
 
 

@@ -78,11 +78,7 @@ void comenzarJuego(
             listado_estatuillas,
             dados,
             ordenEstatuillas);
-        asignarTurno(turnos);
-        
-        
-        puntaje_estatuilla_primer_intento(vPJ1, vPJ2, contador_estatuillas_seleccionadas, estatuillas_jugadores);
-        
+        asignarTurno(turnos);        
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
 

@@ -41,7 +41,8 @@ int main()
                 jugadores,
                 puntaje_jugadores,
                 ordenEstatuillas,
-                vPJ1, vPJ2,
+                vPJ1,
+                vPJ2,
                 valor_hitos,
                 contador_estatuillas_seleccionadas
                 );

@@ -121,7 +121,7 @@ void contador_obtener_estatuilla (int vPJ1[], int vPJ2[], string estatuillas_jug
     }
 }
 
-void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2], string estatuillas_jugadores[][2])
+void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2], string estatuillas_jugadores[][2], string estatuilla)
 {
 
     int i;
@@ -131,12 +131,12 @@ void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_esta
     for (i = 0; i < 5; i++)
     {
 
-        if (contador_estatuillas_seleccionadas[i][0] == 1 && estatuillas_jugadores[i][0] != "" && estatuilla_ganada_j1 == false)
+        if (contador_estatuillas_seleccionadas[i][0] == 1 && estatuilla == estatuillas_jugadores[i][0] && estatuilla_ganada_j1 == false)
         {
             vPJ1[1]++;
             estatuilla_ganada_j1 = true;
         }
-        if (contador_estatuillas_seleccionadas[i][1] == 1 && estatuillas_jugadores[i][1] != ""&& estatuilla_ganada_j2 == false)
+        if (contador_estatuillas_seleccionadas[i][1] == 1 && estatuilla == estatuillas_jugadores[i][1] && estatuilla_ganada_j2 == false)
         {
             vPJ2[1]++;
             estatuilla_ganada_j2 = true;
@@ -144,7 +144,21 @@ void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_esta
     }
 }
 
+void asignar_estatuilla_a_contador(string estatuilla_auxiliar, int contador_estatuillas_seleccionadas[][2], int id_jugador){
 
+    if (estatuilla_auxiliar == "CANGREJO"){
+        contador_estatuillas_seleccionadas[0][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "HORMIGA"){
+        contador_estatuillas_seleccionadas[1][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "MEDUSA"){
+        contador_estatuillas_seleccionadas[2][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "AGUILA"){
+        contador_estatuillas_seleccionadas[3][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "SALAMANDRA"){
+        contador_estatuillas_seleccionadas[4][id_jugador] ++;
+    }
+
+}
 
 
 void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], string estatuillas_seleccionadas[], string estatuillas_disponibles[], string jugador, string turnos[], string jugadores[])
@@ -153,6 +167,7 @@ void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], 
         int id_jugador;
         int id_turno;
         bool estatuilla_contada = false;
+        string estatuilla_auxiliar;
         
         for(j=0; j<2; j++){
             
@@ -170,8 +185,10 @@ void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], 
             for (i = 0; i < 5; i++)
             {
                 if (estatuillas_seleccionadas[id_turno] == estatuillas_disponibles[i] && jugadores[id_jugador] == jugador && id_turno == z && estatuilla_contada == false)
-                {
-                    contador_estatuillas_seleccionadas[i][id_jugador]++;
+                {   
+                    estatuilla_auxiliar = estatuillas_seleccionadas[id_turno];
+                    
+                    asignar_estatuilla_a_contador(estatuilla_auxiliar, contador_estatuillas_seleccionadas, id_jugador);
                     estatuilla_contada = true;
                     break;
                 }
