@@ -132,22 +132,29 @@ void contador_obtener_estatuilla (int vPJ1[], int vPJ2[], string estatuillas_jug
 void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2], string estatuillas_jugadores[][2], string estatuilla)
 {
 
-    int i;
+    int i, j;
     bool estatuilla_ganada_j1 = false;
     bool estatuilla_ganada_j2 = false;
 
-    for (i = 0; i < 5; i++)
-    {
+    for(j=0; j<5; j++){
 
-        if (contador_estatuillas_seleccionadas[i][0] == 1 && estatuilla == estatuillas_jugadores[i][0] && estatuilla_ganada_j1 == false)
+        for (i = 0; i < 4; i++)
         {
-            vPJ1[1]++;
-            estatuilla_ganada_j1 = true;
-        }
-        if (contador_estatuillas_seleccionadas[i][1] == 1 && estatuilla == estatuillas_jugadores[i][1] && estatuilla_ganada_j2 == false)
-        {
-            vPJ2[1]++;
-            estatuilla_ganada_j2 = true;
+
+            if (contador_estatuillas_seleccionadas[j][0] == 1 && estatuilla == estatuillas_jugadores[i][0] && estatuilla_ganada_j1 == false)
+            {
+                vPJ1[1]++;
+                contador_estatuillas_seleccionadas[j][0] = 0;
+                estatuilla_ganada_j1 = true;
+                break;
+            }
+            if (contador_estatuillas_seleccionadas[j][1] == 1 && estatuilla == estatuillas_jugadores[i][1] && estatuilla_ganada_j2 == false)
+            {
+                vPJ2[1]++;
+                contador_estatuillas_seleccionadas[j][1] = 0;
+                estatuilla_ganada_j2 = true;
+                break;
+            }
         }
     }
 }
@@ -195,6 +202,11 @@ void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], 
                 if (estatuillas_seleccionadas[id_turno] == estatuillas_disponibles[i] && jugadores[id_jugador] == jugador && id_turno == z && estatuilla_contada == false)
                 {   
                     estatuilla_auxiliar = estatuillas_seleccionadas[id_turno];
+
+                    if(estatuilla_auxiliar == ""){
+                        estatuilla_contada = true;
+                        break;
+                    }
                     
                     asignar_estatuilla_a_contador(estatuilla_auxiliar, contador_estatuillas_seleccionadas, id_jugador);
                     estatuilla_contada = true;

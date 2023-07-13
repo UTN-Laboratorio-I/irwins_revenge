@@ -81,7 +81,12 @@ void seleccionarEstatuilla(
 
         // Asignamos la estuilla al jugador que re-seleccionó
         estatuillas_seleccionadas[1] = estatuillas_disponibles[estatuilla_seleccionada];
+
+        if (estatuillas_seleccionadas[1] == ""){
+            cout << "No hay mas estatuillas disponibles" << endl;
+        }
         //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
+        jugador = turnos[1];
         contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas, estatuillas_disponibles, jugador, turnos, jugadores);
     }
 }
