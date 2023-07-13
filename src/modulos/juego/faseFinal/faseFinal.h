@@ -38,7 +38,7 @@ void jugar_fase_final(
     for (i; i < max; i++)
     {
         bool tiene_medusa = 0, tiene_salamandra = 0, tiene_cangrejo = 0;
-        bool ganador = 0, tiene_hormiga = 0;
+        bool ganador = 0, tiene_hormiga = 0, tiene_aguila = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
 
@@ -46,6 +46,7 @@ void jugar_fase_final(
 
         // el jugador que tiene hormiga setea un dado para poder reemplazar luego
         verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_aguila(tiene_aguila, id_jugador, estatuillas_jugadores);
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
             cout << "usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
@@ -57,6 +58,7 @@ void jugar_fase_final(
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
+
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
         if (tiene_hormiga)
@@ -76,6 +78,29 @@ void jugar_fase_final(
                 }
                 cin >> opcionDado;
                 dados[opcionDado - 1] = dadoHormiga;
+                cout << dados[opcionDado - 1] << endl;
+            }
+        }
+
+        if (tiene_aguila)
+        {
+            int opcionDado, opcion;
+            cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por un numero entre 1 y 6" << endl;
+            cout << "¿Desea cambiar algun dado?" << endl;
+            cout << " 1 - SI" << endl;
+            cout << " 2 - NO" << endl;
+            cin >> opcion;
+            if (opcion == 1)
+            {
+                cout << "¿Cual dado desea cambiar? (elija entre 1 y 6)" << endl;
+                for (int j = 0; j < 5; j++)
+                {
+                    cout << j + 1 << " - " << dados[j] << endl;
+                }
+                cin >> opcionDado;
+                cout << "Elija un numero entre 1 y 6 para reemplazar el dado: " << endl;
+                cin >> dadoAguila;
+                dados[opcionDado - 1] = dadoAguila;
                 cout << dados[opcionDado - 1] << endl;
             }
         }
@@ -110,7 +135,6 @@ void jugar_fase_final(
         // tenga chance de ganar
         // por la regla de salamandra
         verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
-
         if (tiene_salamandra && !ganador)
         {
             ganador = escalera_salamandra(dados);
