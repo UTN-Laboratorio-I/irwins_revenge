@@ -4,12 +4,12 @@
 #define TURNOS_H_INCLUDED
 #ifndef BENDICIONES_H_INCLUDED
 #define BENDICIONES_H_INCLUDED
+
 // #include "Bendiciones/bendiciones.h"
 #include <iostream>
 #include <string>
 // #include "turnos/turnos.h"
 #include "ganadorfinal.h"
-#include "../estadisticas/estadisticas.h"
 // #include "dados/dados.h"
 using namespace std;
 
@@ -39,13 +39,14 @@ void jugar_fase_final(
     string jugador = ""; // Este define cual es el jugador que le toca tirar dado
                          //(Se define en setearParametrosJugada)
     int id_jugador;
-    bool tiene_hormiga = 0;
 
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
         bool tiene_medusa = 0, tiene_salamandra = 0;
         bool ganador = 0;
+        bool tiene_hormiga = 0;
+        int j;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
 
@@ -58,6 +59,7 @@ void jugar_fase_final(
             cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
             lanzamientoManualDados(turnoActual, turnos);
             lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+            puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
             cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
             dadoHormiga = dados[0];
             cout << endl;
@@ -71,26 +73,27 @@ void jugar_fase_final(
         //Esta funcion descuenta puntos por cada tirada de dados al array correspondiente segun id_jugador
         puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador);
 
-        // if (tiene_hormiga)
-        // {
-        //     int opcionDado, opcion;
-        //     cout << "al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
-        //     cout << "¿Desea cambiar algun dado?" << endl;
-        //     cout << " 1 - SI" << endl;
-        //     cout << " 2 - NO" << endl;
-        //     cin >> opcion;
-        //     if (opcion == 1)
-        //     {
-        //         cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
-        //         for (i = 0; i < 5; i++)
-        //         {
-        //             cout << i + 1 << " - " << dados[i] << endl;
-        //         }
-        //         cin >> opcionDado;
-        //         dados[opcionDado + 1] = dadoHormiga;
-        //         cout << dados[opcionDado + 1];
-        //     }
-        // }
+        if (tiene_hormiga)
+        {
+            int opcionDado, opcion;
+            cout << "al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
+            cout << "¿Desea cambiar algun dado?" << endl;
+            cout << " 1 - SI" << endl;
+            cout << " 2 - NO" << endl;
+            cin >> opcion;
+            if (opcion == 1)
+            {
+                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
+                for (j = 0; j < 5; j++)
+                {
+                    cout << j + 1 << " - " << dados[j] << endl;
+                }
+                cin >> opcionDado;
+                dados[opcionDado + 1] = dadoHormiga;
+                cout << dados[opcionDado + 1];
+                puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
+            }
+        }
 
         OrdenarDados(dados); // ordena los dados que se obtuvieron de menor a mayor
 
@@ -111,6 +114,7 @@ void jugar_fase_final(
                 {
                     lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
                     OrdenarDados(dados);
+                    puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);
             }
@@ -135,27 +139,24 @@ void jugar_fase_final(
         {
             cout << turnos[turnoActual] << " GANO LA PARTIDA!!" << endl;
             fase_final = 0;
+            
+            nombre_ganador_fase_final = turnos[turnoActual];
+
+            //Asigna el puntaje de ganador en fase final
+            if(turnos[turnoActual] == jugadores[0]){
+                vPJ1[2]++;
+            }else{
+                vPJ2[2]++;
+            }
+            
+            //Asigna el puntaje de ganador sin estatuillas
+            ganador_fase_final_sin_estatuillas(vPJ1, vPJ2, estatuillas_jugadores, jugadores, nombre_ganador_fase_final);
+            
             break;
         }
         
-        nombre_ganador_fase_final = turnos[turnoActual];
-
-        //Asigna el puntaje de ganador en fase final
-        if(turnos[turnoActual] == jugadores[0]){
-            vPJ1[2]++;
-        }else{
-            vPJ2[2]++;
-        }
-        
-        //Asigna el puntaje de ganador sin estatuillas
-        ganador_fase_final_sin_estatuillas(vPJ1, vPJ2, estatuillas_jugadores, jugadores, nombre_ganador_fase_final);
 
     }
-    // Carga todos los puntos recolectados del juego
-    puntaje_jugadores_final(vPJ1 ,vPJ2 ,valor_hitos, puntaje_jugadores);
-    
-    // Muesta las estadisticas finales del juego
-    mostrar_estadisticas(puntaje_jugadores, jugadores, ordenEstatuillas);
 
 }
 

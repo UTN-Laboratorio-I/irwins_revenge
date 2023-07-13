@@ -4,6 +4,7 @@
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
+#include "../estadisticas/estadisticas.h"
 
 using namespace std;
 
@@ -108,5 +109,10 @@ void comenzarJuego(
 
     } while (fase_final);
 
+        // Carga todos los puntos recolectados del juego
+    puntaje_jugadores_final(vPJ1 ,vPJ2 ,valor_hitos, puntaje_jugadores);
+    
+    // Muesta las estadisticas finales del juego
+    mostrar_estadisticas(puntaje_jugadores, jugadores, ordenEstatuillas);
     
 }

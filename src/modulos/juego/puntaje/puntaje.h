@@ -66,20 +66,20 @@ void ganador_fase_final (string ganador_fase_final, int vPJ1[6],int vPJ2[6], str
 void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuillas_jugadores[5][2],string jugadores[2], string nombre_ganador_fase_final){
 
     int i;
-    int contador_J1 = 0;
-    int contador_J2 = 0;
+    bool J1_tiene_estatuillas = false;
+    bool J2_tiene_estatuillas = false;
 
     for(i=0;i<5;i++){
-        if(estatuillas_jugadores[i][0] == "" && jugadores[0] == nombre_ganador_fase_final){
-            contador_J1 ++;
-        }else if(estatuillas_jugadores[i][1] == "" && jugadores[1] == nombre_ganador_fase_final){
-            contador_J2 ++;
+        if(estatuillas_jugadores[i][0] != ""){
+            J1_tiene_estatuillas = true;
+        }else if(estatuillas_jugadores[i][1] != ""){
+            J2_tiene_estatuillas = true;
         }
     }
 
-    if(contador_J1>0){
+    if(J1_tiene_estatuillas == false && nombre_ganador_fase_final == jugadores[0]){
         vPJ1[3]++;
-    }else if(contador_J2>0){
+    }else if(J2_tiene_estatuillas == false && nombre_ganador_fase_final == jugadores[1]){
         vPJ2[3]++;
     }
 

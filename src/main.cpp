@@ -1,9 +1,7 @@
 #include <iostream>
 #include "modulos/menu/menu.h"
 #include "modulos/juego/juego.h"
-#include "modulos/estadisticas/estadisticas.h"
 #include "modulos/creditos/creditos.h"
-
 
 
 

@@ -42,7 +42,7 @@ void mostrar_estadisticas(
 {
     string n_J1 = jugadores[0], n_J2 = jugadores[1];
     int acuJ1 = 0, acuJ2 = 0;
-    int i, j;
+    int i, j, z;
 
     // Este vector muestra la columna con los hitos a mostrar por pantalla
     string vec_hito[6] = {"Estatuilla", "Estatuilla ++", "Ganador ", "Ganador ++", "Estatuilla --", "Lanzamiento"};
@@ -111,9 +111,9 @@ void mostrar_estadisticas(
 
     cout << endl;
     cout << "El orden en el que se ganaron las estatuillas fue el siguiente: " << endl;
-    for (int i = 0; i < 5; i++)
+    for (int z = 0; z < 5; z++)
     {
-        cout << "#" << i + 1 << " - " << ordenEstatuillas[i] << endl;
+        cout << "#" << z + 1 << " - " << ordenEstatuillas[z] << endl;
     }
 
     system("pause");
