@@ -33,6 +33,7 @@ void jugar_fase_final(
     string jugador = ""; // Este define cual es el jugador que le toca tirar dado
                          //(Se define en setearParametrosJugada)
     int id_jugador;
+    bool bandera_hormiga = 0;
 
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
@@ -47,6 +48,7 @@ void jugar_fase_final(
         // el jugador que tiene hormiga setea un dado para poder reemplazar luego
         verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
         verificar_si_tiene_aguila(tiene_aguila, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_medusa(tiene_medusa, id_jugador, estatuillas_jugadores);
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
             cout << "usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
@@ -61,7 +63,7 @@ void jugar_fase_final(
 
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
 
-        if (tiene_hormiga)
+        if (tiene_hormiga && !bandera_hormiga)
         {
             int opcionDado, opcion;
             cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
@@ -80,12 +82,13 @@ void jugar_fase_final(
                 dados[opcionDado - 1] = dadoHormiga;
                 cout << dados[opcionDado - 1] << endl;
             }
+            bandera_hormiga = 1;
         }
 
         if (tiene_aguila)
         {
             int opcionDado, opcion;
-            cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por un numero entre 1 y 6" << endl;
+            cout << "Al tener la bendicion del aguila puede reemplazar uno de sus dados por un numero entre 1 y 6" << endl;
             cout << "¿Desea cambiar algun dado?" << endl;
             cout << " 1 - SI" << endl;
             cout << " 2 - NO" << endl;
@@ -128,9 +131,12 @@ void jugar_fase_final(
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);
             }
-            ganador = dados_iguales_medusa(dados);
         }
 
+        if (tiene_medusa)
+        {
+            ganador = dados_iguales_medusa(dados);
+        }
         // verifica si el jugador actual tiene SALAMANDRA para que su tirada
         // tenga chance de ganar
         // por la regla de salamandra
