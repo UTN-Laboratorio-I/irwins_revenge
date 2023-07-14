@@ -72,7 +72,8 @@ void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuil
     for(i=0;i<5;i++){
         if(estatuillas_jugadores[i][0] != ""){
             J1_tiene_estatuillas = true;
-        }else if(estatuillas_jugadores[i][1] != ""){
+        }
+        if(estatuillas_jugadores[i][1] != ""){
             J2_tiene_estatuillas = true;
         }
     }
