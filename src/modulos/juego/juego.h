@@ -1,5 +1,6 @@
 #include <iostream>
 #include "helpers/helpers.h"
+#include "ui/interfazJuego.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"

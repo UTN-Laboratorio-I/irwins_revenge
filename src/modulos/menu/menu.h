@@ -2,7 +2,7 @@
 #define MENU_H_INCLUDED
 #include <iostream>
 #include <string>
-#include "../ui/interfazJuego.h"
+#include "../juego/ui/interfazJuego.h"
 
 using namespace std;
 
