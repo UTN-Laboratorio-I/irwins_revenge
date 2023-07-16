@@ -2,7 +2,7 @@
 #define MENU_H_INCLUDED
 #include <iostream>
 #include <string>
-#include "../juego/ui/interfazJuego.h"
+// #include "../juego/ui/interfazJuego.h"
 
 using namespace std;
 
@@ -25,7 +25,7 @@ int seleccionarOpcionMenu(){
     cin >> valor;
 
     if(valor == 1 || valor == 2 || valor == 3 || valor ==0){
-        ClearConsole();
+        // ClearConsole();
         return valor;
     }
 }

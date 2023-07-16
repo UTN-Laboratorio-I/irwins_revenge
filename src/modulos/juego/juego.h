@@ -1,6 +1,5 @@
 #include <iostream>
 #include "helpers/helpers.h"
-#include "ui/interfazJuego.h"
 #include "turnos/turnos.h"
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"
@@ -82,7 +81,7 @@ void comenzarJuego(
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
     } while (fase_exp);
 
-    mostrarMensajeCambioFase();
+    // mostrarMensajeCambioFase();
     // Fase final:
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
