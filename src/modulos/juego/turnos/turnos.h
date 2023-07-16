@@ -16,13 +16,11 @@ void primerTurno(int dados[], string turnos[], string jugadores[], bool &fase_ex
         turnos[0] = jugadores[1];
         turnos[1] = jugadores[0];
     }
-
+    cout << "DADOS DE LOS JUGADORES:" << endl;
+    cout << jugadores[0] << " ["<< dados[0] <<"] - ["<<dados[1]<<"]" << jugadores[1] << endl << endl;
     cout << "----------------------------" << endl;
     cout << "Primer turno: " << turnos[0] << endl;
     cout << "Segundo turno: " << turnos[1] << endl;
-    cout << "----------------------------" << endl;
-    // system("pause");
-    // system("cls");
     fase_exp = 1;
     primer_turno = 0;
 }

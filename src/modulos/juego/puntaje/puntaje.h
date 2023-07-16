@@ -1,33 +1,19 @@
 #include <iostream>
 using namespace std;
+    
+    int vPJ1[6] = {};
+    int vPJ2[6] = {};
+    int valor_hitos[6] = {};
+    int puntaje_jugadores[6][2] = {};
+    int contador_estatuillas_seleccionadas[5][2] = {};
 
-//Funcion que limpia los vectores de jugadores (ASIGNAR AL PRINCIPIO DEL JUEGO)
-int contadores_jugadores_en_cero (int vPJ1[],int vPJ2 []);
 
-//Vector que contiene los valores de los puntajes por HITO
-int puntaje_de_hitos (int vec_puntos[6]);
-
-//A esta funcion le pasamos los dos vectores de los 2 jugadores y nos retorna la matriz con los rusultados
-int puntaje_jugadores( int vPJ1[],int vPJ2 [], int puntos_victoria[]);
-
-//Funcion contabiliza la cantidad de estatuillas ganadas/perdidas (ASIGNAR EN ESTATUILLAS.H LINEA 107)
-int cont_estatuilla(int vPJ1[], int vPJ2[], int pos);
-
-//Funcion para fase final, descuenta 1 punto en el VEC[5] de cada jugador cada vez que lanza un dado (ASIGNAR EN LANZAMIENTO DE DADOS FASE FINAL)
-//Falta determinar la variable posicion para que tome las posicion del jugador
-int lanzamiento_fase_final (int vPJ1[], int vPJ2[], int pos);
-
-//Funcion que retorna el puntaje del jugador en fase final a su vector correspondiente
-int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string jugadores[]);
-
-//Funcion que usa un for para encontrar si el array estatuillas_jugadores esta vacio, suma puntos al jugador correspondiente
-int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas_jugadores[][2],string jugadores[], string ganador_fase_final);
 
 
 //----------------------------------------------------------------------//
 
 //REVISAR!!
-int puntaje_jugadores(int vPJ1[],int vPJ2 [], int puntos_victoria[]){
+void puntaje_jugadores_final(int vPJ1[],int vPJ2 [], int valor_hitos[], int puntaje_jugadores[][2]){
 //1 +5 Estatuilla Obtenerunaestatuilla
 //2 +10 Estatuilla++ Obtieneunaestatuillaenelprimerintentoporobtenerla
 //3 +15 Ganador GanadordelaFaseFinal
@@ -35,75 +21,39 @@ int puntaje_jugadores(int vPJ1[],int vPJ2 [], int puntos_victoria[]){
 //5 -3 Estatuilla-- Rivalobtieneunaestatuilla
 //6 -1 Lanzamiento Lanzamientoenlafasefinal
 
-    puntaje_de_hitos (puntos_victoria);
 
     int i;
-    int puntaje_jugadores[6][2] = {{},{}};
     
     for(i=0;i<6;i++){
-            puntaje_jugadores [i][0] = puntos_victoria [i] * vPJ1 [i];
-            puntaje_jugadores [i][1] = puntos_victoria [i] * vPJ2 [i];    
+            puntaje_jugadores [i][0] = valor_hitos [i] * vPJ1 [i];
+            puntaje_jugadores [i][1] = valor_hitos [i] * vPJ2 [i];    
     }
 
 
-return puntaje_jugadores [6][2];
 }
 
 
-int puntaje_de_hitos (int vec_puntos[6]){
-    vec_puntos [0] = 5;
-    vec_puntos [1] = 10;
-    vec_puntos [2] = 15;
-    vec_puntos [3] = 50;
-    vec_puntos [4] = -3;
-    vec_puntos [5] = -1;
+void puntos_de_hitos (int valor_hitos[6]){
+    valor_hitos [0] = 5;
+    valor_hitos [1] = 10;
+    valor_hitos [2] = 15;
+    valor_hitos [3] = 50;
+    valor_hitos [4] = -3;
+    valor_hitos [5] = -1;
 
-return vec_puntos[6];
 }
 
-int contadores_jugadores_en_cero (int vPJ1[],int vPJ2 []){
+/*int contadores_jugadores_en_cero (int vPJ1[6],int vPJ2 [6]){
     int i;
         for (i=0;i<6;i++){
         vPJ1[i] = 0;
         vPJ2[i] = 0;
         }
     return vPJ1[6],vPJ2[6];
-}
-
-int cont_estatuilla(int vPJ1[], int vPJ2[], int pos){
-    if (pos == 0){
-        vPJ1[0] ++;
-        vPJ2[4] ++;
-    }else{
-        vPJ1[4] ++;
-        vPJ2[0] ++;
-    }
-return vPJ1[6], vPJ2[6];
-}
-
-int lanzamiento_fase_final (int vPJ1[], int vPJ2[], int pos){
-
-    if (pos == 0){
-        vPJ1[5] ++;
-    }else{
-        vPJ2[5] ++;
-    }
-
-return vPJ1[6], vPJ2[6];
-}
-
-
-/*int contador_puntaje_J1(int vPJ1[]){
-    vPJ1[6] = {};
-return vPJ1[6];
-}
-
-int contador_puntaje_J2(int vPJ2[]){
-    vPJ2 [6] = {};
-return vPJ2[6];
 }*/
 
-int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string jugadores[]){
+
+void ganador_fase_final (string ganador_fase_final, int vPJ1[6],int vPJ2[6], string jugadores[2]){
 
     if (ganador_fase_final == jugadores[0]){
         vPJ1[2] ++;
@@ -111,28 +61,168 @@ int ganador_fase_final(string ganador_fase_final, int vPJ1[],int vPJ2[], string 
         vPJ2[2] ++;
     }
 
-    return vPJ1[6], vPJ2[6];
 }
 
-int ganador_fase_final_sin_estatuillas(int vPJ1[],int vPJ2[], string estatuillas_jugadores[][2],string jugadores[], string ganador_fase_final){
+void ganador_fase_final_sin_estatuillas(int vPJ1[6],int vPJ2[6], string estatuillas_jugadores[5][2],string jugadores[2], string nombre_ganador_fase_final){
 
     int i;
-    int contador_J1 = 0;
-    int contador_J2 = 0;
+    bool J1_tiene_estatuillas = false;
+    bool J2_tiene_estatuillas = false;
 
     for(i=0;i<5;i++){
-        if(estatuillas_jugadores[i][0] == "" && jugadores[0] == ganador_fase_final){
-            contador_J1 ++;
-        }else if(estatuillas_jugadores[i][1] == "" && jugadores[1] == ganador_fase_final){
-            contador_J2 ++;
+        if(estatuillas_jugadores[i][0] != ""){
+            J1_tiene_estatuillas = true;
+        }
+        if(estatuillas_jugadores[i][1] != ""){
+            J2_tiene_estatuillas = true;
         }
     }
 
-    if(contador_J1<0){
+    if(J1_tiene_estatuillas == false && nombre_ganador_fase_final == jugadores[0]){
         vPJ1[3]++;
-    }else if(contador_J2 <0){
+    }else if(J2_tiene_estatuillas == false && nombre_ganador_fase_final == jugadores[1]){
         vPJ2[3]++;
     }
 
-    return vPJ1[3], vPJ2[3];
 }
+
+void puntaje_lanzamiento_fase_final(int vPJ1[], int vPJ2[], int id_jugador){
+
+    
+    if(id_jugador == 0){
+        vPJ1[5] ++;
+    }else{
+        vPJ2[5] ++;
+    }
+    
+    /*if (fase_final == true){
+        if(turnos[0] == jugadores[0]){
+            vPJ1[5] ++;
+        }else if(turnos[1] == jugadores[0]){
+            vPJ1[5] ++;
+        }
+        if(turnos[0] == jugadores[1]){
+            vPJ2[5] ++;
+        }else if(turnos[1] == jugadores[1]){
+            vPJ2[5] ++;
+        }
+    }*/
+
+}
+
+void contador_obtener_estatuilla (int vPJ1[], int vPJ2[], string estatuillas_jugadores[][2], int id_jugador, string estatuilla)
+{
+
+    int i, j;
+
+    for (i = 0; i < 5; i++)
+    {
+        if (estatuillas_jugadores[i][0] != "" && id_jugador == 0 && estatuillas_jugadores[i][0] == estatuilla)
+        {
+            vPJ1[0]++;
+            vPJ2[4]++;
+        }
+        if (estatuillas_jugadores[i][1] != "" && id_jugador == 1 && estatuillas_jugadores[i][1] == estatuilla)
+        {
+            vPJ1[4]++;
+            vPJ2[0]++;
+        }
+    }
+}
+
+void puntaje_estatuilla_primer_intento(int vPJ1[], int vPJ2[], int contador_estatuillas_seleccionadas[][2], string estatuillas_jugadores[][2], string estatuilla)
+{
+
+    int i, j;
+    bool estatuilla_ganada_j1 = false;
+    bool estatuilla_ganada_j2 = false;
+
+    for(j=0; j<5; j++){
+
+        for (i = 0; i < 4; i++)
+        {
+
+            if (contador_estatuillas_seleccionadas[j][0] == 1 && estatuilla == estatuillas_jugadores[i][0] && estatuilla_ganada_j1 == false)
+            {
+                vPJ1[1]++;
+                contador_estatuillas_seleccionadas[j][0] = 0;
+                estatuilla_ganada_j1 = true;
+                break;
+            }
+            if (contador_estatuillas_seleccionadas[j][1] == 1 && estatuilla == estatuillas_jugadores[i][1] && estatuilla_ganada_j2 == false)
+            {
+                vPJ2[1]++;
+                contador_estatuillas_seleccionadas[j][1] = 0;
+                estatuilla_ganada_j2 = true;
+                break;
+            }
+        }
+    }
+}
+
+void asignar_estatuilla_a_contador(string estatuilla_auxiliar, int contador_estatuillas_seleccionadas[][2], int id_jugador){
+
+    if (estatuilla_auxiliar == "CANGREJO"){
+        contador_estatuillas_seleccionadas[0][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "HORMIGA"){
+        contador_estatuillas_seleccionadas[1][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "MEDUSA"){
+        contador_estatuillas_seleccionadas[2][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "AGUILA"){
+        contador_estatuillas_seleccionadas[3][id_jugador] ++;
+    }else if(estatuilla_auxiliar == "SALAMANDRA"){
+        contador_estatuillas_seleccionadas[4][id_jugador] ++;
+    }
+
+}
+
+
+void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], string estatuillas_seleccionadas[], string estatuillas_disponibles[], string jugador, string turnos[], string jugadores[])
+{
+        int i, j, z;
+        int id_jugador;
+        int id_turno;
+        bool estatuilla_contada = false;
+        string estatuilla_auxiliar;
+        
+        for(j=0; j<2; j++){
+            
+            if (jugadores[j] == jugador)
+            {
+                id_jugador = j;                
+            }
+            if (turnos[j] == jugador){
+                id_turno = j;
+            }
+        }
+            
+        for(z=0; z<2; z++){
+
+            for (i = 0; i < 5; i++)
+            {
+                if (estatuillas_seleccionadas[id_turno] == estatuillas_disponibles[i] && jugadores[id_jugador] == jugador && id_turno == z && estatuilla_contada == false)
+                {   
+                    estatuilla_auxiliar = estatuillas_seleccionadas[id_turno];
+
+                    if(estatuilla_auxiliar == ""){
+                        estatuilla_contada = true;
+                        break;
+                    }
+                    
+                    asignar_estatuilla_a_contador(estatuilla_auxiliar, contador_estatuillas_seleccionadas, id_jugador);
+                    estatuilla_contada = true;
+                    break;
+                }
+                /*else if (estatuillas_seleccionadas[j] == estatuillas_disponibles[i] && jugadores[j] == jugador && id_jugador == 1)
+                {
+                    contador_estatuillas_seleccionadas[i][1]++;
+
+                    break;
+                }*/
+
+            }            
+        }    
+        
+
+}
+

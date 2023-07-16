@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-int estadisticas_en_cero(int m[][2])
+/*int estadisticas_en_cero(int m[][2])
 {
     int i, j;
 
@@ -14,11 +14,11 @@ int estadisticas_en_cero(int m[][2])
         }
     }
     return m[6][2];
-}
+}*/
 
 // Funcion para cargar estadisticas
 
-int cargar_estadisticas(int m[][2])
+void cargar_estadisticas(int puntaje_jugadores[6][2])
 {
 
     int i, j;
@@ -27,23 +27,22 @@ int cargar_estadisticas(int m[][2])
     {
         for (j = 0; j < 2; j++)
         {
-            m[i][j];
+            puntaje_jugadores[i][j];
         }
     }
 
-    return m[6][2];
 }
 
 // Funcion para mostrar las estadisticas
 
 void mostrar_estadisticas(
-    int m[][2],
+    int puntaje_jugadores[6][2],
     string jugadores[],
     string ordenEstatuillas[])
 {
     string n_J1 = jugadores[0], n_J2 = jugadores[1];
     int acuJ1 = 0, acuJ2 = 0;
-    int i, j;
+    int i, j, z;
 
     // Este vector muestra la columna con los hitos a mostrar por pantalla
     string vec_hito[6] = {"Estatuilla", "Estatuilla ++", "Ganador ", "Ganador ++", "Estatuilla --", "Lanzamiento"};
@@ -68,12 +67,12 @@ void mostrar_estadisticas(
         cout << vec_hito[i] << "\t";
         for (j = 0; j < 2; j++)
         {
-            cout << m[i][j] << " PDV"
+            cout << puntaje_jugadores[i][j] << " PDV"
                                "\t"
                  << "\t";
         }
-        acuJ1 += m[i][0];
-        acuJ2 += m[i][1];
+        acuJ1 += puntaje_jugadores[i][0];
+        acuJ2 += puntaje_jugadores[i][1];
         cout << "\n";
     }
     cout << endl;
@@ -112,9 +111,9 @@ void mostrar_estadisticas(
 
     cout << endl;
     cout << "El orden en el que se ganaron las estatuillas fue el siguiente: " << endl;
-    for (int i = 0; i < 5; i++)
+    for (int z = 0; z < 5; z++)
     {
-        cout << "#" << i + 1 << " - " << ordenEstatuillas[i] << endl;
+        cout << "#" << z + 1 << " - " << ordenEstatuillas[z] << endl;
     }
 
     system("pause");

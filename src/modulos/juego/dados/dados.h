@@ -85,13 +85,10 @@ void lanzarDados(bool &modo_admin,
                 cin >> dados[i];
             }
         }
-    }
+    //Mostramos los dados que corresponden mostrar:
+
     cout << endl;
     cout << "Sus dados: " << endl;
-    
-    //Mostramos los dados que corresponden mostrar:
-   
-
     for (i = 0; i < cant_dados; i++)
     {
         cout << dados[i];
@@ -100,4 +97,6 @@ void lanzarDados(bool &modo_admin,
         }        
     }
     cout << endl;
+    }
+
 }

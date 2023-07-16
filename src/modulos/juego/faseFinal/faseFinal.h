@@ -4,6 +4,7 @@
 #define TURNOS_H_INCLUDED
 #ifndef BENDICIONES_H_INCLUDED
 #define BENDICIONES_H_INCLUDED
+
 // #include "Bendiciones/bendiciones.h"
 #include <iostream>
 #include <string>
@@ -14,10 +15,14 @@ using namespace std;
 
 // Función que administra el juego por una estatuilla:
 void jugar_fase_final(
+    string nombre_ganador_fase_final,
+    int vPJ1[],
+    int vPJ2[],
     bool &modo_admin,
     string jugadores[],
     string turnos[],
-    int dados[], int dado_6_caras,
+    int dados[], 
+    int dado_6_caras,
     bool &fase_final,
     string estatuillas_jugadores[5][2],
     bool primerTiroJugadores[],
@@ -27,7 +32,7 @@ void jugar_fase_final(
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
     bool jugada_j1 = 0, jugada_j2 = 0;
-    int i = 0, max = 2, turnoActual = 0, valor_formateado = 0;
+    int i = 0, max = 2, turnoActual = 0;
     fase_final = 1;
 
     string jugador = ""; // Este define cual es el jugador que le toca tirar dado
@@ -55,6 +60,12 @@ void jugar_fase_final(
             cout << "Elija numero: " << endl;
             cin >> dadoHormiga;
             cout << "Usted elijio:  " << dadoHormiga << ". podra usar este dado en el futuro" << endl;
+            cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
+            // lanzamientoManualDados(turnoActual, turnos);
+            // lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+            // puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
+            // cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
+            // dadoHormiga = dados[0];
             cout << endl;
         }
 
@@ -128,6 +139,7 @@ void jugar_fase_final(
                 {
                     lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
                     OrdenarDados(dados);
+                    puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);
             }
@@ -155,9 +167,25 @@ void jugar_fase_final(
         {
             cout << turnos[turnoActual] << " GANO LA PARTIDA!!" << endl;
             fase_final = 0;
+            
+            nombre_ganador_fase_final = turnos[turnoActual];
+
+            //Asigna el puntaje de ganador en fase final
+            if(turnos[turnoActual] == jugadores[0]){
+                vPJ1[2]++;
+            }else{
+                vPJ2[2]++;
+            }
+            
+            //Asigna el puntaje de ganador sin estatuillas
+            ganador_fase_final_sin_estatuillas(vPJ1, vPJ2, estatuillas_jugadores, jugadores, nombre_ganador_fase_final);
+            
             break;
         }
+        
+
     }
+
 }
 
 #endif
