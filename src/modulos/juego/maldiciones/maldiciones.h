@@ -46,6 +46,7 @@ void maldicion_cangrejo(
 
     string mensaje_puntaje = jugador_afectado.append(", CANGREJO te maldijo con -").append(to_string(valor_dado)).append(" puntos!");
     mensajeConDelay(mensaje_puntaje);
+    
 //Descontamos puntos al jugador afectado:
     // puntaje_jugadores
 }

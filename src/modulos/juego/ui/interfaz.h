@@ -21,6 +21,10 @@ void mensajeConDelay(string mensaje){
     ClearConsole();
 }
 
+void delaySinMensaje(int delay){
+    std::this_thread::sleep_for(std::chrono::seconds(delay));
+    ClearConsole();
+}
 void mostrarHeaderJuego(bool fase_exp, int ronda){
     string fase = fase_exp ? "FASE DE EXPEDICIÓN" : "FASE FINAL";
     cout << "IRWIN'S REVENGE - " << fase<< "                    RONDA Nro: " << ronda<<endl;

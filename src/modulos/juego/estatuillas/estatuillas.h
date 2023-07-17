@@ -188,7 +188,7 @@ void accionesEstatuillaGanada(
     }
     int aleatorio = rand() % 4 + 1;
     cout << jug << mensajeAleatorioVictoria(aleatorio) <<" Desbloqueaste " <<estatuilla <<"!"<<endl<<endl;
-    sleep(2);
+    delaySinMensaje(2);
 
     asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
 
@@ -196,6 +196,12 @@ void accionesEstatuillaGanada(
     if(estatuilla == "CANGREJO"){
     maldicion_cangrejo(jugadores, dados, modo_admin, jug);
     }
+
+    if(estatuilla=="HORMIGA"){
+        // maldicion_hormiga();
+    }
+    
+
 
     // Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla, estatuillas_disponibles);
