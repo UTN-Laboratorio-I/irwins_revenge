@@ -23,12 +23,13 @@ int valorAleatorio(int caras)
     return rand() % caras + 1;
 }
 
-void lanzarDados(bool &modo_admin, 
-                int caras,
-                bool salamandra,
-                int dados[],
-                bool primer_turno, 
-                bool fase_exp)
+void lanzarDados(
+    bool &modo_admin, 
+    int caras,
+    bool salamandra,
+    int dados[],
+    bool primer_turno, 
+    bool fase_exp)
 {
 
     int i, cant_dados=2;

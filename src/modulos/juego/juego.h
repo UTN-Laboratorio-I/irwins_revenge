@@ -1,6 +1,7 @@
 #include <iostream>
 #include "helpers/helpers.h"
 #include "turnos/turnos.h"
+#include "ui/interfaz.h"
 #include "estatuillas/estatuillas.h"
 #include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
@@ -22,6 +23,7 @@ void comenzarJuego(
     int fase = 0, turno = 0, cant_jugadores = 2;
     bool posee_salamandra;
     bool primer_turno = 1;
+    int ronda=1;
     // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
     string maldicion_pendiente[2];
     bool maldito = maldicion_pendiente[0] != "";
@@ -37,7 +39,7 @@ void comenzarJuego(
     string estatuillas_disponibles[5] = {cangrejo, hormiga, medusa, aguila, salamandra};
 
     string turnos[2] = {}; // turnos = ["PABLO", "FELIPE"] --> Si rotan los turnos es: = ["FELIPE", "PABLO"];
-
+    ClearConsole();
     solicitarNombresJugadores(jugadores, modo_admin);
 
     // LanzarDados y primerTurno solo asignan el turno inicial (NO APLICAN PUNTOS).
@@ -47,6 +49,9 @@ void comenzarJuego(
     // Fase expedición:
     do
     {
+        //Aguardamos 3 segundos,limpiamos la pantalla:
+        //Mostramos el header del juego con la info de la partida:
+        interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
         if (maldito)
         {
             administradorMaldiciones(
@@ -60,8 +65,12 @@ void comenzarJuego(
         seleccionarEstatuilla(
             jugadores,
             turnos,
+            turno,
+            ronda,
             estatuillas_disponibles,
-            estatuillas_seleccionadas
+            estatuillas_seleccionadas,
+            estatuillas_jugadores,
+            false
         );
 
 
@@ -70,6 +79,8 @@ void comenzarJuego(
             modo_admin,
             jugadores,
             turnos,
+            turno,
+            ronda,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
             estatuillas_disponibles,
@@ -79,6 +90,8 @@ void comenzarJuego(
             ordenEstatuillas);
         asignarTurno(turnos);        
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
+        //Pasamos a la siguiente ronda:
+        siguienteRonda(ronda);
     } while (fase_exp);
 
     // mostrarMensajeCambioFase();
@@ -88,7 +101,9 @@ void comenzarJuego(
     int dadoHormiga = 0, dadoAguila = 0;
     do
     {
-        
+        //Mostramos el cambio de fase:
+        mostrarMensajeCambioFase();
+             
         jugar_fase_final(
                         nombre_ganador_fase_final,
                         vPJ1,
@@ -96,6 +111,8 @@ void comenzarJuego(
                         modo_admin,
                         jugadores,
                         turnos,
+                        turno,
+                        ronda,
                         dados,
                         dado_6_caras,
                         fase_final,
@@ -105,6 +122,4 @@ void comenzarJuego(
                         dadoAguila);
 
     } while (fase_final);
-
-    
 }

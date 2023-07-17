@@ -2,8 +2,6 @@
 #define MENU_H_INCLUDED
 #include <iostream>
 #include <string>
-// #include "../juego/ui/interfazJuego.h"
-
 using namespace std;
 
 // Esta funcion muestra el menu principal de juego
@@ -25,7 +23,6 @@ int seleccionarOpcionMenu(){
     cin >> valor;
 
     if(valor == 1 || valor == 2 || valor == 3 || valor ==0){
-        // ClearConsole();
         return valor;
     }
 }

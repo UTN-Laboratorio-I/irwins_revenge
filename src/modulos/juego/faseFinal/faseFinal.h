@@ -21,6 +21,8 @@ void jugar_fase_final(
     bool &modo_admin,
     string jugadores[],
     string turnos[],
+    int turno,
+    int ronda,
     int dados[], 
     int dado_6_caras,
     bool &fase_final,
@@ -47,7 +49,7 @@ void jugar_fase_final(
         bool ganador = 0, tiene_hormiga = 0, tiene_aguila = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
-
+        interfazGeneralJuego(false, jugadores, estatuillas_jugadores, turnos, turno, ronda, false );
         setearParametrosJugadaFaseFinal(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual, id_jugador);
 
         // el jugador que tiene hormiga setea un dado para poder reemplazar luego
@@ -56,16 +58,16 @@ void jugar_fase_final(
         verificar_si_tiene_medusa(tiene_medusa, id_jugador, estatuillas_jugadores);
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
-            cout << "usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
-            cout << "Elija numero: " << endl;
+            cout << "Usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
+            cout << "Seleccione numero: " << endl;
             cin >> dadoHormiga;
-            cout << "Usted elijio:  " << dadoHormiga << ". podra usar este dado en el futuro" << endl;
-            cout << "usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
-            // lanzamientoManualDados(turnoActual, turnos);
-            // lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
-            // puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
-            // cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
-            // dadoHormiga = dados[0];
+            cout << "Usted selecciono:  " << dadoHormiga << ". Podra usar este dado en el futuro" << endl;
+            cout << "Usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
+            lanzamientoManualDados(turnoActual, turnos);
+            lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+            puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
+            cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
+            dadoHormiga = dados[0];
             cout << endl;
         }
 
@@ -84,7 +86,7 @@ void jugar_fase_final(
             cin >> opcion;
             if (opcion == 1)
             {
-                cout << "¿Cual dado desea cambiar? (elija entre 1 y 6)" << endl;
+                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
                 for (int j = 0; j < 5; j++)
                 {
                     cout << j + 1 << " - " << dados[j] << endl;
@@ -106,13 +108,13 @@ void jugar_fase_final(
             cin >> opcion;
             if (opcion == 1)
             {
-                cout << "¿Cual dado desea cambiar? (elija entre 1 y 6)" << endl;
+                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
                 for (int j = 0; j < 5; j++)
                 {
                     cout << j + 1 << " - " << dados[j] << endl;
                 }
                 cin >> opcionDado;
-                cout << "Elija un numero entre 1 y 6 para reemplazar el dado: " << endl;
+                cout << "Elija un numero entre 1 y 5 para reemplazar el dado: " << endl;
                 cin >> dadoAguila;
                 dados[opcionDado - 1] = dadoAguila;
                 cout << dados[opcionDado - 1] << endl;

@@ -2,20 +2,25 @@
 #include <string>
 #include "../dados/dados.h"
 #include "../puntaje/puntaje.h"
+#include "../ui/interfaz.h"
 using namespace std;
 
 // Selección de la estatuilla que jugará el jugador:
 void seleccionarEstatuilla(
     string jugadores[],
-    string turnos[], // Los turnos con los nombres de los jugadores.
+    string turnos[],
+    int turno,
+    int ronda,
     string estatuillas_disponibles[],
     string estatuillas_seleccionadas[],
+    string estatuillas_jugadores[5][2],
     bool reseleccion_estatuilla = false, // Inicializamos en false por defecto
     string jugador = ""                  // Inicializamos "" por defecto.
 )
 {
     const int estatuillas_totales = 5, cant_jugadores = 2;
     int estatuilla_seleccionada = 0;
+    bool fase_exp=0;
 
     // Si no es reselección de estatuilla, seleccionan ambos jugadores:
     if (!reseleccion_estatuilla)
@@ -76,7 +81,7 @@ void seleccionarEstatuilla(
         cout << "Selecciona una nueva estatuilla: " << endl
              << endl;
         cin >> estatuilla_seleccionada;
-        cout << "Seleccionaste " << estatuillas_disponibles[estatuilla_seleccionada] << endl
+        cout << "Jugas por " << estatuillas_disponibles[estatuilla_seleccionada] << endl
              << endl;
 
         // Asignamos la estuilla al jugador que re-seleccionó
@@ -88,7 +93,9 @@ void seleccionarEstatuilla(
         //Esta funcion cuenta la cantidad de veces que el jugador selecciona una estatuilla
         jugador = turnos[1];
         contador_seleccion_estatuilla(contador_estatuillas_seleccionadas, estatuillas_seleccionadas, estatuillas_disponibles, jugador, turnos, jugadores);
+
     }
+        ClearConsole(true);
 }
 
 void agregar(
@@ -175,6 +182,8 @@ void accionesEstatuillaGanada(
             id_jugador = i;
         }
     }
+    int aleatorio = rand() % 4 + 1;
+    cout << jug << mensajeAleatorioVictoria(aleatorio) << estatuilla <<endl<<endl;
     asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
     // Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla, estatuillas_disponibles);
@@ -187,6 +196,11 @@ void accionesEstatuillaGanada(
             break;
         }
     }
+}
+
+void accionesEstatuillaPerdida(string estatuilla, string jug){
+    int aleatorio = rand() % 4 + 1;
+    cout << jug << mensajeAleatorioDerrota(aleatorio) << estatuilla << " continua disponible."<<endl<<endl;
 }
 
 // Parametros para las funciones de "obtener_{nombre estatuilla}":
@@ -203,6 +217,7 @@ void obtener_cangrejo(
     string ordenEstatuillas[])
 {
     string estatuilla = "CANGREJO";
+    string jug = turnos[turno]; // Nombre del jugador del turno que ganó.
     // Banderas para chequear par/impar:
     bool par = 0;
     bool impar = 0;
@@ -224,8 +239,10 @@ void obtener_cangrejo(
     if (par && impar)
     {
         cout << "GANASTE CANGREJO";
-        string jug = turnos[turno]; // Nombre del jugador del turno que ganó.
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+    }
+    else{
+        accionesEstatuillaPerdida(estatuilla, jug);
     }
 }
 
@@ -241,7 +258,7 @@ void obtener_hormiga(
     string ordenEstatuillas[])
 {
     string estatuilla = "HORMIGA";
-    //
+    string jug = turnos[turno];
     bool menores_a_cinco[2] = {0, 0}; // El array comienza con 2 falses.
     int i = 0;
     lanzarDados(modo_admin, 10, false, dados, false, true);
@@ -256,9 +273,10 @@ void obtener_hormiga(
     }
     if (menores_a_cinco[0] && menores_a_cinco[1])
     {
-        cout << "GANASTE HORMIGA";
-        string jug = turnos[turno];
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+    }
+    else{
+        accionesEstatuillaPerdida(estatuilla, jug);
     }
 }
 
@@ -274,6 +292,7 @@ void obtener_medusa(
     string ordenEstatuillas[])
 {
     string estatuilla = "MEDUSA";
+    string jug = turnos[turno];
     int resultado_esperado = 7, suma = 0; // El array comienza con 2 falses.
     int i = 0;
     lanzarDados(modo_admin, 10, false, dados, false, true);
@@ -284,9 +303,10 @@ void obtener_medusa(
     }
     if (suma == resultado_esperado)
     {
-        cout << "GANASTE MEDUSA";
-        string jug = turnos[turno];
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+    }
+    else{
+        accionesEstatuillaPerdida(estatuilla, jug);
     }
 }
 
@@ -302,6 +322,7 @@ void obtener_aguila(
     string ordenEstatuillas[])
 {
     string estatuilla = "AGUILA";
+    string jug = turnos[turno];
     bool numero_uno = 0, numero_diez = 0;
     int i = 0;
     lanzarDados(modo_admin, 10, false, dados, false, true);
@@ -319,9 +340,10 @@ void obtener_aguila(
     }
     if (numero_uno && numero_diez)
     {
-        cout << "GANASTE AGUILA";
-        string jug = turnos[turno];
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+    }
+    else{
+        accionesEstatuillaPerdida(estatuilla, jug);
     }
 }
 
@@ -337,6 +359,7 @@ void obtener_salamandra(
     string ordenEstatuillas[])
 {
     string estatuilla = "SALAMANDRA";
+    string jug = turnos[turno];
     bool numeros_consecutivos = 0;
     lanzarDados(modo_admin, 10, false, dados, false, true);
 
@@ -351,9 +374,10 @@ void obtener_salamandra(
 
     if (numeros_consecutivos)
     {
-        cout << "GANASTE SALAMANDRA";
-        string jug = turnos[turno];
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+    }
+    else{
+        accionesEstatuillaPerdida(estatuilla, jug);
     }
 }
 
@@ -362,6 +386,8 @@ void jugarPorEstatuilla(
     bool &modo_admin,
     string jugadores[],
     string turnos[],
+    int turno,
+    int ronda,
     string estatuillas_seleccionadas[], // Las estatuillas que fueron seleccionadas por los jugadores.
     string estatuillas_jugadores[5][2], // Las estatuillas que ya ganaron los jugadores
     string estatuillas_disponibles[],
@@ -398,6 +424,12 @@ void jugarPorEstatuilla(
                     aun_disponible = true;
                 }
             }
+        //Si no hay estatuillas disponibles, no permito al 2do jugador su jugada:
+            if(estatuillas_disponibles[0] == ""){
+                string mensaje = "- NO QUEDAN MAS ESTATUILLAS POR JUGAR! - ";
+                mensajeConDelay(mensaje);
+                 break;
+            }
             if (!aun_disponible)
             {
                 jugador = jugador == jugadores[0] ? jugadores[1] : jugadores[0];
@@ -408,20 +440,24 @@ void jugarPorEstatuilla(
                 seleccionarEstatuilla(
                     jugadores,
                     turnos,
+                    turno,
+                    ronda,
                     estatuillas_disponibles,
                     estatuillas_seleccionadas,
+                    estatuillas_jugadores,
                     reseleccion_estatuilla = 1,
                     jugador = turnos[1] // Le pasamos el jugador del 2do turno;
                 );
             }
         }
+
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
         setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
-
+        mensajeEstatuillaAJugar(turnos, turnoActual, estatuillas_seleccionadas);
         /**Valor_formateado es la representación en 'int' de
             cada estatuilla, para poder utilizar "string"
             dentro del switch, y ejecutar la jugada según
