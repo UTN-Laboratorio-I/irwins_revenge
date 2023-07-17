@@ -8,10 +8,11 @@ using namespace std;
 
 /*lanzamientoManualDados unicamente simula el hecho de
 "tirar" dados, al apretar la tecla ENTER*/
-void lanzamientoManualDados(int turno, string turnos[])
+void lanzamientoManualDados(int turno, string turnos[], string jugador_sin_turno="")
 {
     string lanzar;
-    string jugador = turnos[turno];
+    //En caso de necesitar utilizar la función sin tener en cuenta el turno, forzamos el nombre:
+    string jugador = jugador_sin_turno ==""? turnos[turno] : jugador_sin_turno;
     cout << jugador << ": PRESIONA ENTER PARA LANZAR DADOS!" << endl;
     getch();
 }
@@ -29,13 +30,17 @@ void lanzarDados(
     bool salamandra,
     int dados[],
     bool primer_turno, 
-    bool fase_exp)
+    bool fase_exp,
+    bool unico_dado=0)
 {
 
     int i, cant_dados=2;
     
     //Definimos la cantidad de dados a utilizar:
-    if(primer_turno){
+    if(unico_dado){
+        cant_dados=1;
+    }
+    else if(primer_turno){
         cant_dados=2;
     }
     else if(!fase_exp){

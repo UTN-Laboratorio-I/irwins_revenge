@@ -4,7 +4,6 @@
 #include "turnos/turnos.h"
 #include "ui/interfaz.h"
 #include "estatuillas/estatuillas.h"
-#include "maldiciones/maldiciones.h"
 #include "faseFinal/faseFinal.h"
 using namespace std;
 

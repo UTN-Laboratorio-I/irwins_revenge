@@ -3,6 +3,8 @@
 #include "../dados/dados.h"
 #include "../puntaje/puntaje.h"
 #include "../ui/interfaz.h"
+#include "../maldiciones/maldiciones.h"
+
 using namespace std;
 
 // Selección de la estatuilla que jugará el jugador:
@@ -169,7 +171,9 @@ void accionesEstatuillaGanada(
     string jug,
     string estatuillas_disponibles[],
     string estatuillas_jugadores[5][2],
-    string ordenEstatuillas[])
+    string ordenEstatuillas[],
+    int dados[],
+    bool modo_admin=0)
 {
     // id_jugador: La posición del jug. en el array jugadores; (Ex variable pos)
     int id_jugador;
@@ -183,8 +187,16 @@ void accionesEstatuillaGanada(
         }
     }
     int aleatorio = rand() % 4 + 1;
-    cout << jug << mensajeAleatorioVictoria(aleatorio) << estatuilla <<endl<<endl;
+    cout << jug << mensajeAleatorioVictoria(aleatorio) <<" Desbloqueaste " <<estatuilla <<"!"<<endl<<endl;
+    sleep(2);
+
     asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
+
+    //En caso de obtener CANGREJO, maldecimos al jugador:
+    if(estatuilla == "CANGREJO"){
+    maldicion_cangrejo(jugadores, dados, modo_admin, jug);
+    }
+
     // Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla, estatuillas_disponibles);
 
@@ -238,8 +250,7 @@ void obtener_cangrejo(
     }
     if (par && impar)
     {
-        cout << "GANASTE CANGREJO";
-        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas, dados, modo_admin);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -273,7 +284,7 @@ void obtener_hormiga(
     }
     if (menores_a_cinco[0] && menores_a_cinco[1])
     {
-        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas, dados, modo_admin);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -303,7 +314,7 @@ void obtener_medusa(
     }
     if (suma == resultado_esperado)
     {
-        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -340,7 +351,7 @@ void obtener_aguila(
     }
     if (numero_uno && numero_diez)
     {
-        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -374,7 +385,7 @@ void obtener_salamandra(
 
     if (numeros_consecutivos)
     {
-        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas);
+        accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
