@@ -94,6 +94,7 @@ void jugar_fase_final(
                 cin >> opcionDado;
                 dados[opcionDado - 1] = dadoHormiga;
                 cout << dados[opcionDado - 1] << endl;
+                puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
             }
             bandera_hormiga = 1;
         }
