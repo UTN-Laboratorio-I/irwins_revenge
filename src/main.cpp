@@ -2,7 +2,6 @@
 #include "modulos/menu/menu.h"
 #include "modulos/juego/juego.h"
 #include "modulos/creditos/creditos.h"
-#include "modulos/estadisticas/estadisticas.h"
 using namespace std;
 
 int main()

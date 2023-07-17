@@ -167,7 +167,10 @@ void jugar_fase_final(
 
         if (ganador)
         {
-            cout << turnos[turnoActual] << " GANO LA PARTIDA!!" << endl;
+            string m = turnos[turnoActual];
+            string mensaje = m.append(" GANASTE LA PARTIDA!");
+            mensajeConDelay(mensaje);
+
             fase_final = 0;
             
             nombre_ganador_fase_final = turnos[turnoActual];
