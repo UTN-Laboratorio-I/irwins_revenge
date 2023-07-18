@@ -14,8 +14,7 @@ void comenzarJuego(
     int vPJ1[6], int vPJ2[6],
     int valor_hitos[6],
     int contador_estatuillas_seleccionadas[5][2],
-    string nombre_ganador_fase_final
-    )
+    string nombre_ganador_fase_final)
 {
     int i = 0, max = 2;
     bool modo_admin = 0, fase_exp = 0, fase_final = 0;
@@ -23,7 +22,7 @@ void comenzarJuego(
     int fase = 0, turno = 0, cant_jugadores = 2;
     bool posee_salamandra;
     bool primer_turno = 1;
-    int ronda=1;
+    int ronda = 1;
     // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
     string maldicion_pendiente[2];
     bool maldito = maldicion_pendiente[0] != "";
@@ -49,8 +48,8 @@ void comenzarJuego(
     // Fase expedición:
     do
     {
-        //Aguardamos 3 segundos,limpiamos la pantalla:
-        //Mostramos el header del juego con la info de la partida:
+        // Aguardamos 3 segundos,limpiamos la pantalla:
+        // Mostramos el header del juego con la info de la partida:
         interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
         if (maldito)
         {
@@ -70,9 +69,7 @@ void comenzarJuego(
             estatuillas_disponibles,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
-            false
-        );
-
+            false);
 
         // Una vez tenemos las estatuillas seleccionadas, los jugadores juegan por ellas:
         jugarPorEstatuilla(
@@ -88,9 +85,9 @@ void comenzarJuego(
             listado_estatuillas,
             dados,
             ordenEstatuillas);
-        asignarTurno(turnos);        
+        asignarTurno(turnos);
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
-        //Pasamos a la siguiente ronda:
+        // Pasamos a la siguiente ronda:
         siguienteRonda(ronda);
     } while (fase_exp);
 
@@ -99,28 +96,30 @@ void comenzarJuego(
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
     int dadoHormiga = 0, dadoAguila = 0;
+    bool bandera_hormiga = 0, bandera_cangrejo = 0;
     do
     {
         jugar_fase_final(
-                        nombre_ganador_fase_final,
-                        vPJ1,
-                        vPJ2,
-                        modo_admin,
-                        jugadores,
-                        turnos,
-                        turno,
-                        ronda,
-                        dados,
-                        dado_6_caras,
-                        fase_final,
-                        estatuillas_jugadores,
-                        primerTiroJugadores, 
-                        dadoHormiga,
-                        dadoAguila
-                        );
+            nombre_ganador_fase_final,
+            vPJ1,
+            vPJ2,
+            modo_admin,
+            jugadores,
+            turnos,
+            turno,
+            ronda,
+            dados,
+            dado_6_caras,
+            fase_final,
+            estatuillas_jugadores,
+            primerTiroJugadores,
+            dadoHormiga,
+            dadoAguila,
+            bandera_hormiga,
+            bandera_cangrejo);
     } while (fase_final);
     // Carga todos los puntos recolectados del juego
-    puntaje_jugadores_final(vPJ1 ,vPJ2 ,valor_hitos, puntaje_jugadores);
+    puntaje_jugadores_final(vPJ1, vPJ2, valor_hitos, puntaje_jugadores);
 
     // Muesta las estadisticas finales del juego
     mostrar_estadisticas(puntaje_jugadores, jugadores, ordenEstatuillas);
