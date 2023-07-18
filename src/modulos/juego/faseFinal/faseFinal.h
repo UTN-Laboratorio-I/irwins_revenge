@@ -49,7 +49,6 @@ void jugar_fase_final(
         bool ganador = 0, tiene_hormiga = 0, tiene_aguila = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
-        interfazGeneralJuego(false, jugadores, estatuillas_jugadores, turnos, turno, ronda, false );
         setearParametrosJugadaFaseFinal(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual, id_jugador);
 
         // el jugador que tiene hormiga setea un dado para poder reemplazar luego

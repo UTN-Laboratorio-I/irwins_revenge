@@ -28,6 +28,7 @@ void comenzarJuego(
     string maldicion_pendiente[2];
     bool maldito = maldicion_pendiente[0] != "";
     int cont_turnos_maldicion = 0;
+    int jugador_maldito_salamandra;
 
     // Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2] = {};
@@ -81,6 +82,7 @@ void comenzarJuego(
             turnos,
             turno,
             ronda,
+            jugador_maldito_salamandra,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
             estatuillas_disponibles,
@@ -99,6 +101,7 @@ void comenzarJuego(
     // verificar primeros tiros de cada jugador
     bool primerTiroJugadores[2] = {1, 1};
     int dadoHormiga = 0, dadoAguila = 0;
+        interfazGeneralJuego(false, jugadores, estatuillas_jugadores, turnos, turno, ronda, false );
     do
     {
         jugar_fase_final(
@@ -119,6 +122,7 @@ void comenzarJuego(
                         dadoAguila
                         );
     } while (fase_final);
+
     // Carga todos los puntos recolectados del juego
     puntaje_jugadores_final(vPJ1 ,vPJ2 ,valor_hitos, puntaje_jugadores);
 

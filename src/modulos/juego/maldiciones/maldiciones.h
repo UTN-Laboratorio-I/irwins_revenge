@@ -85,17 +85,24 @@ void maldicion_hormiga(
         // puntaje_descontado[id_jugador_afectado]-=valor_dado;
 }
 
-void maldicion_medusa(int& contador_turnos_jugadores, string maldicion_pendiente){
+// void maldicion_medusa(int& contador_turnos_jugadores, string maldicion_pendiente){
     
-}
+// }
 
 // void maldicion_aguila(int& contador_turnos_jugadores, string maldicion_pendiente){
 
 // }
 
-// void maldicion_salamandra(int& contador_turnos_jugadores, string maldicion_pendiente){
+// void maldicion_salamandra(
+//     string jugadores[],
+//     int dados[],
+//     bool modo_admin,
+//     string jug,
+//     int& jugador_maldito_salamandra
+//     ){
 
-// }
+//         cout << jugador_maldito_salamandra;
+//     }
 
 
 

@@ -173,6 +173,7 @@ void accionesEstatuillaGanada(
     string estatuillas_jugadores[5][2],
     string ordenEstatuillas[],
     int dados[],
+    int& jugador_maldito_salamandra,
     bool modo_admin=0)
 {
     // id_jugador: La posición del jug. en el array jugadores; (Ex variable pos)
@@ -201,6 +202,16 @@ void accionesEstatuillaGanada(
         // maldicion_hormiga();
     }
     
+    if(estatuilla=="SALAMANDRA"){
+        int id_jugador_rival;
+        if(jugadores[0] == jug){  
+            id_jugador_rival=1;
+        }else{
+            id_jugador_rival=0;
+        }
+
+        maldicion_salamandra(jugadores, dados, modo_admin, jug, id_jugador_rival );
+    }
 
 
     // Eliminamos la estatuilla del array de disponibles.
@@ -221,8 +232,6 @@ void accionesEstatuillaPerdida(string estatuilla, string jug){
     cout << jug << mensajeAleatorioDerrota(aleatorio) << estatuilla << " continua disponible."<<endl<<endl;
 }
 
-// Parametros para las funciones de "obtener_{nombre estatuilla}":
-
 // Objetivo: Uno de sus dados debe ser par y el otro impar:
 void obtener_cangrejo(
     string jugadores[],
@@ -232,7 +241,8 @@ void obtener_cangrejo(
     string estatuillas_disponibles[],
     int dados[],
     string estatuillas_jugadores[5][2],
-    string ordenEstatuillas[])
+    string ordenEstatuillas[],
+    bool maldito_salamandra)
 {
     string estatuilla = "CANGREJO";
     string jug = turnos[turno]; // Nombre del jugador del turno que ganó.
@@ -241,7 +251,7 @@ void obtener_cangrejo(
     bool impar = 0;
     int i = 0;
 
-    lanzarDados(modo_admin, 10, false, dados, false, true);
+    lanzarDados(modo_admin, 10, maldito_salamandra, dados, false, true, false);
 
     for (i; i < 2; i++)
     {
@@ -272,13 +282,14 @@ void obtener_hormiga(
     string estatuillas_disponibles[],
     int dados[],
     string estatuillas_jugadores[5][2],
-    string ordenEstatuillas[])
+    string ordenEstatuillas[],
+    bool maldito_salamandra)
 {
     string estatuilla = "HORMIGA";
     string jug = turnos[turno];
     bool menores_a_cinco[2] = {0, 0}; // El array comienza con 2 falses.
     int i = 0;
-    lanzarDados(modo_admin, 10, false, dados, false, true);
+    lanzarDados(modo_admin, 10, maldito_salamandra, dados, false, true);
 
     // Acá definimos cuantos dados vamos a utilizar:
     for (i; i < 2; i++)
@@ -306,13 +317,14 @@ void obtener_medusa(
     string estatuillas_disponibles[],
     int dados[],
     string estatuillas_jugadores[5][2],
-    string ordenEstatuillas[])
+    string ordenEstatuillas[],
+    bool maldito_salamandra)
 {
     string estatuilla = "MEDUSA";
     string jug = turnos[turno];
     int resultado_esperado = 7, suma = 0; // El array comienza con 2 falses.
     int i = 0;
-    lanzarDados(modo_admin, 10, false, dados, false, true);
+    lanzarDados(modo_admin, 10, maldito_salamandra, dados, false, true);
 
     for (i; i < 2; i++)
     {
@@ -336,13 +348,14 @@ void obtener_aguila(
     string estatuillas_disponibles[],
     int dados[],
     string estatuillas_jugadores[5][2],
-    string ordenEstatuillas[])
+    string ordenEstatuillas[],
+    bool maldito_salamandra)
 {
     string estatuilla = "AGUILA";
     string jug = turnos[turno];
     bool numero_uno = 0, numero_diez = 0;
     int i = 0;
-    lanzarDados(modo_admin, 10, false, dados, false, true);
+    lanzarDados(modo_admin, 10, maldito_salamandra, dados, false, true);
 
     for (i; i < 2; i++)
     {
@@ -405,6 +418,7 @@ void jugarPorEstatuilla(
     string turnos[],
     int turno,
     int ronda,
+    int jugador_maldito_salamandra,
     string estatuillas_seleccionadas[], // Las estatuillas que fueron seleccionadas por los jugadores.
     string estatuillas_jugadores[5][2], // Las estatuillas que ya ganaron los jugadores
     string estatuillas_disponibles[],
@@ -423,6 +437,12 @@ void jugarPorEstatuilla(
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max_jugadores; i++)
     {
+        //Si el jugador está maldito, indicamos que lo está para la tirada de dados:
+        bool maldito_salamandra=0;
+        if(jugadores[jugador_maldito_salamandra] == jugador ){
+            maldito_salamandra=1;
+        }
+
         // Si ambos jugadores eligieron la misma estatuilla, y uno de los 2 ya jugó
         // chequeamos que siga disponible.
         if (
@@ -485,16 +505,16 @@ void jugarPorEstatuilla(
         switch (valor_formateado)
         {
         case 0:
-            obtener_cangrejo(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas);
+            obtener_cangrejo(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 1:
-            obtener_hormiga(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas);
+            obtener_hormiga(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 2:
-            obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas);
+            obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 3:
-            obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas);
+            obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 4:
             obtener_salamandra(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas);

@@ -3,7 +3,16 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+// #include <windows.h>
+// #include <mmsystem.h>
 using namespace std;
+
+// //SONIDOS:
+// void sonidoMenuPrincipal(){
+//     sndPlaySound("/src/assets/sounds/mixkit-arcade-mechanical-bling-210.wav", SND_ASYNC | SND_FILENAME | SND_LOOP);
+//     std::this_thread::sleep_for(std::chrono::seconds(2));
+// }
+
 
 
 //LIMPIEZA DE LA CONSOLA:
