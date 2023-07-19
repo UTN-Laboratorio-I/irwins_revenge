@@ -34,8 +34,9 @@ void delaySinMensaje(int delay){
     std::this_thread::sleep_for(std::chrono::seconds(delay));
     ClearConsole();
 }
+
 void mostrarHeaderJuego(bool fase_exp, int ronda){
-    string fase = fase_exp ? "FASE DE EXPEDICIÓN" : "FASE FINAL";
+    string fase = fase_exp ? "FASE DE EXPEDICION" : "FASE FINAL";
     cout << "IRWIN'S REVENGE - " << fase<< "                    RONDA Nro: " << ronda<<endl;
     cout << "------------------------------------------------------------------------"<<endl;
     ;
@@ -138,7 +139,7 @@ string mensajeAleatorioDerrota(int num){
             return ", intentalo nuevamente! ";
             break;
         case 4:
-            return ", maldicion, no fue tu mejor jugada ";
+            return ", maldicion, no fue tu mejor jugada, ";
             break;
         case 5:
             return ", esa estatuilla no te pertenece! ";
