@@ -31,13 +31,15 @@ void lanzarDados(
     int dados[],
     bool primer_turno, 
     bool fase_exp,
-    bool unico_dado=0)
+    bool unico_dado=0,
+    int forzar_dados=0)
 {
-
     int i, cant_dados=2;
-    
-    //Definimos la cantidad de dados a utilizar:
-    if(unico_dado){
+
+    //Determinamos la cantidad de dados a utilizar:
+    if(forzar_dados !=0){
+        cant_dados=forzar_dados;
+    }else if (unico_dado ){
         cant_dados=1;
     }
     else if(primer_turno){
@@ -97,7 +99,7 @@ void lanzarDados(
     cout << "Sus dados: " << endl;
     for (i = 0; i < cant_dados; i++)
     {
-        cout << dados[i];
+        cout <<"["<< dados[i]<<"]";
         if(i != cant_dados-1){
             cout <<" - ";
         }        

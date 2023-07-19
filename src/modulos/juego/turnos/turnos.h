@@ -51,9 +51,6 @@ void checkFinFaseExpedicion(string estatuillas_disponibles[], bool &fase_exp)
             // Si el bucle encuentra contenido en el array, entonces continua la fase exp:
             fase_exp = true;
             break;
-        }else{
-            //Mostramos el cambio de fase:
-            mostrarMensajeCambioFase();
         }
     }
 }

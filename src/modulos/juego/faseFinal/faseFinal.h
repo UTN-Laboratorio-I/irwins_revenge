@@ -50,13 +50,15 @@ void jugar_fase_final(
         bool ganador = 0, tiene_hormiga = 0, tiene_aguila = 0;
         // Seteamos los parámetros según que jugador tenga turno:
         turnoActual = i;
-        interfazGeneralJuego(false, jugadores, estatuillas_jugadores, turnos, turno, ronda, false);
         setearParametrosJugadaFaseFinal(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual, id_jugador);
 
         // el jugador que tiene hormiga setea un dado para poder reemplazar luego
         verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
         verificar_si_tiene_aguila(tiene_aguila, id_jugador, estatuillas_jugadores);
         verificar_si_tiene_medusa(tiene_medusa, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_cangrejo(tiene_cangrejo, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
+        
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
             cout << "Usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
@@ -69,8 +71,9 @@ void jugar_fase_final(
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+        puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
 
-        if (tiene_hormiga && !bandera_hormiga)
+        if (tiene_hormiga)
         {
             int opcionDado, opcion;
             cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
@@ -88,9 +91,8 @@ void jugar_fase_final(
                 cin >> opcionDado;
                 dados[opcionDado - 1] = dadoHormiga;
                 cout << dados[opcionDado - 1] << endl;
-                puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
+                
             }
-            bandera_hormiga = 1;
         }
 
         if (tiene_aguila)
@@ -122,7 +124,6 @@ void jugar_fase_final(
         // de ganar
         // por la regla de medusa y tambien para tirar dos veces los dados
 
-        verificar_si_tiene_cangrejo(tiene_cangrejo, id_jugador, estatuillas_jugadores);
         if (tiene_cangrejo && !bandera_cangrejo)
         {
             if (tiene_cangrejo && primerTiroJugadores[turnoActual])
@@ -150,7 +151,7 @@ void jugar_fase_final(
         // verifica si el jugador actual tiene SALAMANDRA para que su tirada
         // tenga chance de ganar
         // por la regla de salamandra
-        verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
+
         if (tiene_salamandra && !ganador)
         {
             ganador = escalera_salamandra(dados);

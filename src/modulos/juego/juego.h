@@ -25,8 +25,9 @@ void comenzarJuego(
     int ronda = 1;
     // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
     string maldicion_pendiente[2];
-    bool maldito = maldicion_pendiente[0] != "";
-    int cont_turnos_maldicion = 0;
+    string maldito_medusa_3_turnos="";
+    int cont_turnos_maldicion_medusa = 3;
+    int jugador_salamandra_3_dados=999;
 
     // Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2] = {};
@@ -51,21 +52,14 @@ void comenzarJuego(
         // Aguardamos 3 segundos,limpiamos la pantalla:
         // Mostramos el header del juego con la info de la partida:
         interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
-        if (maldito)
-        {
-            administradorMaldiciones(
-                maldito,
-                maldicion_pendiente,
-                cont_turnos_maldicion,
-                jugadores,
-                dados,
-                modo_admin);
-        }
+     
         seleccionarEstatuilla(
             jugadores,
             turnos,
             turno,
             ronda,
+            maldito_medusa_3_turnos,
+            cont_turnos_maldicion_medusa,
             estatuillas_disponibles,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
@@ -78,6 +72,9 @@ void comenzarJuego(
             turnos,
             turno,
             ronda,
+            jugador_salamandra_3_dados,
+            maldito_medusa_3_turnos,
+            cont_turnos_maldicion_medusa,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
             estatuillas_disponibles,
@@ -89,6 +86,11 @@ void comenzarJuego(
         checkFinFaseExpedicion(estatuillas_disponibles, fase_exp);
         // Pasamos a la siguiente ronda:
         siguienteRonda(ronda);
+
+        //Si finaliza la fase de expedición, mostramos el mensaje.
+        if(!fase_exp){
+            mostrarMensajeCambioFase();
+        }
     } while (fase_exp);
 
     // mostrarMensajeCambioFase();
@@ -118,6 +120,7 @@ void comenzarJuego(
             bandera_hormiga,
             bandera_cangrejo);
     } while (fase_final);
+
     // Carga todos los puntos recolectados del juego
     puntaje_jugadores_final(vPJ1, vPJ2, valor_hitos, puntaje_jugadores);
 
