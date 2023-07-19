@@ -201,35 +201,34 @@ void accionesEstatuillaGanada(
 
     asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
 
+    string jug_penalizado=jugadores[id_jugador];
+
     //En caso de obtener CANGREJO, maldecimos al jugador:
-    switch(estatuilla){
-        case "CANGREJO":
+
+    int valor_formateado = formatearAInt(estatuilla);
+    switch(valor_formateado){
+        case 0:
             maldicion_cangrejo(jugadores, dados, modo_admin, jug);
             break;
-        case "HORMIGA":
+        case 1:
             maldicion_hormiga(jugadores, dados, modo_admin, jug);
             break;
-        case "SALAMANDRA":
+        case 2:
+            // string mensaje_medusa= jug_penalizado.append(", has sido maldito por MEDUSA! \n no podras seleccionar estatuillas ni jugar los siguientes 3 turnos!");
+            // mensajeConDelay(mensaje_medusa);
+            break;
+        case 3:
+
+        break;
+        case 4:
             int id_jugador_rival;
             if(jugadores[0] == jug){  
                 id_jugador_rival = 1;
             }else{
                 id_jugador_rival = 0;
             }
-            string jug_penalizado=jugadores[id_jugador];
-
             string mensaje_salamandra= jug_penalizado.append(", has sido maldito por SALAMANDRA! \n").append(jugadores[id_jugador_rival]).append(" tira 3 dados por el resto de la fase de expedicion!");
             mensajeConDelay(mensaje_salamandra);
-            break;
-        case "MEDUSA":
-            string jug_penalizado=jugadores[id_jugador];
-
-            string mensaje_medusa= jug_penalizado.append(", has sido maldito por MEDUSA! \n no podras seleccionar estatuillas ni jugar los siguientes 3 turnos!");
-            mensajeConDelay(mensaje_medusa);
-        case "AGUILA":
-
-            break;
-        default:
             break;
     }
 
