@@ -13,8 +13,8 @@ void seleccionarEstatuilla(
     string turnos[],
     int turno,
     int ronda,
-    string maldito_aguila_3_turnos,
-    int cont_turnos_maldicion_aguila,
+    string maldito_medusa_3_turnos,
+    int cont_turnos_maldicion_medusa,
     string estatuillas_disponibles[],
     string estatuillas_seleccionadas[],
     string estatuillas_jugadores[5][2],
@@ -42,10 +42,10 @@ void seleccionarEstatuilla(
         // Iteramos por cada jugador:
         for (j; j < cant_jugadores; j++)
         {
-            if(maldito_aguila_3_turnos == turnos[j]){
-                string jugador_afectado = maldito_aguila_3_turnos;
-                string cant_turnos = to_string(cont_turnos_maldicion_aguila);
-                string mensaje = jugador_afectado.append(", AGUILA no te permite jugar por los siguientes ").append(cant_turnos).append(" turnos!");
+            if(maldito_medusa_3_turnos == turnos[j]){
+                string jugador_afectado = maldito_medusa_3_turnos;
+                string cant_turnos = to_string(cont_turnos_maldicion_medusa);
+                string mensaje = jugador_afectado.append(", MEDUSA no te permite jugar por los siguientes ").append(cant_turnos).append(" turnos!");
                 mensajeConDelay(mensaje);
                 continue;
             }
@@ -202,28 +202,36 @@ void accionesEstatuillaGanada(
     asignarEstatuillaAJugador(id_jugador, estatuilla, estatuillas_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
 
     //En caso de obtener CANGREJO, maldecimos al jugador:
-    if(estatuilla == "CANGREJO"){
-    maldicion_cangrejo(jugadores, dados, modo_admin, jug);
+    switch(estatuilla){
+        case "CANGREJO":
+            maldicion_cangrejo(jugadores, dados, modo_admin, jug);
+            break;
+        case "HORMIGA":
+            maldicion_hormiga(jugadores, dados, modo_admin, jug);
+            break;
+        case "SALAMANDRA":
+            int id_jugador_rival;
+            if(jugadores[0] == jug){  
+                id_jugador_rival = 1;
+            }else{
+                id_jugador_rival = 0;
+            }
+            string jug_penalizado=jugadores[id_jugador];
+
+            string mensaje_salamandra= jug_penalizado.append(", has sido maldito por SALAMANDRA! \n").append(jugadores[id_jugador_rival]).append(" tira 3 dados por el resto de la fase de expedicion!");
+            mensajeConDelay(mensaje_salamandra);
+            break;
+        case "MEDUSA":
+            string jug_penalizado=jugadores[id_jugador];
+
+            string mensaje_medusa= jug_penalizado.append(", has sido maldito por MEDUSA! \n no podras seleccionar estatuillas ni jugar los siguientes 3 turnos!");
+            mensajeConDelay(mensaje_medusa);
+        case "AGUILA":
+
+            break;
+        default:
+            break;
     }
-
-    if(estatuilla=="HORMIGA"){
-        maldicion_hormiga(jugadores, dados, modo_admin, jug);
-    }
-
-    if(estatuilla=="SALAMANDRA"){
-        int id_jugador_rival;
-        if(jugadores[0] == jug){  
-            id_jugador_rival = 1;
-        }else{
-            id_jugador_rival = 0;
-        }
-        string jug_penalizado=jugadores[id_jugador];
-        string mensaje_salamandra= jug_penalizado.append(", has sido maldito por SALAMANDRA! \n").append(jugadores[id_jugador_rival]).append(" tira 3 dados por el resto de la fase de expedicion!");
-        mensajeConDelay(mensaje_salamandra);
-    }
-    
-
-
 
     // Eliminamos la estatuilla del array de disponibles.
     eliminarEstatuilla(estatuilla, estatuillas_disponibles);
@@ -334,7 +342,8 @@ void obtener_medusa(
     int dados[],
     string estatuillas_jugadores[5][2],
     string ordenEstatuillas[],
-    bool maldito_salamandra)
+    bool maldito_salamandra,
+    string& maldito_medusa_3_turnos)
 {
     string estatuilla = "MEDUSA";
     string jug = turnos[turno];
@@ -361,6 +370,13 @@ void obtener_medusa(
     if (resultado_7)
     {
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
+         int id_jugador;
+        if(jugadores[0] == jug){  
+            id_jugador = 0;
+        }else{
+            id_jugador = 1;
+        }
+        maldito_medusa_3_turnos= jugadores[id_jugador];
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -377,8 +393,7 @@ void obtener_aguila(
     int dados[],
     string estatuillas_jugadores[5][2],
     string ordenEstatuillas[],
-    bool maldito_salamandra,
-    string& maldito_aguila_3_turnos)
+    bool maldito_salamandra)
 {
     string estatuilla = "AGUILA";
     string jug = turnos[turno];
@@ -401,14 +416,6 @@ void obtener_aguila(
     if (numero_uno && numero_diez)
     {
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
-
-         int id_jugador;
-        if(jugadores[0] == jug){  
-            id_jugador = 0;
-        }else{
-            id_jugador = 1;
-        }
-        maldito_aguila_3_turnos= jugadores[id_jugador];
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -466,8 +473,8 @@ void jugarPorEstatuilla(
     int turno,
     int ronda,
     int& jugador_maldito_salamandra,
-    string& maldito_aguila_3_turnos,
-    int& cont_turnos_maldicion_aguila,
+    string& maldito_medusa_3_turnos,
+    int& cont_turnos_maldicion_medusa,
     string estatuillas_seleccionadas[], // Las estatuillas que fueron seleccionadas por los jugadores.
     string estatuillas_jugadores[5][2], // Las estatuillas que ya ganaron los jugadores
     string estatuillas_disponibles[],
@@ -486,10 +493,10 @@ void jugarPorEstatuilla(
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max_jugadores; i++)
     {
-        if(maldito_aguila_3_turnos == turnos[i] && cont_turnos_maldicion_aguila !=0){
-            cont_turnos_maldicion_aguila--;
-            if(cont_turnos_maldicion_aguila ==0){
-                maldito_aguila_3_turnos="";
+        if(maldito_medusa_3_turnos == turnos[i] && cont_turnos_maldicion_medusa !=0){
+            cont_turnos_maldicion_medusa--;
+            if(cont_turnos_maldicion_medusa ==0){
+                maldito_medusa_3_turnos="";
             }
             continue;
         }
@@ -529,8 +536,8 @@ void jugarPorEstatuilla(
                     turnos,
                     turno,
                     ronda,
-                    maldito_aguila_3_turnos,
-                    cont_turnos_maldicion_aguila,
+                    maldito_medusa_3_turnos,
+                    cont_turnos_maldicion_medusa,
                     estatuillas_disponibles,
                     estatuillas_seleccionadas,
                     estatuillas_jugadores,
@@ -570,10 +577,10 @@ void jugarPorEstatuilla(
             obtener_hormiga(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 2:
-            obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
+            obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra,maldito_medusa_3_turnos);
             break;
         case 3:
-            obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra,maldito_aguila_3_turnos);
+            obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
             break;
         case 4:
             obtener_salamandra(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,jugador_maldito_salamandra);

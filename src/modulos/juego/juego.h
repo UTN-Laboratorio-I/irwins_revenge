@@ -26,8 +26,8 @@ void comenzarJuego(
     int ronda=1;
     // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
     string maldicion_pendiente[2];
-    string maldito_aguila_3_turnos="";
-    int cont_turnos_maldicion_aguila = 3;
+    string maldito_medusa_3_turnos="";
+    int cont_turnos_maldicion_medusa = 3;
     int jugador_salamandra_3_dados=999;
 
     // Booleano utilizado cuando el J1 gana la misma estatuilla.
@@ -59,8 +59,8 @@ void comenzarJuego(
             turnos,
             turno,
             ronda,
-            maldito_aguila_3_turnos,
-            cont_turnos_maldicion_aguila,
+            maldito_medusa_3_turnos,
+            cont_turnos_maldicion_medusa,
             estatuillas_disponibles,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
@@ -76,8 +76,8 @@ void comenzarJuego(
             turno,
             ronda,
             jugador_salamandra_3_dados,
-            maldito_aguila_3_turnos,
-            cont_turnos_maldicion_aguila,
+            maldito_medusa_3_turnos,
+            cont_turnos_maldicion_medusa,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
             estatuillas_disponibles,
