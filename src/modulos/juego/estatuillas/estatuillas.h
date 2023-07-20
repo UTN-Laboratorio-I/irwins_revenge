@@ -203,7 +203,7 @@ void accionesEstatuillaGanada(
 
     string jug_penalizado=jugadores[id_jugador];
 
-    //En caso de obtener CANGREJO, maldecimos al jugador:
+    //Aplicamos la maldición correspondiente:
 
     int valor_formateado = formatearAInt(estatuilla);
     switch(valor_formateado){
@@ -214,11 +214,10 @@ void accionesEstatuillaGanada(
             maldicion_hormiga(jugadores, dados, modo_admin, jug);
             break;
         case 2:
-            // string mensaje_medusa= jug_penalizado.append(", has sido maldito por MEDUSA! \n no podras seleccionar estatuillas ni jugar los siguientes 3 turnos!");
-            // mensajeConDelay(mensaje_medusa);
+          maldicion_medusa(jug_penalizado);
             break;
         case 3:
-
+            maldicion_aguila();
         break;
         case 4:
             int id_jugador_rival;
@@ -269,7 +268,7 @@ void obtener_cangrejo(
     bool impar = 0;
     int i = 0;
     int cant_dados = maldito_salamandra? 3:2;
-
+    
     lanzarDados(modo_admin, 10, maldito_salamandra, dados, false, true, false);
 
     for (i; i < cant_dados; i++)
@@ -392,7 +391,8 @@ void obtener_aguila(
     int dados[],
     string estatuillas_jugadores[5][2],
     string ordenEstatuillas[],
-    bool maldito_salamandra)
+    bool maldito_salamandra,
+    int& jugador_doble_tiro_aguila)
 {
     string estatuilla = "AGUILA";
     string jug = turnos[turno];
@@ -415,6 +415,9 @@ void obtener_aguila(
     if (numero_uno && numero_diez)
     {
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados, modo_admin);
+
+    //Le damos al rival el beneficio de los 2 tiros por ronda:
+        jugador_doble_tiro_aguila= obtenerIdJugadorRival(jugadores, jug);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -451,13 +454,8 @@ void obtener_salamandra(
     {
         accionesEstatuillaGanada(jugadores, estatuilla, jug, estatuillas_disponibles, estatuillas_jugadores, ordenEstatuillas,dados,modo_admin);
 
-        int id_jugador_rival;
-        if(jugadores[0] == jug){  
-            id_jugador_rival = 1;
-        }else{
-            id_jugador_rival = 0;
-        }
-        jugador_maldito_salamandra= id_jugador_rival;
+    //Le damos al rival el beneficio de los 3 dados:
+        jugador_maldito_salamandra= obtenerIdJugadorRival(jugadores, jug);
     }
     else{
         accionesEstatuillaPerdida(estatuilla, jug);
@@ -474,10 +472,10 @@ void jugarPorEstatuilla(
     int& jugador_maldito_salamandra,
     string& maldito_medusa_3_turnos,
     int& cont_turnos_maldicion_medusa,
+    int& jugador_doble_tiro_aguila,
     string estatuillas_seleccionadas[], // Las estatuillas que fueron seleccionadas por los jugadores.
     string estatuillas_jugadores[5][2], // Las estatuillas que ya ganaron los jugadores
     string estatuillas_disponibles[],
-    string maldicion_pendiente[],
     string listado_estatuillas[],
     int dados[],
     string ordenEstatuillas[])
@@ -550,7 +548,7 @@ void jugarPorEstatuilla(
         turnoActual = i;
         setearParametrosJugada(turnos, jugadores, jugada_j1, jugada_j2, jugador, turnoActual);
 
-        //Si el jugador está maldito, indicamos que lo está para la tirada de dados:
+        //Si el jugador está maldito, indicamos que lo está para la tirada de 3 dados:
         bool maldito_salamandra=0;
         if(jugador_maldito_salamandra == 0 || jugador_maldito_salamandra == 1 ){
            maldito_salamandra =  jugadores[jugador_maldito_salamandra] == jugador && 1;
@@ -566,24 +564,33 @@ void jugarPorEstatuilla(
             la estatuilla seleccionada por el Jugador:
         */
         int valor_formateado = formatearAInt(estatuillas_seleccionadas[turnoActual]);
+        //Variables aguila:
+        bool aguila_activo = jugador_doble_tiro_aguila == obtenerIdJugadorActual(jugadores, jugador);
+        int cantidad_tiros = aguila_activo ? 2 : 1;
+        int cantidad_estatuillas_pre_jugada = contarCantidadEstatuillas(estatuillas_disponibles);
 
-        switch (valor_formateado)
-        {
-        case 0:
-            obtener_cangrejo(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
-            break;
-        case 1:
-            obtener_hormiga(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
-            break;
-        case 2:
-            obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra,maldito_medusa_3_turnos);
-            break;
-        case 3:
-            obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
-            break;
-        case 4:
-            obtener_salamandra(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,jugador_maldito_salamandra);
-            break;
+        for(int u=1;u<=cantidad_tiros;u++){
+            switch (valor_formateado)
+            {
+            case 0:
+                obtener_cangrejo(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
+                break;
+            case 1:
+                obtener_hormiga(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra);
+                break;
+            case 2:
+                obtener_medusa(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra,maldito_medusa_3_turnos);
+                break;
+            case 3:
+                obtener_aguila(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,maldito_salamandra,jugador_doble_tiro_aguila);
+                break;
+            case 4:
+                obtener_salamandra(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,jugador_maldito_salamandra);
+                break;
+            }
+            if(aguila_activo){
+            verificarDobleTiroAguila(cantidad_tiros, cantidad_estatuillas_pre_jugada, jugador, estatuillas_disponibles, aguila_activo);
+            }
         }
     }
 }

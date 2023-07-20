@@ -40,3 +40,48 @@ int formatearAInt(string valor){
     return id_estatuilla;
 }
 
+int obtenerIdJugadorRival(string jugadores[], string nombre_jugador_actual){
+     int id_jugador_rival;
+        if(jugadores[0] == nombre_jugador_actual){  
+            id_jugador_rival = 1;
+        }else{
+            id_jugador_rival = 0;
+        }
+    return id_jugador_rival;
+}
+
+int obtenerIdJugadorActual(string jugadores[], string nombre_jugador_actual){
+     int id_jugador_actual;
+        if(jugadores[0] == nombre_jugador_actual){  
+            id_jugador_actual = 0;
+        }else{
+            id_jugador_actual = 1;
+        }
+    return id_jugador_actual;
+}
+
+int contarCantidadEstatuillas(string estatuillas_disponibles[]){
+ int i=0, contador_estatuillas=0;
+    for(i; i<5;i++){
+        if(estatuillas_disponibles[i] != ""){
+            contador_estatuillas++;
+        }
+    }
+    return contador_estatuillas;
+}
+
+void verificarDobleTiroAguila(int& cantidad_tiros, int cantidad_estatuillas_pre_jugada, string jugador, string estatuillas_disponibles[], bool aguila_activo){
+    bool menor_cantidad;
+    if(aguila_activo){
+        menor_cantidad = cantidad_estatuillas_pre_jugada < contarCantidadEstatuillas(estatuillas_disponibles);
+
+        if(menor_cantidad){
+            aguila_activo=0;
+        }
+        cantidad_tiros--;
+    if(cantidad_tiros==1){
+        string mensaje_doble_tiro = jugador.append(", AGUILA te brinda un segundo tiro, no lo desperdicies!");
+        mensajeConDelay(mensaje_doble_tiro);
+    }
+    }
+}

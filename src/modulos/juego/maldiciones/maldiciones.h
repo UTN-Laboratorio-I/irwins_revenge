@@ -97,10 +97,14 @@ void maldicion_hormiga(
     // puntaje_jugadores
 }
 
-// void maldicion_medusa(int& contador_turnos_jugadores, string maldicion_pendiente){
-    
-// }
+void maldicion_medusa(string jug_penalizado){
+      string mensaje_medusa= jug_penalizado.append(", has sido maldito por MEDUSA! \n no podras seleccionar estatuillas ni jugar los siguientes 3 turnos!");
+            mensajeConDelay(mensaje_medusa);
+}
 
+void maldicion_aguila(){
+
+}
 
 //Deprecado:
 // void administradorMaldiciones(

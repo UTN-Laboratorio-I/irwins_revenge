@@ -24,11 +24,11 @@ void comenzarJuego(
     bool posee_salamandra;
     bool primer_turno = 1;
     int ronda=1;
-    // Cuando haya alguna maldición, acá registramos cual es la estatuilla y quien el rival.
-    string maldicion_pendiente[2];
+    //Variables maldiciones:
     string maldito_medusa_3_turnos="";
     int cont_turnos_maldicion_medusa = 3;
     int jugador_salamandra_3_dados=999;
+    int jugador_doble_tiro_aguila =999;
 
     // Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2] = {};
@@ -78,10 +78,10 @@ void comenzarJuego(
             jugador_salamandra_3_dados,
             maldito_medusa_3_turnos,
             cont_turnos_maldicion_medusa,
+            jugador_doble_tiro_aguila,
             estatuillas_seleccionadas,
             estatuillas_jugadores,
             estatuillas_disponibles,
-            maldicion_pendiente,
             listado_estatuillas,
             dados,
             ordenEstatuillas);
