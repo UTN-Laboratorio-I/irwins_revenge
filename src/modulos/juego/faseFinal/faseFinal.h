@@ -23,13 +23,15 @@ void jugar_fase_final(
     string turnos[],
     int turno,
     int ronda,
-    int dados[], 
+    int dados[],
     int dado_6_caras,
     bool &fase_final,
     string estatuillas_jugadores[5][2],
     bool primerTiroJugadores[],
     int &dadoHormiga,
-    int &dadoAguila)
+    int &dadoAguila,
+    bool &bandera_hormiga,
+    bool &bandera_cangrejo)
 {
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
@@ -40,7 +42,6 @@ void jugar_fase_final(
     string jugador = ""; // Este define cual es el jugador que le toca tirar dado
                          //(Se define en setearParametrosJugada)
     int id_jugador;
-    bool bandera_hormiga = 0;
 
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
@@ -55,27 +56,24 @@ void jugar_fase_final(
         verificar_si_tiene_hormiga(tiene_hormiga, id_jugador, estatuillas_jugadores);
         verificar_si_tiene_aguila(tiene_aguila, id_jugador, estatuillas_jugadores);
         verificar_si_tiene_medusa(tiene_medusa, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_cangrejo(tiene_cangrejo, id_jugador, estatuillas_jugadores);
+        verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
+        
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
             cout << "Usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
             cout << "Seleccione numero: " << endl;
             cin >> dadoHormiga;
             cout << "Usted selecciono:  " << dadoHormiga << ". Podra usar este dado en el futuro" << endl;
-            cout << "Usted posee la bendicion de la hormiga. Tire un dado de 6 caras" << endl;
-            lanzamientoManualDados(turnoActual, turnos);
-            lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
-            puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
-            cout << "Usted saco " << dados[0] << ". podra usar este dado en el futuro" << endl;
-            dadoHormiga = dados[0];
             cout << endl;
         }
 
         /*simulamos acción lanzar dados (Apretar enter)*/
         lanzamientoManualDados(turnoActual, turnos);
-
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
+        puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
 
-        if (tiene_hormiga && !bandera_hormiga)
+        if (tiene_hormiga)
         {
             int opcionDado, opcion;
             cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
@@ -93,9 +91,8 @@ void jugar_fase_final(
                 cin >> opcionDado;
                 dados[opcionDado - 1] = dadoHormiga;
                 cout << dados[opcionDado - 1] << endl;
-                puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
+                
             }
-            bandera_hormiga = 1;
         }
 
         if (tiene_aguila)
@@ -127,8 +124,7 @@ void jugar_fase_final(
         // de ganar
         // por la regla de medusa y tambien para tirar dos veces los dados
 
-        verificar_si_tiene_cangrejo(tiene_cangrejo, id_jugador, estatuillas_jugadores);
-        if (tiene_cangrejo)
+        if (tiene_cangrejo && !bandera_cangrejo)
         {
             if (tiene_cangrejo && primerTiroJugadores[turnoActual])
             {
@@ -145,6 +141,7 @@ void jugar_fase_final(
                 }
                 setearPrimerTurno(turnos, jugadores, primerTiroJugadores, jugador, turnoActual);
             }
+            bandera_cangrejo = 1;
         }
 
         if (tiene_medusa)
@@ -154,7 +151,7 @@ void jugar_fase_final(
         // verifica si el jugador actual tiene SALAMANDRA para que su tirada
         // tenga chance de ganar
         // por la regla de salamandra
-        verificar_si_tiene_salamandra(tiene_salamandra, id_jugador, estatuillas_jugadores);
+
         if (tiene_salamandra && !ganador)
         {
             ganador = escalera_salamandra(dados);
@@ -172,25 +169,24 @@ void jugar_fase_final(
             mensajeConDelay(mensaje);
 
             fase_final = 0;
-            
+
             nombre_ganador_fase_final = turnos[turnoActual];
 
-            //Asigna el puntaje de ganador en fase final
-            if(turnos[turnoActual] == jugadores[0]){
+            // Asigna el puntaje de ganador en fase final
+            if (turnos[turnoActual] == jugadores[0])
+            {
                 vPJ1[2]++;
-            }else{
+            }
+            else
+            {
                 vPJ2[2]++;
             }
-            
-            //Asigna el puntaje de ganador sin estatuillas
+
+            // Asigna el puntaje de ganador sin estatuillas
             ganador_fase_final_sin_estatuillas(vPJ1, vPJ2, estatuillas_jugadores, jugadores, nombre_ganador_fase_final);
-            
             break;
         }
-        
-
     }
-
 }
 
 #endif

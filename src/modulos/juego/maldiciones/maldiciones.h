@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 /*CANGREJO:
 Rival tira un dado de diez caras y el valor obtenido son los puntos
 de victoria que se le DESCUENTAN al portador de la estatuilla al final
@@ -11,21 +10,23 @@ void maldicion_cangrejo(
     string jugadores[],
     int dados[],
     bool modo_admin,
-    string jug  
-    )
+    string jug)
 {
-    int i=0, max=2, dado_10_caras=10;
-    string jugador_rival,jugador_afectado;
+    int i = 0, max = 2, dado_10_caras = 10;
+    string jugador_rival, jugador_afectado;
     int id_jugador_afectado, id_jugador_rival, valor_dado;
 
-//Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
-    if(jugadores[0] == jug){
-        id_jugador_afectado=0;
-        id_jugador_rival=1;
+    // Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
+    if (jugadores[0] == jug)
+    {
+        id_jugador_afectado = 0;
+        id_jugador_rival = 1;
         jugador_rival = jugadores[id_jugador_rival];
-    }else{
-        id_jugador_afectado=1;
-        id_jugador_rival=0;
+    }
+    else
+    {
+        id_jugador_afectado = 1;
+        id_jugador_rival = 0;
         jugador_rival = jugadores[id_jugador_rival];
     }
 
@@ -37,11 +38,11 @@ void maldicion_cangrejo(
     mensajeConDelay(mensaje_fuiste_maldito);
     mensajeConDelay(mensaje_tirar_dados);
 
-    lanzamientoManualDados(0,jugadores, jugador_rival);
+    lanzamientoManualDados(0, jugadores, jugador_rival);
     lanzarDados(modo_admin, dado_10_caras, false, dados, false, true, true);
 
-//Valor del primer dado:
-    valor_dado=dados[0];
+    // Valor del primer dado:
+    valor_dado = dados[0];
 
     string mensaje_puntaje = jugador_afectado.append(", CANGREJO te maldijo con -").append(to_string(valor_dado)).append(" puntos!");
     mensajeConDelay(mensaje_puntaje);
@@ -50,29 +51,34 @@ void maldicion_cangrejo(
     descontar_puntos_maldicion_cangrejo(id_jugador_afectado, vPJ1, vPJ2, valor_hitos, valor_dado);
 }
 
+    // Descontamos puntos al jugador afectado:
+    //  puntaje_jugadores
+}
 
 /*
 Rival tira 2 dados de 10 caras, valor obtenido se le descuenta al ganador de la estatuilla.
 */
 void maldicion_hormiga(
-   string jugadores[],
+    string jugadores[],
     int dados[],
     bool modo_admin,
-    string jug  
-    )
+    string jug)
 {
-    int i=0, max=2, dado_10_caras=10;
-    string jugador_rival,jugador_afectado;
+    int i = 0, max = 2, dado_10_caras = 10;
+    string jugador_rival, jugador_afectado;
     int id_jugador_afectado, id_jugador_rival, valor_a_descontar;
 
-//Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
-    if(jugadores[0] == jug){
-        id_jugador_afectado=0;
-        id_jugador_rival=1;
+    // Seleccionamos el jugador RIVAL al que ganó estatuilla cangrejo,
+    if (jugadores[0] == jug)
+    {
+        id_jugador_afectado = 0;
+        id_jugador_rival = 1;
         jugador_rival = jugadores[id_jugador_rival];
-    }else{
-        id_jugador_afectado=1;
-        id_jugador_rival=0;
+    }
+    else
+    {
+        id_jugador_afectado = 1;
+        id_jugador_rival = 0;
         jugador_rival = jugadores[id_jugador_rival];
     }
 
@@ -84,11 +90,11 @@ void maldicion_hormiga(
     mensajeConDelay(mensaje_fuiste_maldito);
     mensajeConDelay(mensaje_tirar_dados);
 
-    lanzamientoManualDados(0,jugadores, jugador_rival);
+    lanzamientoManualDados(0, jugadores, jugador_rival);
     lanzarDados(modo_admin, dado_10_caras, false, dados, false, true, false, 2);
 
-//Valor del primer dado:
-    valor_a_descontar=dados[0]+dados[1];
+    // Valor del primer dado:
+    valor_a_descontar = dados[0] + dados[1];
 
     string mensaje_puntaje = jugador_afectado.append(", HORMIGA te maldijo con -").append(to_string(valor_a_descontar)).append(" puntos!");
     mensajeConDelay(mensaje_puntaje);
@@ -106,18 +112,6 @@ void maldicion_aguila(){
 
 }
 
-//Deprecado:
-// void administradorMaldiciones(
-//     bool& maldito, 
-//     string maldicion_pendiente[],
-//     int cont_turnos_maldicion,
-//     string jugadores[],
-//     int dados[],
-//     bool modo_admin
-//     )
-//     {
-//     int i=0, max=2, id_estatuilla;
-    
 //     id_estatuilla=formatearAInt(maldicion_pendiente[0]);
 
 //      switch(id_estatuilla){
