@@ -47,7 +47,7 @@ void maldicion_cangrejo(
     mensajeConDelay(mensaje_puntaje);
     
 //Descontamos puntos al jugador afectado:
-    // puntaje_jugadores
+    descontar_puntos_maldicion_cangrejo(id_jugador_afectado, vPJ1, vPJ2, valor_hitos, valor_dado);
 }
 
 
@@ -94,7 +94,7 @@ void maldicion_hormiga(
     mensajeConDelay(mensaje_puntaje);
     
 //Descontamos puntos al jugador afectado:
-    // puntaje_jugadores
+    descontar_puntos_maldicion_hormiga(id_jugador_afectado, vPJ1, vPJ2, valor_hitos, valor_a_descontar);
 }
 
 void maldicion_medusa(string jug_penalizado){

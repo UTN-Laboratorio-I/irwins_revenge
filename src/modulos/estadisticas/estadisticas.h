@@ -36,7 +36,7 @@ void cargar_estadisticas(int puntaje_jugadores[6][2])
 // Funcion para mostrar las estadisticas
 
 void mostrar_estadisticas(
-    int puntaje_jugadores[6][2],
+    int puntaje_jugadores[][2],
     string jugadores[],
     string ordenEstatuillas[])
 {
@@ -45,7 +45,7 @@ void mostrar_estadisticas(
     int i, j, z;
 
     // Este vector muestra la columna con los hitos a mostrar por pantalla
-    string vec_hito[6] = {"Estatuilla", "Estatuilla ++", "Ganador ", "Ganador ++", "Estatuilla --", "Lanzamiento"};
+    string vec_hito[8] = {"Estatuilla", "Estatuilla ++", "Ganador ", "Ganador ++", "Estatuilla --", "Lanzamiento", "Maldicion CANGREJO", "Maldicion HORMIGA"};
 
     // Variable de jugador ganador
     string ganador;
@@ -62,14 +62,21 @@ void mostrar_estadisticas(
          << "\t" << n_J1 << "\t"
          << "\t" << n_J2 << endl;
 
-    for (i = 0; i < 6; i++)
+    for (i = 0; i < 8; i++)
     {
         cout << vec_hito[i] << "\t";
         for (j = 0; j < 2; j++)
         {
-            cout << puntaje_jugadores[i][j] << " PDV"
-                               "\t"
-                 << "\t";
+            if (i == 6 || i == 7)
+            {
+                cout << puntaje_jugadores[i][j] << " PDV"
+                     << "\t" << "\t";
+            }
+            else
+            {
+                cout << "\t" << puntaje_jugadores[i][j] << " PDV"
+                     << "\t";
+            }
         }
         acuJ1 += puntaje_jugadores[i][0];
         acuJ2 += puntaje_jugadores[i][1];
@@ -77,7 +84,8 @@ void mostrar_estadisticas(
     }
     cout << endl;
     cout << "------------------------------------------------------------------------" << endl;
-    cout << "TOTAL"
+    cout << "TOTAL"       
+         << "\t"
          << "\t"
          << "\t" << acuJ1 << " PDV"
          << "\t"
