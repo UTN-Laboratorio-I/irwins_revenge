@@ -11,7 +11,7 @@ int main()
     int opcion_seleccionada;
 
     // Variables estadísticas:
-    int puntaje_jugadores[6][2] = {};
+    int puntaje_jugadores[8][2] = {};
     int acumuladores[2] = {};
     int puntaje_descontado[2] = {};
     srand(time(0));

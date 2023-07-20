@@ -9,10 +9,10 @@ using namespace std;
 
 void comenzarJuego(
     string jugadores[],
-    int puntaje_jugadores[6][2],
+    int puntaje_jugadores[8][2],
     string ordenEstatuillas[],
-    int vPJ1[6], int vPJ2[6],
-    int valor_hitos[6],
+    int vPJ1[8], int vPJ2[8],
+    int valor_hitos[8],
     int contador_estatuillas_seleccionadas[5][2],
     string nombre_ganador_fase_final
     )
