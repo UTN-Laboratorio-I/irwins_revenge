@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
     
-    int vPJ1[6] = {};
-    int vPJ2[6] = {};
-    int valor_hitos[6] = {};
-    int puntaje_jugadores[6][2] = {};
+    int vPJ1[8] = {};
+    int vPJ2[8] = {};
+    int valor_hitos[8] = {};
+    int puntaje_jugadores[8][2] = {};
     int contador_estatuillas_seleccionadas[5][2] = {};
 
 
@@ -24,7 +24,7 @@ void puntaje_jugadores_final(int vPJ1[],int vPJ2 [], int valor_hitos[], int punt
 
     int i;
     
-    for(i=0;i<6;i++){
+    for(i=0;i<8;i++){
             puntaje_jugadores [i][0] = valor_hitos [i] * vPJ1 [i];
             puntaje_jugadores [i][1] = valor_hitos [i] * vPJ2 [i];    
     }
@@ -33,14 +33,15 @@ void puntaje_jugadores_final(int vPJ1[],int vPJ2 [], int valor_hitos[], int punt
 }
 
 
-void puntos_de_hitos (int valor_hitos[6]){
+void puntos_de_hitos (int valor_hitos[8]){
     valor_hitos [0] = 5;
     valor_hitos [1] = 10;
     valor_hitos [2] = 15;
     valor_hitos [3] = 50;
     valor_hitos [4] = -3;
     valor_hitos [5] = -1;
-
+    valor_hitos [6] = -1;
+    valor_hitos [7] = -1;
 }
 
 /*int contadores_jugadores_en_cero (int vPJ1[6],int vPJ2 [6]){
@@ -222,7 +223,24 @@ void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], 
 
             }            
         }    
-        
+}
+
+void descontar_puntos_maldicion_cangrejo (int id_jugador_afectado, int vPJ1[], int vPJ2[], int valor_hitos[], int valor_dado){
+
+    if(id_jugador_afectado == 0){
+        vPJ1[6] = valor_dado * valor_hitos[6];
+    }else if(id_jugador_afectado == 1){
+        vPJ2[6] = valor_dado * valor_hitos[6];
+    }
 
 }
 
+void descontar_puntos_maldicion_hormiga (int id_jugador_afectado, int vPJ1[], int vPJ2[], int valor_hitos[], int valor_dado){
+
+    if(id_jugador_afectado == 0){
+        vPJ1[7] = valor_dado * valor_hitos[7];
+    }else if(id_jugador_afectado == 1){
+        vPJ2[7] = valor_dado * valor_hitos[7];
+    }
+
+}
