@@ -228,9 +228,9 @@ void contador_seleccion_estatuilla(int contador_estatuillas_seleccionadas[][2], 
 void descontar_puntos_maldicion_cangrejo (int id_jugador_afectado, int vPJ1[], int vPJ2[], int valor_hitos[], int valor_dado){
 
     if(id_jugador_afectado == 0){
-        vPJ1[6] = valor_dado * valor_hitos[6];
+        vPJ1[6] = valor_dado;
     }else if(id_jugador_afectado == 1){
-        vPJ2[6] = valor_dado * valor_hitos[6];
+        vPJ2[6] = valor_dado;
     }
 
 }
@@ -238,9 +238,9 @@ void descontar_puntos_maldicion_cangrejo (int id_jugador_afectado, int vPJ1[], i
 void descontar_puntos_maldicion_hormiga (int id_jugador_afectado, int vPJ1[], int vPJ2[], int valor_hitos[], int valor_dado){
 
     if(id_jugador_afectado == 0){
-        vPJ1[7] = valor_dado * valor_hitos[7];
+        vPJ1[7] = valor_dado;
     }else if(id_jugador_afectado == 1){
-        vPJ2[7] = valor_dado * valor_hitos[7];
+        vPJ2[7] = valor_dado;
     }
 
 }
