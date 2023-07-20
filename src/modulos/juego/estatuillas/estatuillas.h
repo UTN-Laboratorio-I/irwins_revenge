@@ -569,7 +569,7 @@ void jugarPorEstatuilla(
         int cantidad_tiros = aguila_activo ? 2 : 1;
         int cantidad_estatuillas_pre_jugada = contarCantidadEstatuillas(estatuillas_disponibles);
 
-        for(int u=1;u<=cantidad_tiros;u++){
+        // for(int u=1;u<=cantidad_tiros;u++){
             switch (valor_formateado)
             {
             case 0:
@@ -588,9 +588,9 @@ void jugarPorEstatuilla(
                 obtener_salamandra(jugadores, modo_admin, turnoActual, turnos, estatuillas_disponibles, dados, estatuillas_jugadores, ordenEstatuillas,jugador_maldito_salamandra);
                 break;
             }
-            if(aguila_activo){
-            verificarDobleTiroAguila(cantidad_tiros, cantidad_estatuillas_pre_jugada, jugador, estatuillas_disponibles, aguila_activo);
-            }
-        }
+        //     if(aguila_activo){
+        //     verificarDobleTiroAguila(cantidad_tiros, cantidad_estatuillas_pre_jugada, jugador, estatuillas_disponibles, aguila_activo);
+        //     }
+        // }
     }
 }

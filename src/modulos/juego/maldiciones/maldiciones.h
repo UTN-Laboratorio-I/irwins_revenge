@@ -53,7 +53,7 @@ void maldicion_cangrejo(
 
     // Descontamos puntos al jugador afectado:
     //  puntaje_jugadores
-}
+
 
 /*
 Rival tira 2 dados de 10 caras, valor obtenido se le descuenta al ganador de la estatuilla.

@@ -61,14 +61,15 @@ void jugar_fase_final(
         
         if ((dadoHormiga == 0) && tiene_hormiga)
         {
-            cout << "Usted posee la bendicion de la hormiga. Elija un numero del 1 al 6" << endl;
-            cout << "Seleccione numero: " << endl;
+            cout << jugador <<", tenes la bendicion de la HORMIGA. Elija un numero del 1 al 6" << endl;
+            cout << jugador <<", seleccione numero: " << endl;
             cin >> dadoHormiga;
-            cout << "Usted selecciono:  " << dadoHormiga << ". Podra usar este dado en el futuro" << endl;
+            cout << jugador <<", seleccionaste:  " << dadoHormiga << ". Podras usar este dado en el futuro" << endl;
             cout << endl;
         }
 
         /*simulamos acción lanzar dados (Apretar enter)*/
+        interfazGeneralJuego(false, jugadores, estatuillas_jugadores, turnos, turno, ronda);
         lanzamientoManualDados(turnoActual, turnos);
         lanzarDados(modo_admin, dado_6_caras, false, dados, false, false);
         puntaje_lanzamiento_fase_final(vPJ1, vPJ2, id_jugador); // cuenta puntaje de lanzamiento de dados
@@ -76,14 +77,14 @@ void jugar_fase_final(
         if (tiene_hormiga)
         {
             int opcionDado, opcion;
-            cout << "Al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
+            cout << jugador <<", al tener la bendicion de la hormiga puede reemplazar uno de sus dados por: " << dadoHormiga << endl;
             cout << "¿Desea cambiar algun dado?" << endl;
             cout << " 1 - SI" << endl;
             cout << " 2 - NO" << endl;
             cin >> opcion;
             if (opcion == 1)
             {
-                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
+                cout << "¿Cual dado desea cambiar, "<< jugador <<"? (elija entre 1 y 5)" << endl;
                 for (int j = 0; j < 5; j++)
                 {
                     cout << j + 1 << " - " << dados[j] << endl;
@@ -98,23 +99,22 @@ void jugar_fase_final(
         if (tiene_aguila)
         {
             int opcionDado, opcion;
-            cout << "Al tener la bendicion del aguila puede reemplazar uno de sus dados por un numero entre 1 y 6" << endl;
+            cout << jugador << ", al tener la bendicion del aguila puede reemplazar uno de sus dados por un numero entre 1 y 6" << endl;
             cout << "¿Desea cambiar algun dado?" << endl;
             cout << " 1 - SI" << endl;
             cout << " 2 - NO" << endl;
             cin >> opcion;
             if (opcion == 1)
             {
-                cout << "¿Cual dado desea cambiar? (elija entre 1 y 5)" << endl;
+                cout << "¿Cual dado desea cambiar, "<< jugador <<"? (elija entre 1 y 5)" << endl;
                 for (int j = 0; j < 5; j++)
                 {
                     cout << j + 1 << " - " << dados[j] << endl;
                 }
                 cin >> opcionDado;
-                cout << "Elija un numero entre 1 y 5 para reemplazar el dado: " << endl;
+                cout << jugador << " ,elija un numero entre 1 y 5 para reemplazar el dado: " << endl;
                 cin >> dadoAguila;
                 dados[opcionDado - 1] = dadoAguila;
-                cout << dados[opcionDado - 1] << endl;
             }
         }
 
@@ -129,7 +129,7 @@ void jugar_fase_final(
             if (tiene_cangrejo && primerTiroJugadores[turnoActual])
             {
                 int tirar;
-                cout << "¿Quiere tirar una segunda vez? (esta tirada reemplaza a la anterior)" << endl;
+                cout << jugador <<" ¿Quiere tirar una segunda vez? (esta tirada reemplaza a la anterior)" << endl;
                 cout << "1 - SI" << endl;
                 cout << "2 - NO" << endl;
                 cin >> tirar;

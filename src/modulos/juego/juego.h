@@ -119,6 +119,10 @@ void comenzarJuego(
             dadoAguila,
             bandera_hormiga,
             bandera_cangrejo);
+
+        if(fase_final){
+            siguienteRonda(ronda);
+        }
     } while (fase_final);
 
     // Carga todos los puntos recolectados del juego
