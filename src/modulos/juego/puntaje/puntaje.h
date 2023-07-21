@@ -244,3 +244,18 @@ void descontar_puntos_maldicion_hormiga (int id_jugador_afectado, int vPJ1[], in
     }
 
 }
+
+void limpiar_puntaje ( int puntaje_jugadores[8][2], int vPJ1[8],int vPJ2[8],int contador_estatuillas_seleccionadas[5][2]){
+
+    int i, j;
+
+    for(i=0; i<8; i++){
+        vPJ1[i] = {};
+        vPJ2[i] = {};
+        for(j=0; j<2; j++){
+            puntaje_jugadores[i][j] = {};
+            contador_estatuillas_seleccionadas[i][j] = {};
+        }
+    }
+
+}

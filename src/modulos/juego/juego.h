@@ -29,6 +29,9 @@ void comenzarJuego(
     int jugador_salamandra_3_dados=999;
     int jugador_doble_tiro_aguila =999;
 
+    //Limpiamos los vectores de puntajes
+    limpiar_puntaje (puntaje_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
+
     // Booleano utilizado cuando el J1 gana la misma estatuilla.
     string estatuillas_jugadores[5][2] = {};
     // Estatuillas que seleccionaron en seleccionarEstatuilla():

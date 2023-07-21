@@ -59,7 +59,9 @@ void mostrar_estadisticas(
          << endl;
     cout << "HITO"
          << "\t"
-         << "\t" << n_J1 << "\t"
+         << "\t" 
+         << "\t"
+         << n_J1 << "\t"
          << "\t" << n_J2 << endl;
 
     for (i = 0; i < 8; i++)
