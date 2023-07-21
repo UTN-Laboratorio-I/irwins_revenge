@@ -28,6 +28,7 @@ void comenzarJuego(
     int cont_turnos_maldicion_medusa = 3;
     int jugador_salamandra_3_dados=999;
     int jugador_doble_tiro_aguila =999;
+    int jugador_salamandra_fase_final = 999;
 
     //Limpiamos los vectores de puntajes
     limpiar_puntaje (puntaje_jugadores, vPJ1, vPJ2, contador_estatuillas_seleccionadas);
@@ -92,6 +93,7 @@ void comenzarJuego(
 
         //Si finaliza la fase de expedición, mostramos el mensaje.
         if(!fase_exp){
+            decisionSalamandra(jugadores, estatuillas_jugadores, jugador_salamandra_fase_final );
             mostrarMensajeCambioFase();
         }
     } while (fase_exp);
@@ -113,6 +115,7 @@ void comenzarJuego(
             turnos,
             turno,
             ronda,
+            jugador_salamandra_fase_final,
             dados,
             dado_6_caras,
             fase_final,

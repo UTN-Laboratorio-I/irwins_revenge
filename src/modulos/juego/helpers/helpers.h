@@ -86,3 +86,37 @@ void verificarDobleTiroAguila(int& cantidad_tiros, int cantidad_estatuillas_pre_
         mensajeConDelay(mensaje_doble_tiro);
     }
 }
+
+void decisionSalamandra(string jugadores[], string estatuillas_jugadores[][2], int& jugador_salamandra_fase_final  ){
+    //Aca buscamos el jugador con la estatuilla:
+    int jugador_con_salamandra=999;
+    int decision;
+    for(int i =0; i<2;i++){
+        for(int j=0; j<5;j++){
+            if(estatuillas_jugadores[i][j]=="SALAMANDRA"){
+                jugador_con_salamandra == i;
+            }
+        }
+    }
+
+    // string mensaje = "1)Desea mantener salamandra  2)renunciar a ella  3)o cederla al rival?" <<endl;
+    // mensajeConDelay(mensaje);
+    cout << "Elija opcion:"<<endl;
+    cin >> decision;
+
+    string nombre_jugador_actual = jugadores[jugador_con_salamandra];
+    int jugador_rival = obtenerIdJugadorRival(jugadores, nombre_jugador_actual);
+
+    switch(decision){
+        case 1:
+            jugador_salamandra_fase_final=jugador_con_salamandra;
+            break;
+        case 2:
+            break;
+        case 3:
+        jugador_salamandra_fase_final= jugador_rival;
+            break;
+        default:
+            break;  
+    }
+}

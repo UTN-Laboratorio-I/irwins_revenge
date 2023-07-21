@@ -24,6 +24,7 @@ void jugar_fase_final(
     string jugadores[],
     string turnos[],
     int turno,
+    int jugador_salamandra_fase_final,
     int ronda,
     int dados[],
     int dado_6_caras,
@@ -159,10 +160,12 @@ void jugar_fase_final(
         // verifica si el jugador actual tiene SALAMANDRA para que su tirada
         // tenga chance de ganar
         // por la regla de salamandra
+        if(jugador_salamandra_fase_final != 999){
 
-        if (tiene_salamandra && !ganador)
+        if (tiene_salamandra && !ganador && jugador == jugadores[jugador_salamandra_fase_final])
         {
             ganador = escalera_salamandra(dados);
+        }
         }
         // si no gano ni por salamandra ni por medusa, verifica que tenga escalera complea
         if (!ganador)
