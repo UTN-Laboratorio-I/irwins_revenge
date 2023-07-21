@@ -11,7 +11,7 @@ void mostrar_menu()
     cout << endl;
     cout << "IRWIN'S REVENGE" << endl;
     cout << "----------------------------" << endl;
-    cout << " 1 - JUGAR" << endl;
+    cout << " 1 - NUEVA PARTIDA" << endl;
     cout << " 2 - ESTADISTICAS" << endl;
     cout << " 3 - CREDITOS" << endl;
     cout << "----------------------------" << endl;

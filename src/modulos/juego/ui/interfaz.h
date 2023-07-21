@@ -3,8 +3,6 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-// #include <windows.h>
-// #include <mmsystem.h>
 using namespace std;
 
 // //SONIDOS:

@@ -2,6 +2,7 @@
 #include "modulos/menu/menu.h"
 #include "modulos/juego/juego.h"
 #include "modulos/creditos/creditos.h"
+#include "modulos/juego/ui/portada.h"
 using namespace std;
 
 int main()
@@ -25,6 +26,7 @@ int main()
     puntos_de_hitos(valor_hitos);
     //int contador_estatuillas_seleccionadas[5][2] = {};
 
+    portadaPrincipal();
     do
     {
         mostrar_menu();
