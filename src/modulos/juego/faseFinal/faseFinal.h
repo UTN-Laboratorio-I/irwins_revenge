@@ -4,6 +4,8 @@
 #define TURNOS_H_INCLUDED
 #ifndef BENDICIONES_H_INCLUDED
 #define BENDICIONES_H_INCLUDED
+#ifndef INTERFAZ_H_INCLUDED
+#define INTERFAZ_H_INCLUDED
 
 // #include "Bendiciones/bendiciones.h"
 #include <iostream>
@@ -31,7 +33,8 @@ void jugar_fase_final(
     int &dadoHormiga,
     int &dadoAguila,
     bool &bandera_hormiga,
-    bool &bandera_cangrejo)
+    bool &bandera_cangrejo,
+    bool fase_exp)
 {
 
     // Declaramos la bandera de si los jugadores realizaron jugada:
@@ -46,6 +49,7 @@ void jugar_fase_final(
     // Iteramos por cada jugador dentro del array de turnos:
     for (i; i < max; i++)
     {
+        interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
         bool tiene_medusa = 0, tiene_salamandra = 0, tiene_cangrejo = 0;
         bool ganador = 0, tiene_hormiga = 0, tiene_aguila = 0;
         // Seteamos los parámetros según que jugador tenga turno:
@@ -96,6 +100,8 @@ void jugar_fase_final(
             }
         }
 
+        interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
+
         if (tiene_aguila)
         {
             int opcionDado, opcion;
@@ -144,6 +150,8 @@ void jugar_fase_final(
             bandera_cangrejo = 1;
         }
 
+        interfazGeneralJuego(fase_exp, jugadores, estatuillas_jugadores, turnos, turno, ronda, true);
+
         if (tiene_medusa)
         {
             ganador = dados_iguales_medusa(dados);
@@ -189,6 +197,7 @@ void jugar_fase_final(
     }
 }
 
+#endif
 #endif
 #endif
 #endif

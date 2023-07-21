@@ -121,7 +121,8 @@ void comenzarJuego(
             dadoHormiga,
             dadoAguila,
             bandera_hormiga,
-            bandera_cangrejo);
+            bandera_cangrejo,
+            fase_exp);
 
         if(fase_final){
             siguienteRonda(ronda);
